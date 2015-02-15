@@ -1,0 +1,15 @@
+/vendor
+/node_modules
+/pruebas
+.env
+composer.lock
+
+### Bower ###
+bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
+
+
+### Composer ###
+composer.phar
