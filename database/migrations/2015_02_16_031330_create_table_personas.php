@@ -5,28 +5,28 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTablePersonas extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('personas', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->timestamps();
-		});
-	}
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('personas', function(Blueprint $table)
+    {
+      $table->increments('id');
+      $table->timestamps();
+    });
+  }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('personas');
-	}
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::drop('personas');
+  }
 
 }

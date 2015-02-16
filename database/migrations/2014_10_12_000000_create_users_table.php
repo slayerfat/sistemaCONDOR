@@ -5,37 +5,37 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('usuarios', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('seudonimo');
-			$table->string('email')->unique();
-			$table->string('password', 60);
-			$table->rememberToken();
-			$table->timestamps();
-			$table->integer('created_by')->unsigned();
-			$table->foreign('created_by')->on('usuarios');
-			$table->integer('updated_by')->unsigned();
-			$table->foreign('updated_by')->on('usuarios');
-			$table->timestamp('deleted_at');
-		});
-	}
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('usuarios', function(Blueprint $table)
+    {
+      $table->increments('id');
+      $table->string('seudonimo');
+      $table->string('email')->unique();
+      $table->string('password', 60);
+      $table->rememberToken();
+      $table->timestamps();
+      $table->integer('created_by')->unsigned();
+      $table->foreign('created_by')->on('usuarios');
+      $table->integer('updated_by')->unsigned();
+      $table->foreign('updated_by')->on('usuarios');
+      $table->timestamp('deleted_at');
+    });
+  }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('usuarios');
-	}
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::drop('usuarios');
+  }
 
 }
