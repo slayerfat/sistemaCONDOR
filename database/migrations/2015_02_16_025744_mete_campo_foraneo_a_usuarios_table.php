@@ -17,8 +17,7 @@ class MeteCampoForaneoAUsuariosTable extends Migration {
       $table->integer('perfil_id')->unsigned()->index()->after('id');
       $table->foreign('perfil_id')
             ->references('id')
-            ->on('perfiles')
-            ->onDelete('cascade');
+            ->on('perfiles');
     });
   }
 
