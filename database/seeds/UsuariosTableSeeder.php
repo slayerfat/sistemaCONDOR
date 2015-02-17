@@ -14,16 +14,15 @@ class UsuariosTableSeeder extends Seeder {
    */
   public function run()
   {
-    $faker = Faker::create();
+    $faker = Faker::create('es_ES');
 
-      foreach(range(1, 5) as $index)
-      {
-        User::create([
-          'email' => $faker->email(),
-          'name' => $faker->name(),
-          'password' => Hash::make('111111')
-        ]);
-      }
+    foreach(range(1, 5) as $index):
+      App\User::create([
+        'seudonimo' => $faker->userName(),
+        'email' => $faker->email(),
+        'password' => Hash::make('111111')
+      ]);
+    endforeach;
   }
 
 }

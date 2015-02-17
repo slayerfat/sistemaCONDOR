@@ -16,14 +16,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    *
    * @var string
    */
-  protected $table = 'users';
+  protected $table = 'usuarios';
 
   /**
    * The attributes that are mass assignable.
    *
    * @var array
    */
-  protected $fillable = ['name', 'email', 'password'];
+  protected $fillable = ['seudonimo', 'email', 'password'];
 
   /**
    * The attributes excluded from the model's JSON form.
@@ -38,4 +38,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    * @var array
    */
   protected $dates = ['deleted_at'];
+
+  /**
+   * la asociacion entre usuarios y perfiles en la base de datos
+   */
+  public function perfiles(){
+    return $this->belongsToMany('App\Perfil', 'perfil_usuario', 'perfil_id', 'usuario_id');
+  }
 }
