@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableEstados extends Migration {
+class CreateTableCajasChicas extends Migration {
 
   /**
    * Run the migrations.
@@ -12,15 +12,19 @@ class CreateTableEstados extends Migration {
    */
   public function up()
   {
-    Schema::create('estados', function(Blueprint $table)
+    Schema::create('cajas_chicas', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->integer('cuenta_id')->unsigned();
+      $table->foreign('cuenta_id')->references('id')->on('cuentas');
+      $table->double('movimiento', 15, 6);
+      $table->string('concepto')->default('-');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
       $table->integer('updated_by')->unsigned();
       $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->softDeletes();
     });
   }
 
@@ -31,7 +35,7 @@ class CreateTableEstados extends Migration {
    */
   public function down()
   {
-    Schema::drop('estados');
+    Schema::drop('cajas_chicas');
   }
 
 }
