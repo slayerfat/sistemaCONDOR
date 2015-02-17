@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PerfilesTableSeeder extends Seeder {
+class SexosTableSeeder extends Seeder {
 
   /**
    * Run the database seeds.

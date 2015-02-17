@@ -23,6 +23,7 @@ class CreateTableDirecciones extends Migration {
       $table->foreign('created_by')->references('id')->on('usuarios');
       $table->integer('updated_by')->unsigned();
       $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->softDeletes();
     });
   }
 
