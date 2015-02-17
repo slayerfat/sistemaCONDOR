@@ -12,7 +12,13 @@ class Edificio extends Model {
   protected $fillable = [
     'encargado_id', 
     'direccion_id',
-    'nombre'
+    'nombre',
+    'created_by',
+    'updated_by'
   ];
+
+  public function direccion(){
+    return $this->belongsTo('App\Direccion', 'direccion_id');
+  }
 
 }

@@ -18,7 +18,9 @@ class Persona extends Model {
     'segundo_nombre',
     'primer_apellido',
     'segundo_apellido',
-    'fec_nac'
+    'fec_nac',
+    'created_by',
+    'updated_by'
   ];
 
   /**

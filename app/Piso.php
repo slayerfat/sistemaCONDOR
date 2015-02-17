@@ -10,7 +10,9 @@ class Piso extends Model {
   protected $dates = ['deleted_at'];
   
   protected $fillable = [
-    'numero'
+    'numero',
+    'created_by',
+    'updated_by'
   ];
 
 }

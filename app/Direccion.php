@@ -11,7 +11,9 @@ class Direccion extends Model {
 
   protected $fillable = [
     'parroquia_id',
-    'direccion_exacta'
+    'direccion_exacta',
+    'created_by',
+    'updated_by'
   ];
 
   public function parroquia(){

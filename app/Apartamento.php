@@ -12,7 +12,9 @@ class Apartamento extends Model {
     'edificio_id', 
     'propietario_id',
     'piso_id',
-    'numero'
+    'numero',
+    'created_by',
+    'updated_by'
   ];
 
 }
