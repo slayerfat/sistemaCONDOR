@@ -17,7 +17,7 @@ class CreateTableApartamentos extends Migration {
       $table->increments('id');
       $table->integer('edificio_id')->unsigned();
       $table->foreign('edificio_id')->references('id')->on('edificios');
-      $table->integer('propietario_id')->unsigned();
+      $table->integer('propietario_id')->unsigned()->nullable();
       $table->foreign('propietario_id')->references('id')->on('personas');
       $table->integer('piso_id')->unsigned();
       $table->foreign('piso_id')->references('id')->on('pisos');

@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder {
     $this->call('ParroquiasTableSeeder');
     $this->call('DireccionesTableSeeder');
     $this->call('EdificiosTableSeeder');
+    $this->call('PisosTableSeeder');
+    $this->call('PersonasTableSeeder');
+    $this->call('ApartamentosTableSeeder');
   }
 
 }

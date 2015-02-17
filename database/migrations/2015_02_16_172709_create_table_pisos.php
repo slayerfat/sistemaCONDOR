@@ -15,7 +15,7 @@ class CreateTablePisos extends Migration {
     Schema::create('pisos', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->tinyInteger('numero')->unsigned();
+      $table->string('descripcion');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');

@@ -19,8 +19,8 @@ class UsuariosTableSeeder extends Seeder {
     foreach(range(1, 5) as $index):
       App\User::create([
         'seudonimo' => $faker->userName(),
-        'email' => $faker->email(),
-        'password' => Hash::make( env('APP_USERS_PASSWORD') )
+        'email'     => $faker->email(),
+        'password'  => Hash::make( env('APP_USERS_PASSWORD') )
       ]);
     endforeach;
   }

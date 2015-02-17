@@ -17,8 +17,8 @@ class NeoTableSeeder extends Seeder {
     // crea al elegido
     App\User::create([
       'seudonimo' => env('APP_USER'),
-      'email' => env('APP_USER_EMAIL'),
-      'password' => Hash::make( env('APP_USER_PASSWORD') )
+      'email'     => env('APP_USER_EMAIL'),
+      'password'  => Hash::make( env('APP_USER_PASSWORD') )
     ]);
     $neo = App\User::where('seudonimo', '=', env('APP_USER'))->first();
     // le damos al elegido su titulo
