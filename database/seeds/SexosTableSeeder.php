@@ -17,7 +17,7 @@ class SexosTableSeeder extends Seeder {
     ];
 
     foreach($tipos as $perfil):
-      App\Perfil::create([
+      App\Sexo::create([
         'descripcion' => $perfil
       ]);
     endforeach;

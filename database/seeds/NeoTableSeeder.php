@@ -20,7 +20,7 @@ class NeoTableSeeder extends Seeder {
       'email' => env('APP_USER_EMAIL'),
       'password' => Hash::make( env('APP_USER_PASSWORD') )
     ]);
-    $neo = App\User::where('seudonimo', '=', 'neo')->first();
+    $neo = App\User::where('seudonimo', '=', env('APP_USER'))->first();
     // le damos al elegido su titulo
     $perfil = App\Perfil::find(1);
     $neo->perfiles()->save($perfil);
