@@ -19,12 +19,7 @@ php -r "readfile('https://getcomposer.org/installer');" | php
 mv composer.phar /usr/local/bin/composer
 ```
 
-- chequear que este instalado `composer -V` el sistema dira 
-`Composer version 1.0.-* (...) fecha`
-
-###grunt
-
-`npm install -g grunt-cli`
+- chequear que este instalado `composer -V` el sistema dira `Composer version 1.0.-* (...) fecha`, si algo falla, chequear la documentacion de [composer](https://getcomposer.org/)
 
 ###bower
 
@@ -43,6 +38,31 @@ _desde la carpeta clonada_
 `composer install`
 
 eso debera generar las carpetas vendor/ node_modules/ y vendor/bower_components/ sumando a otras dependecias.
+
+# artisan
+
+laravel viene con un CLI llamado artisan, este entre otras utilidades, sirve como interfaz para usar php como servidor local con el comando
+
+`php artisan serve` (desde la carpeta del sistemaCONDOR)
+
+de ese comando saldra algo como `Laravel development server started on http://localhost:8000
+`
+
+si van a localhost:8000 saldra una pagina de bienvenida.
+
+*FELICIDADES, EL SISTEMA FUNCIONA!*
+
+adicionalmente tiene comandos de generacion de modelos, controladores, migraciones, etc.
+
+# la base de datos
+
+para instalar la base de datos en el sistema necesitan el archivo *.env* con la informacion de la base de datos y luego accionar:
+
+`php artisan migrate --seed`
+
+y listo, la base de datos esta localmente en el sistema.
+
+si falla pueden hacer un `composer dump-autoload` y reintentarlo, si vuelve a falla puden crear un [problema en git](https://github.com/slayerfat/sistemaCONDOR/issues) con el error.
 
 ## arbol de directorios simplificado
 
@@ -123,6 +143,8 @@ eso debera generar las carpetas vendor/ node_modules/ y vendor/bower_components/
 ```
 
 ## Laravel PHP Framework
+
+este sistema usa el framework Laravel de PHP [documentacion](http://laravel.com/docs/5.0)
 
 ### License
 
