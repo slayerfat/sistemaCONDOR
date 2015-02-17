@@ -17,10 +17,6 @@ class CreateTableSexos extends Migration {
       $table->increments('id');
       $table->string('descripcion', 30);
       $table->timestamps();
-      $table->integer('created_by')->unsigned();
-      $table->foreign('created_by')->references('id')->on('usuarios');
-      $table->integer('updated_by')->unsigned();
-      $table->foreign('updated_by')->references('id')->on('usuarios');
     });
   }
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableEstados extends Migration {
+class CreateTableRubros extends Migration {
 
   /**
    * Run the migrations.
@@ -12,15 +12,19 @@ class CreateTableEstados extends Migration {
    */
   public function up()
   {
-    Schema::create('estados', function(Blueprint $table)
+    Schema::create('rubros', function(Blueprint $table)
     {
       $table->increments('id');
+      $table->integer('edificio_id')->unsigned();
+      $table->foreign('edificio_id')->references('id')->on('edificios');
       $table->string('descripcion');
+      $table->integer('total')->unsigned();
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
       $table->integer('updated_by')->unsigned();
       $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->softDeletes();
     });
   }
 
@@ -31,7 +35,7 @@ class CreateTableEstados extends Migration {
    */
   public function down()
   {
-    Schema::drop('estados');
+    Schema::drop('rubros');
   }
 
 }

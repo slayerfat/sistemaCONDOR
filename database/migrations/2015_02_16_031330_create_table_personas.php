@@ -17,7 +17,6 @@ class CreateTablePersonas extends Migration {
       $table->increments('id');
       $table->integer('usuario_id')->unsigned();
       $table->foreign('usuario_id')->references('id')->on('usuarios');
-      $table->integer('apartamento_id')->unsigned();
       $table->integer('sexo_id')->unsigned();
       $table->foreign('sexo_id')->references('id')->on('sexos');
       $table->string('cedula')->unique();

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableEstados extends Migration {
+class CreateTableEventoTipos extends Migration {
 
   /**
    * Run the migrations.
@@ -12,7 +12,7 @@ class CreateTableEstados extends Migration {
    */
   public function up()
   {
-    Schema::create('estados', function(Blueprint $table)
+    Schema::create('evento_tipos', function(Blueprint $table)
     {
       $table->increments('id');
       $table->string('descripcion');
@@ -21,6 +21,7 @@ class CreateTableEstados extends Migration {
       $table->foreign('created_by')->references('id')->on('usuarios');
       $table->integer('updated_by')->unsigned();
       $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->softDeletes();
     });
   }
 
@@ -31,7 +32,7 @@ class CreateTableEstados extends Migration {
    */
   public function down()
   {
-    Schema::drop('estados');
+    Schema::drop('evento_tipos');
   }
 
 }
