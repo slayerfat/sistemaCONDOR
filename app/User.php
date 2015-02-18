@@ -41,9 +41,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
   /**
    * la asociacion entre usuarios y perfiles en la base de datos
+   * en donde los parametros son 
+   * ('el modelo', 'el pivote', 'su llave foranea en pivote')
    */
   public function perfiles(){
-    return $this->belongsToMany('App\Perfil', 'perfil_usuario', 'perfil_id', 'usuario_id');
+    return $this->belongsToMany('App\Perfil', 'perfil_usuario', 'usuario_id');
   }
 
   /**
