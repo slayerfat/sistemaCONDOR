@@ -38,6 +38,8 @@ class EstadosTableSeeder extends Seeder {
       (22, 'Yaracuy'          , 1, 1, current_timestamp, current_timestamp),
       (23, 'Vargas'           , 1, 1, current_timestamp, current_timestamp),
       (24, 'Zulia'            , 1, 1, current_timestamp, current_timestamp);");
+
+    $this->command->info('Los estados de venezuela fueron creados por el elegido.');
   }
 
 }

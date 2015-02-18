@@ -19,6 +19,7 @@ class PisosTableSeeder extends Seeder {
         'updated_by'   => $neo->id
       ]);
     endforeach;
+    $this->command->info('los pisos del edificio fueron creados por el elegido.');
   }
 
 }

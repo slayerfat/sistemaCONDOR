@@ -21,6 +21,7 @@ class SexosTableSeeder extends Seeder {
         'descripcion' => $perfil
       ]);
     endforeach;
+    $this->command->info('los sexos fueron creados por el elegido.');
   }
 
 }

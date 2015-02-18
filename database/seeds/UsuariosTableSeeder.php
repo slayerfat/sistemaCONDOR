@@ -23,6 +23,8 @@ class UsuariosTableSeeder extends Seeder {
         'password'  => Hash::make( env('APP_USERS_PASSWORD') )
       ]);
     endforeach;
+
+    $this->command->info('EL ELEGIDO HA SIDO CREADO.');
   }
 
 }

@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-xs-6">
         <h3>Quejas y Sugerencias</h3>
-        <a href="#" class="btn btn-primary">Crear nueva queja</a>
+        <a href="#" class="btn btn-primary">Crear Nuevo Mensaje</a>
         <section>
           <h5>Titulo</h5>
           <p class="text-justify">
