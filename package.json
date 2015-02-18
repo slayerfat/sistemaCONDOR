@@ -1,7 +1,7 @@
 {
   "name": "sistemaCONDOR",
-  "version": "0.0.0",
-  "description": "## Laravel PHP Framework",
+  "version": "0.0.1",
+  "description": "sistemaCONDOR",
   "main": "gulpfile.js",
   "directories": {
     "test": "tests"

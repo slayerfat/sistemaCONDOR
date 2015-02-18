@@ -21,8 +21,10 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-6">
-        <h3>Quejas y Sugerencias</h3>
-        <a href="#" class="btn btn-primary">Crear Nuevo Mensaje</a>
+        <h3>Mensajes hechos por Ud.</h3>
+        <a href="{{ action('MensajesController@create') }}" class="btn btn-primary">
+          Crear Nuevo Mensaje
+        </a>
         <section>
           <h5>Titulo</h5>
           <p class="text-justify">
@@ -36,7 +38,7 @@
         </section>
       </div>
       <div class="col-xs-6">
-        <h3>Eventos del edificio</h3>
+        <h3>Eventos del Edificio</h3>
         <a href="#" class="btn btn-primary">Crear nuevo Evento</a>
         <section>
           <h5>Titulo</h5>
