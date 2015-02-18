@@ -21,4 +21,14 @@ class Edificio extends Model {
     return $this->belongsTo('App\Direccion', 'direccion_id');
   }
 
+  /**
+   * la relacion entre apartamentos y edificios
+   * donde UN apartamento tiene UN edificio y
+   * en UN edificio pueden haber VARIOS
+   * apartamentos.
+   */
+  public function apartamentos(){
+    return $this->hasMany('App\Apartamento');
+  }
+
 }

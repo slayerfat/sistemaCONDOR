@@ -51,7 +51,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   /**
    * la asociacion entre usuarios y perfiles en la base de datos
    */
-  public function personas(){
-    return $this->hasMany('App\Persona', 'id', 'usuario_id');
+  public function persona(){
+    return $this->hasMany('App\Persona', 'usuario_id');
   }
+
+  public function apartamentos(){
+    return $this->hasManyThrough('App\Apartamento', 'App\Persona', 'usuario_id');
+  }
+
 }

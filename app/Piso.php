@@ -15,4 +15,14 @@ class Piso extends Model {
     'updated_by'
   ];
 
+  /**
+   * la relacion entre apartamentos y pisos
+   * donde UN apartamento tiene UN piso y
+   * en UN piso pueden haber VARIOS
+   * apartamentos.
+   */
+  public function apartamentos(){
+    return $this->hasMany('App\Apartamento');
+  }
+
 }

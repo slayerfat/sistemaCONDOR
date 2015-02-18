@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function(){
-  return redirect('edificio');
-});
+Route::get('/', 'IndexController@index');
 
 Route::get('welcome', 'WelcomeController@index');
 

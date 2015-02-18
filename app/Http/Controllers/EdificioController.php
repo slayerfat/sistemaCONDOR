@@ -3,7 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
+use Auth;
 use App\Edificio;
+use App\Apartamento;
+use App\Persona;
 
 use Illuminate\Http\Request;
 
@@ -26,9 +29,6 @@ class EdificioController extends Controller {
 	 */
 	public function index()
 	{
-		// $edificio = Edificio::findOrFail($id);
-		$usuario = Session::all();
-		dd($usuario);
 		return view('edificio.index');
 	}
 

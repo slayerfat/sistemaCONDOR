@@ -34,7 +34,30 @@ class Persona extends Model {
    * la asociacion entre muchas persona y su usuario en la base de datos
    */
   public function usuario(){
-    return $this->belongsTo('App\User', 'usuarios', 'usuario_id');
+    return $this->belongsTo('App\User');
+  }
+
+  /**
+   * la asociacion entre personas y apartamentos en la base de datos
+   * en donde los parametros son 
+   * ('el modelo', 'el pivote', 'su llave foranea en pivote')
+   */
+  public function apartamentos(){
+    return $this->belongsToMany('App\Apartamento', 'apartamento_persona', 'persona_id');
+  }
+
+  public function piso(){
+    return $this->hasManyThrough('App\Piso', 'App\Apartamento', 'algo', 'sexo');
+  }
+
+  /**
+   * la relacion entre personas y propiedades
+   * donde UN persona tiene UNA propiedad y
+   * en UNA Persona puede tener VARIAS
+   * propiedades. (persona = propietario)
+   */
+  public function propiedades(){
+    return $this->hasMany('App\Apartamento');
   }
 
 }
