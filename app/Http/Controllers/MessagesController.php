@@ -41,14 +41,15 @@ class MessagesController extends Controller {
 	 */
 	public function store(MessageRequest $request)
 	{
-		/**
-		 * se invoca el metodo insertarMensaje para 
-		 * meter la informacion el la base de datos
-		 * @var object
-		 */
-		$mensaje = Auth::user()->insertarMensaje($request);
-
+		// se crea un nuevo objeto con los valores de request
+		$mensaje = new Message($request->all());
+		// se asignan el creado por y actualizado por
+		$mensaje->created_by = Auth::user()->id;
+		$mensaje->updated_by = Auth::user()->id;
+		// se guarda el mensaje por medio del usuario
+		// para tener el user_id
 		Auth::user()->mensajes()->save($mensaje);
+		// mensaje de exito
 		flash('Su Mensaje ha sido creado con exito.');
 		return redirect()->action('IndexController@index');
 	}
@@ -72,7 +73,9 @@ class MessagesController extends Controller {
 	 */
 	public function edit($id)
 	{
+		// se busca el mensaje solicitado o falla
 		$mensaje = Message::findOrFail($id);
+		// los tipos de mensajes
 		$types   = MessageType::lists('description', 'id');
 		return view('messages.edit', compact('mensaje', 'types'));
 	}
@@ -85,8 +88,12 @@ class MessagesController extends Controller {
 	 */
 	public function update($id, MessageRequest $request)
 	{
+		// se busca el mensaje solicitado o falla
 		$mensaje = Message::findOrFail($id);
+		$mensaje->updated_by = Auth::user()->id;
+		// actualiza el mensaje
 		$mensaje->update($request->all());
+		// mensaje de exito
 		flash('Su Mensaje ha sido actualizado con exito.');
 		return redirect()->action('IndexController@index');
 	}

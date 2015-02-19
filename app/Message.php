@@ -24,7 +24,7 @@ class Message extends Model {
     'message_types_id', 
     'title', 
     'description', 
-    'created_by',
+    'created_by', 
     'updated_by'
   ];
 
@@ -34,6 +34,21 @@ class Message extends Model {
    * @var array
    */
   protected $dates = ['deleted_at'];
+
+
+  /**
+   * automanticamente asigna el created_by al usuario autorizado
+   */
+  public function setCreatedByAttribute($valor){
+    $this->attributes['created_by'] = $valor;
+  }
+
+  /**
+   * automanticamente asigna el updated_by al usuario autorizado
+   */
+  public function setUpdatedByAttribute($valor){
+    $this->attributes['updated_by'] = $valor;
+  }
 
   /**
    * un mensaje posee solo un autor

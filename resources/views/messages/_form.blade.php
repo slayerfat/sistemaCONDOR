@@ -9,8 +9,8 @@
 </div>
 
 <div class="form-group">
-  {!! Form::label('types[]', 'Tipo de Mensaje:') !!}
-  {!! Form::select('types[]', $types, $mensaje->message_types_id, ['class' => 'form-control']) !!}
+  {!! Form::label('message_types_id', 'Tipo de Mensaje:') !!}
+  {!! Form::select('message_types_id', $types, $mensaje->message_types_id, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

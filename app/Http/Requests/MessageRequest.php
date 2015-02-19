@@ -22,9 +22,9 @@ class MessageRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title'       => 'required|min:6',
-			'description' => 'required',
-			'types'       => 'required'
+			'title'            => 'required|min:6',
+			'description'      => 'required',
+			'message_types_id' => 'required'
 		];
 	}
 
