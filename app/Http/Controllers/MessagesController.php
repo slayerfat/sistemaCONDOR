@@ -1,26 +1,14 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\MensajeRequest;
 use App\Http\Controllers\Controller;
-use Session;
+use App\Message;
 use Auth;
-use App\Edificio;
-use App\Apartamento;
-use App\Persona;
 
 use Illuminate\Http\Request;
 
-class EdificioController extends Controller {
-
-	/**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware('auth');
-  }
+class MessagesController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -29,7 +17,7 @@ class EdificioController extends Controller {
 	 */
 	public function index()
 	{
-		return view('edificio.index');
+		//
 	}
 
 	/**
@@ -39,7 +27,9 @@ class EdificioController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		$tipos = \App\MessageType::lists('description', 'id');
+
+		return view('messages.create', compact('types'));
 	}
 
 	/**
@@ -47,9 +37,16 @@ class EdificioController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(MensajeRequest $request)
 	{
-		//
+		/**
+		 * se invoca el metodo insertarMensaje para 
+		 * meter la informacion el la base de datos
+		 * @var object
+		 */
+		$mensaje = Auth::user()->insertarMensaje($request);
+		flash('Su Mensaje ha sido creado con exito.');
+		return redirect()->action('IndexController@index');
 	}
 
 	/**
@@ -60,11 +57,7 @@ class EdificioController extends Controller {
 	 */
 	public function show($id)
 	{
-		$edificio = Edificio::findOrFail($id);
-
-		// dd($edificio);
-
-		return view('edificio.show', compact('edificio'));
+		//
 	}
 
 	/**

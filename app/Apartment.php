@@ -24,7 +24,7 @@ class Apartment extends Model {
    * apartamentos.
    */
   public function edificio(){
-    return $this->belongsTo('App\Building');
+    return $this->belongsTo('App\Building', 'building_id');
   }
 
   /**
@@ -34,7 +34,15 @@ class Apartment extends Model {
    * apartamentos. (propietario = persona)
    */
   public function propietario(){
-    return $this->belongsTo('App\User');
+    return $this->belongsTo('App\User', 'user_id', 'id');
+  }
+
+  /**
+   * los habitantes que pueden habitar un apartamento
+   * esto es una relacion NaM
+   */
+  public function habitantes(){
+    return $this->belongsToMany('App\User');
   }
 
 }

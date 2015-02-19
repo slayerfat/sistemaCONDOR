@@ -4,9 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
 use Auth;
-use App\Edificio;
-use App\Apartamento;
-use App\Persona;
+use App\Building;
+use App\Apartment;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller {
@@ -33,15 +32,12 @@ class IndexController extends Controller {
 	}
 
 	private function obtenerApartamento(){
-		$usuario      = Auth::user()->persona;
-		$datos        = $usuario->toArray();
-		$persona      = Persona::find($datos[0]['id']);
-		$apartamentos = $persona->apartamentos;
-		$datos        = $apartamentos->toArray();
-		$apartamentos = Apartamento::find($datos[0]['id']);
-		$apartamentos->edificio;
-		$apartamentos->propietario;
-		$apartamentos->piso;
+    $usuario = Auth::user();
+    foreach ($usuario->propiedades as $propiedad) {
+      $apartamentos = Apartment::find($propiedad->id);
+      $apartamentos->edificio;
+      $apartamentos->propietario;
+    }
 		return $apartamentos;
 	}
 
