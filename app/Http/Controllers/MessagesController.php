@@ -68,7 +68,9 @@ class MessagesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$mensaje = Mensaje::findOrFail($id);
+		$tipos = \App\MensajeTipo::lists('descripcion', 'id');
+		return view('mensajes.edit', compact('mensaje', 'tipos'));
 	}
 
 	/**
@@ -77,9 +79,12 @@ class MessagesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, MensajeRequest $request)
 	{
-		//
+		$mensaje = Mensaje::findOrFail($id);
+		$mensaje->update($request->all());
+		flash('Su Mensaje ha sido actualizado con exito.');
+		return redirect()->action('IndexController@index');
 	}
 
 	/**

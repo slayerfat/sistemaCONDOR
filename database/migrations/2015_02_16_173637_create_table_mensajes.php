@@ -12,7 +12,7 @@ class CreateTableMensajes extends Migration {
    */
   public function up()
   {
-    Schema::create('menssages', function(Blueprint $table)
+    Schema::create('messages', function(Blueprint $table)
     {
       $table->increments('id');
       $table->integer('user_id')->unsigned();
@@ -37,7 +37,7 @@ class CreateTableMensajes extends Migration {
    */
   public function down()
   {
-    Schema::drop('menssages');
+    Schema::drop('messages');
   }
 
 }
