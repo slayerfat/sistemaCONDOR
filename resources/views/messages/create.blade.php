@@ -6,8 +6,8 @@
 
     <hr/>
 
-    {!! Form::open(['action' => 'MensajesController@store']) !!}
-      @include('mensajes._form', ['textoBotonSubmit' => 'Añadir nuevo Mensaje'])
+    {!! Form::open(['action' => 'MessagesController@store']) !!}
+      @include('messages._form', ['textoBotonSubmit' => 'Añadir nuevo Mensaje'])
     {!! Form::close() !!}
 
     @include('errors.lista')

@@ -28,9 +28,20 @@ class IndexController extends Controller {
 	public function index()
 	{
 		$apartamentos = $this->obtenerApartamento();
-		return view('index', compact('apartamentos'));
+    $mensajes = Auth::user()->mensajes;
+		return view('index', compact('apartamentos', 'mensajes'));
 	}
 
+  /**
+   * @internal Esta mamarrachada necesita ser limpiada
+   * 
+   * se busca el apartamento y su informacion relacionada
+   * desde la perspectiva del usuario logeado 
+   * (autorizado en sistema)
+   * y se regresa.
+   * 
+   * @return object
+   */
 	private function obtenerApartamento(){
     $usuario = Auth::user();
     foreach ($usuario->propiedades as $propiedad) {

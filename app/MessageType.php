@@ -9,7 +9,7 @@ class MessageType extends Model {
    *
    * @var string
    */
-  protected $table = 'message_type';
+  protected $table = 'message_types';
 
   /**
    * The attributes that are mass assignable.

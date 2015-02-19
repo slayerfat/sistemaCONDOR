@@ -21,7 +21,7 @@ class Message extends Model {
    */
   protected $fillable = [
     'user_id', 
-    'message_type_id', 
+    'message_types_id', 
     'title', 
     'description', 
     'created_by', 
@@ -35,6 +35,21 @@ class Message extends Model {
    */
   protected $dates = ['deleted_at'];
 
+
+  /**
+   * automanticamente asigna el created_by al usuario autorizado
+   */
+  public function setCreatedByAttribute($valor){
+    $this->attributes['created_by'] = $valor;
+  }
+
+  /**
+   * automanticamente asigna el updated_by al usuario autorizado
+   */
+  public function setUpdatedByAttribute($valor){
+    $this->attributes['updated_by'] = $valor;
+  }
+
   /**
    * un mensaje posee solo un autor
    */
@@ -45,7 +60,7 @@ class Message extends Model {
    * un mensaje posee solo un tipo de mensaje
    */
   public function tipo(){
-    return $this->belongsTo('App\MenssageType', 'message_type');
+    return $this->belongsTo('App\MessageType', 'message_types_id');
   }
 
 }
