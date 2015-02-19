@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Mensaje extends Model {
+class Message extends Model {
 
   use SoftDeletes;
 
@@ -12,7 +12,7 @@ class Mensaje extends Model {
    *
    * @var string
    */
-  protected $table = 'mensajes';
+  protected $table = 'messages';
 
   /**
    * The attributes that are mass assignable.
@@ -20,10 +20,10 @@ class Mensaje extends Model {
    * @var array
    */
   protected $fillable = [
-    'autor_id', 
-    'tipo_id', 
-    'titulo', 
-    'descripcion', 
+    'user_id', 
+    'message_type_id', 
+    'title', 
+    'description', 
     'created_by', 
     'updated_by'
   ];
@@ -39,13 +39,13 @@ class Mensaje extends Model {
    * un mensaje posee solo un autor
    */
   public function autor(){
-    return $this->belongsTo('App\User', 'autor_id');
+    return $this->belongsTo('App\User');
   }
   /**
    * un mensaje posee solo un tipo de mensaje
    */
   public function tipo(){
-    return $this->belongsTo('App\MensajeTipo', 'tipo_id');
+    return $this->belongsTo('App\MenssageType', 'message_type');
   }
 
 }

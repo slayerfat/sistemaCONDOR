@@ -20,8 +20,8 @@ class PerfilesTableSeeder extends Seeder {
     ];
 
     foreach($tipos as $perfil):
-      App\Perfil::create([
-        'descripcion' => $perfil
+      App\Profile::create([
+        'description' => $perfil
       ]);
     endforeach;
     $this->command->info('El Elegido necesita un perfil...');

@@ -11,13 +11,13 @@ class DireccionesTableSeeder extends Seeder {
    */
   public function run()
   {
-    $elParaiso = App\Parroquia::find(7);
+    $elParaiso = App\Parish::find(7);
     $neo = App\User::find(1);
-    App\Direccion::create([
-      'parroquia_id'     => $elParaiso->id,
-      'direccion_exacta' => 'Urb La Paz, calle ayacucho con libertador',
-      'created_by'       => $neo->id,
-      'updated_by'       => $neo->id
+    App\Direction::create([
+      'parish_id'       => $elParaiso->id,
+      'exact_direction' => 'Urb La Paz, calle ayacucho con libertador',
+      'created_by'      => $neo->id,
+      'updated_by'      => $neo->id
     ]);
 
     $this->command->info('El edificio del Elegido necesita una direccion...');

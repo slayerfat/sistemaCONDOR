@@ -12,11 +12,16 @@ class CreateTableSexos extends Migration {
    */
   public function up()
   {
-    Schema::create('sexos', function(Blueprint $table)
+    Schema::create('sexes', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->string('descripcion', 30);
+      $table->string('description', 30);
       $table->timestamps();
+    });
+
+    Schema::table('users', function(Blueprint $table)
+    {
+      $table->foreign('sex_id')->references('id')->on('sexes');
     });
   }
 
@@ -27,7 +32,11 @@ class CreateTableSexos extends Migration {
    */
   public function down()
   {
-    Schema::drop('sexos');
+    Schema::table('users', function(Blueprint $table)
+    {
+      $table->dropForeign('users_sex_id_foreign');
+    });
+    Schema::drop('sexes');
   }
 
 }

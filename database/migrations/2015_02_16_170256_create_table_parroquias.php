@@ -12,17 +12,17 @@ class CreateTableParroquias extends Migration {
    */
   public function up()
   {
-    Schema::create('parroquias', function(Blueprint $table)
+    Schema::create('parishes', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('municipio_id')->unsigned();
-      $table->foreign('municipio_id')->references('id')->on('municipios');
-      $table->string('descripcion');
+      $table->integer('town_id')->unsigned();
+      $table->foreign('town_id')->references('id')->on('towns');
+      $table->string('description');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
-      $table->foreign('created_by')->references('id')->on('usuarios');
+      $table->foreign('created_by')->references('id')->on('users');
       $table->integer('updated_by')->unsigned();
-      $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->foreign('updated_by')->references('id')->on('users');
     });
   }
 
@@ -33,7 +33,7 @@ class CreateTableParroquias extends Migration {
    */
   public function down()
   {
-    Schema::drop('parroquias');
+    Schema::drop('parishes');
   }
 
 }

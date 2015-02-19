@@ -12,14 +12,14 @@ class CreateTablePerfiles extends Migration {
    */
   public function up()
   {
-    Schema::create('perfiles', function(Blueprint $table)
+    Schema::create('profiles', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->string('description');
       $table->timestamps();
     });
-    App\Perfil::create([
-      'descripcion' => 'El Elegido'
+    App\Profile::create([
+      'description' => 'El Elegido'
     ]);
   }
 
@@ -30,7 +30,7 @@ class CreateTablePerfiles extends Migration {
    */
   public function down()
   {
-    Schema::drop('perfiles');
+    Schema::drop('profiles');
   }
 
 }

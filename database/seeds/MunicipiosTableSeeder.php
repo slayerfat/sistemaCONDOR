@@ -11,8 +11,8 @@ class MunicipiosTableSeeder extends Seeder {
    */
   public function run()
   {
-    DB::statement("INSERT INTO municipios
-      (id, estado_id, descripcion, created_by, updated_by, created_at, updated_at)
+    DB::statement("INSERT INTO towns
+      (id, state_id, description, created_by, updated_by, created_at, updated_at)
       VALUES
       (1, 1, 'Libertador', 1, 1, current_timestamp, current_timestamp),
       (2, 15, 'Baruta', 1, 1, current_timestamp, current_timestamp),
@@ -212,7 +212,7 @@ class MunicipiosTableSeeder extends Seeder {
       (197, 14, 'Tovar', 1, 1, current_timestamp, current_timestamp),
       (198, 14, 'Tulio Febres Cordero', 1, 1, current_timestamp, current_timestamp),
       (199, 14, 'Zea', 1, 1, current_timestamp, current_timestamp),
-      (200, 16, 'Acosta', 1, 2, current_timestamp, current_timestamp),
+      (200, 16, 'Acosta', 1, 1, current_timestamp, current_timestamp),
       (201, 16, 'Aguasay', 1, 1, current_timestamp, current_timestamp),
       (202, 16, 'Bolívar', 1, 1, current_timestamp, current_timestamp),
       (203, 16, 'Caripe', 1, 1, current_timestamp, current_timestamp),

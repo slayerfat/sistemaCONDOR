@@ -11,14 +11,14 @@ class EdificiosTableSeeder extends Seeder {
    */
   public function run()
   {
-    $direccion = App\Direccion::where(
-      'direccion_exacta', '=', 'Urb La Paz, calle ayacucho con libertador'
+    $direccion = App\Direction::where(
+      'exact_direction', '=', 'Urb La Paz, calle ayacucho con libertador'
     )->first();
     $neo = App\User::find(1);
-    App\Edificio::create([
-      'encargado_id' => $neo->id,
-      'direccion_id' => $direccion->id,
-      'nombre'       => 'Residencias Matasiete',
+    App\Building::create([
+      'user_id'      => $neo->id,
+      'direction_id' => $direccion->id,
+      'name'         => 'Residencias Matasiete',
       'created_by'   => $neo->id,
       'updated_by'   => $neo->id
     ]);

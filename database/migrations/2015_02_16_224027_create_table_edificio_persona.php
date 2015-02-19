@@ -12,13 +12,19 @@ class CreateTableEdificioPersona extends Migration {
    */
   public function up()
   {
-    Schema::create('edificio_persona', function(Blueprint $table)
+    Schema::create('building_user', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('persona_id')->unsigned();
-      $table->foreign('persona_id')->references('id')->on('personas');
-      $table->integer('edificio_id')->unsigned();
-      $table->foreign('edificio_id')->references('id')->on('edificios');
+      $table->integer('user_id')->unsigned();
+      $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+      $table->integer('building_id')->unsigned();
+      $table->foreign('building_id')
+            ->references('id')
+            ->on('buildings')
+            ->onDelete('cascade');
     });
   }
 
@@ -29,7 +35,7 @@ class CreateTableEdificioPersona extends Migration {
    */
   public function down()
   {
-    Schema::drop('edificio_persona');
+    Schema::drop('building_user');
   }
 
 }

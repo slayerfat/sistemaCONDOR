@@ -12,13 +12,13 @@ class CreateTableCajaChicaRubro extends Migration {
    */
   public function up()
   {
-    Schema::create('caja_chica_rubro', function(Blueprint $table)
+    Schema::create('item_movement', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('caja_chica_id')->unsigned();
-      $table->foreign('caja_chica_id')->references('id')->on('cajas_chicas');
-      $table->integer('rubro_id')->unsigned();
-      $table->foreign('rubro_id')->references('id')->on('rubros');
+      $table->integer('movement_id')->unsigned();
+      $table->foreign('movement_id')->references('id')->on('movements');
+      $table->integer('item_id')->unsigned();
+      $table->foreign('item_id')->references('id')->on('items');
     });
   }
 
@@ -29,7 +29,7 @@ class CreateTableCajaChicaRubro extends Migration {
    */
   public function down()
   {
-    Schema::drop('caja_chica_rubro');
+    Schema::drop('item_movement');
   }
 
 }
