@@ -47,6 +47,8 @@ class MessagesController extends Controller {
 		 * @var object
 		 */
 		$mensaje = Auth::user()->insertarMensaje($request);
+
+		Auth::user()->mensajes()->save($mensaje);
 		flash('Su Mensaje ha sido creado con exito.');
 		return redirect()->action('IndexController@index');
 	}

@@ -90,15 +90,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    * hacer esta mamarrachada
    */
   public function insertarMensaje($request){
-    $types   = $request->input('types');
-    $mensaje = \App\Message::create([
-      'user_id'         => $this->id,
-      'message_types_id' => $types[0],
-      'title'           => $request->input('title'),
-      'description'     => $request->input('description'),
-      'created_by'      => $this->id,
-      'updated_by'      => $this->id
-    ]);
+    $mensaje = new \App\Message($request->all());
+    $mensaje->message_types_id = $request->input('types')[0];
+    $mensaje->created_by = $this->id;
+    $mensaje->updated_by = $this->id;
+    // $types   = $request->input('types');
+    // $mensaje = \App\Message::create([
+    //   'user_id'         => $this->id,
+    //   'message_types_id' => $types[0],
+    //   'title'           => $request->input('title'),
+    //   'description'     => $request->input('description'),
+    //   'created_by'      => $this->id,
+    //   'updated_by'      => $this->id
+    // ]);
     return $mensaje;
   }
 

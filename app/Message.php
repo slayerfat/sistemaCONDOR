@@ -24,7 +24,7 @@ class Message extends Model {
     'message_types_id', 
     'title', 
     'description', 
-    'created_by', 
+    'created_by',
     'updated_by'
   ];
 
@@ -45,7 +45,7 @@ class Message extends Model {
    * un mensaje posee solo un tipo de mensaje
    */
   public function tipo(){
-    return $this->belongsTo('App\MenssageType');
+    return $this->belongsTo('App\MessageType', 'message_types_id');
   }
 
 }
