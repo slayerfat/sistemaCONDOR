@@ -11,10 +11,6 @@ class TipoMensajesTableSeeder extends Seeder {
    */
   public function run()
   {
-    DB::table('users')->insert(
-      array('email' => 'john@example.com', 'votes' => 0)
-    );
-
     $datos = ['Sugerencia', 'Queja', 'Comentario'];
     
     foreach ($datos as $tipo) :

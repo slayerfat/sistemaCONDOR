@@ -9,5 +9,10 @@
 </div>
 
 <div class="form-group">
+  {!! Form::label('tipos', 'Tipo de Mensaje:') !!}
+  {!! Form::select('tipos', $tipos, null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
   {!! Form::submit($textoBotonSubmit, ['class' => 'form-control btn btn-primary']) !!}
 </div>

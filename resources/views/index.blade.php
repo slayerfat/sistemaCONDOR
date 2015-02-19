@@ -20,7 +20,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-12">
         <h3>Mensajes hechos por Ud.</h3>
         <a href="{{ action('MensajesController@create') }}" class="btn btn-primary">
           Crear Nuevo Mensaje
@@ -37,7 +37,9 @@
           </p>
         </section>
       </div>
-      <div class="col-xs-6">
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
         <h3>Eventos del Edificio</h3>
         <a href="#" class="btn btn-primary">Crear nuevo Evento</a>
         <section>

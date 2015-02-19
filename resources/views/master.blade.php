@@ -18,6 +18,10 @@
 <body>
   @include('parciales.navbar')
 
+  <div class="container">
+    @include('flash::message')
+  </div>
+
   @yield('contenido')
 
   <!-- Scripts -->

@@ -1,7 +1,10 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\MensajeRequest;
 use App\Http\Controllers\Controller;
+use App\Mensaje;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -24,7 +27,9 @@ class MensajesController extends Controller {
 	 */
 	public function create()
 	{
-		return view('mensajes.create');
+		$tipos = \App\MensajeTipo::lists('descripcion', 'id');
+
+		return view('mensajes.create', compact('tipos'));
 	}
 
 	/**
@@ -32,9 +37,16 @@ class MensajesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(MensajeRequest $request)
 	{
-		//
+		/**
+		 * se invoca el metodo insertarMensaje para 
+		 * meter la informacion el la base de datos
+		 * @var object
+		 */
+		$mensaje = Auth::user()->insertarMensaje($request);
+		flash('Su Mensaje ha sido creado con exito.');
+		return redirect()->action('IndexController@index');
 	}
 
 	/**
