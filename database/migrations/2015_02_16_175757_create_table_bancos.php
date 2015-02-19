@@ -12,10 +12,10 @@ class CreateTableBancos extends Migration {
    */
   public function up()
   {
-    Schema::create('bancos', function(Blueprint $table)
+    Schema::create('banks', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->string('description');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
@@ -31,7 +31,7 @@ class CreateTableBancos extends Migration {
    */
   public function down()
   {
-    Schema::drop('bancos');
+    Schema::drop('banks');
   }
 
 }

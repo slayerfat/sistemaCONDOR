@@ -12,10 +12,10 @@ class CreateTableEventoTipos extends Migration {
    */
   public function up()
   {
-    Schema::create('evento_tipos', function(Blueprint $table)
+    Schema::create('event_types', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->string('description');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
@@ -32,7 +32,7 @@ class CreateTableEventoTipos extends Migration {
    */
   public function down()
   {
-    Schema::drop('evento_tipos');
+    Schema::drop('event_types');
   }
 
 }

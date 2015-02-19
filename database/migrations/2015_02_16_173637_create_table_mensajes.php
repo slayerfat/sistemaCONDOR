@@ -12,15 +12,15 @@ class CreateTableMensajes extends Migration {
    */
   public function up()
   {
-    Schema::create('mensajes', function(Blueprint $table)
+    Schema::create('menssages', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('autor_id')->unsigned();
-      $table->foreign('autor_id')->references('id')->on('usuarios');
-      $table->integer('tipo_id')->unsigned();
-      $table->foreign('tipo_id')->references('id')->on('mensaje_tipos');
+      $table->integer('user_id')->unsigned();
+      $table->foreign('user_id')->references('id')->on('users');
+      $table->integer('message_types_id')->unsigned();
+      $table->foreign('message_types_id')->references('id')->on('message_types');
       $table->string('titulo');
-      $table->text('descripcion');
+      $table->text('description');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
@@ -37,7 +37,7 @@ class CreateTableMensajes extends Migration {
    */
   public function down()
   {
-    Schema::drop('mensajes');
+    Schema::drop('messages');
   }
 
 }

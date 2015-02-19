@@ -15,7 +15,7 @@ class CreateTableMensajeTipos extends Migration {
     Schema::create('mensaje_tipos', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->string('description');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');

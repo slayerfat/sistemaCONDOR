@@ -12,15 +12,15 @@ class CreateTableCuentas extends Migration {
    */
   public function up()
   {
-    Schema::create('cuentas', function(Blueprint $table)
+    Schema::create('accounts', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('banco_id')->unsigned();
-      $table->foreign('banco_id')->references('id')->on('bancos');
-      $table->integer('titular_id')->unsigned();
-      $table->foreign('titular_id')->references('id')->on('personas');
-      $table->integer('numero_bancario')->unsigned();
-      $table->double('saldo', 15, 6);
+      $table->integer('bank_id')->unsigned();
+      $table->foreign('bank_id')->references('id')->on('banks');
+      $table->integer('user_id')->unsigned();
+      $table->foreign('user_id')->references('id')->on('users');
+      $table->integer('bank_number')->unsigned();
+      $table->double('balance', 15, 6);
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
@@ -37,7 +37,7 @@ class CreateTableCuentas extends Migration {
    */
   public function down()
   {
-    Schema::drop('cuentas');
+    Schema::drop('accounts');
   }
 
 }

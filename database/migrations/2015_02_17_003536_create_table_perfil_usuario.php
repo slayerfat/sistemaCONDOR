@@ -12,13 +12,13 @@ class CreateTablePerfilUsuario extends Migration {
    */
   public function up()
   {
-    Schema::create('perfil_usuario', function(Blueprint $table)
+    Schema::create('profile_user', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('perfil_id')->unsigned();
-      $table->foreign('perfil_id')->references('id')->on('perfiles');
-      $table->integer('usuario_id')->unsigned();
-      $table->foreign('usuario_id')->references('id')->on('usuarios');
+      $table->integer('profile_id')->unsigned();
+      $table->foreign('profile_id')->references('id')->on('profiles');
+      $table->integer('user_id')->unsigned();
+      $table->foreign('user_id')->references('id')->on('users');
     });
   }
 
@@ -29,7 +29,7 @@ class CreateTablePerfilUsuario extends Migration {
    */
   public function down()
   {
-    Schema::drop('perfil_usuario');
+    Schema::drop('profile_user');
   }
 
 }

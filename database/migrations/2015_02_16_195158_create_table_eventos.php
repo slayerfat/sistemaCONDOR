@@ -12,23 +12,23 @@ class CreateTableEventos extends Migration {
    */
   public function up()
   {
-    Schema::create('eventos', function(Blueprint $table)
+    Schema::create('events', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('edificio_id')->unsigned();
-      $table->foreign('edificio_id')
+      $table->integer('building_id')->unsigned();
+      $table->foreign('building_id')
             ->references('id')
-            ->on('edificios')
+            ->on('buildings')
             ->onDelete('cascade');
-      $table->integer('autor_id')->unsigned();
-      $table->foreign('autor_id')
+      $table->integer('user_id')->unsigned();
+      $table->foreign('user_id')
             ->references('id')
-            ->on('usuarios')
+            ->on('users')
             ->onDelete('cascade');
-      $table->integer('tipo_id')->unsigned();
-      $table->foreign('tipo_id')->references('id')->on('evento_tipos');
-      $table->string('titulo');
-      $table->text('descripcion');
+      $table->integer('event_type_id')->unsigned();
+      $table->foreign('event_type_id')->references('id')->on('event_types');
+      $table->string('title');
+      $table->text('body');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
