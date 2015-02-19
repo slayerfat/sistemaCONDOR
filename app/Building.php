@@ -31,4 +31,8 @@ class Building extends Model {
     return $this->hasMany('App\Apartment');
   }
 
+  public function habitantes(){
+    return $this->hasManyThrough('App\User', 'App\Apartment');
+  }
+
 }

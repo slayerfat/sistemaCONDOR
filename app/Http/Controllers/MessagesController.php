@@ -62,7 +62,13 @@ class MessagesController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$usuario = Auth::user();
+		$usuario->apartamentos;
+		$usuario->mensajes;
+		foreach ($usuario->apartamentos()->get() as $apartamento) :
+			$edificios[] = $apartamento->edificio;
+		endforeach;
+		return view('messages.show', compact('usuario', 'edificios'));
 	}
 
 	/**
