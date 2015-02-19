@@ -12,10 +12,10 @@ class CreateTableEstados extends Migration {
    */
   public function up()
   {
-    Schema::create('estados', function(Blueprint $table)
+    Schema::create('states', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->string('description');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
@@ -31,7 +31,7 @@ class CreateTableEstados extends Migration {
    */
   public function down()
   {
-    Schema::drop('estados');
+    Schema::drop('states');
   }
 
 }

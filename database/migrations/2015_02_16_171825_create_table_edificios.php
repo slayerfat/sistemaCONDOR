@@ -12,14 +12,14 @@ class CreateTableEdificios extends Migration {
    */
   public function up()
   {
-    Schema::create('edificios', function(Blueprint $table)
+    Schema::create('buildings', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('encargado_id')->unsigned();
-      $table->foreign('encargado_id')->references('id')->on('usuarios');
-      $table->integer('direccion_id')->unsigned();
-      $table->foreign('direccion_id')->references('id')->on('direcciones');
-      $table->string('nombre');
+      $table->integer('user_id')->unsigned();
+      $table->foreign('user_id')->references('id')->on('users');
+      $table->integer('direction_id')->unsigned();
+      $table->foreign('direction_id')->references('id')->on('directions');
+      $table->string('name');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
@@ -36,7 +36,7 @@ class CreateTableEdificios extends Migration {
    */
   public function down()
   {
-    Schema::drop('edificios');
+    Schema::drop('buildings');
   }
 
 }
