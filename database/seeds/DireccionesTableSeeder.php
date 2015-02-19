@@ -19,6 +19,8 @@ class DireccionesTableSeeder extends Seeder {
       'created_by'       => $neo->id,
       'updated_by'       => $neo->id
     ]);
+
+    $this->command->info('El edificio del Elegido necesita una direccion...');
   }
 
 }

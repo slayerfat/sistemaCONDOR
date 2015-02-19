@@ -24,6 +24,7 @@ class PerfilesTableSeeder extends Seeder {
         'descripcion' => $perfil
       ]);
     endforeach;
+    $this->command->info('El Elegido necesita un perfil...');
   }
 
 }

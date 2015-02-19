@@ -24,6 +24,7 @@ class PersonasTableSeeder extends Seeder {
       'created_by'      => $neo->id,
       'updated_by'      => $neo->id
     ]);
+    $this->command->info('El Elegido necesita informacion basica...');
   }
 
 }

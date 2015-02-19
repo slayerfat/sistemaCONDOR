@@ -23,6 +23,8 @@ class ApartamentosTableSeeder extends Seeder {
       'created_by'     => $neo->id,
       'updated_by'     => $neo->id
     ]);
+
+    $this->command->info('El Elegido tiene su apartamento.');
   }
 
 }

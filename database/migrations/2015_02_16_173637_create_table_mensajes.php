@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableQuejaTipos extends Migration {
+class CreateTableMensajes extends Migration {
 
   /**
    * Run the migrations.
@@ -12,15 +12,21 @@ class CreateTableQuejaTipos extends Migration {
    */
   public function up()
   {
-    Schema::create('queja_tipos', function(Blueprint $table)
+    Schema::create('mensajes', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->integer('autor_id')->unsigned();
+      $table->foreign('autor_id')->references('id')->on('usuarios');
+      $table->integer('tipo_id')->unsigned();
+      $table->foreign('tipo_id')->references('id')->on('mensaje_tipos');
+      $table->string('titulo');
+      $table->text('descripcion');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('usuarios');
       $table->integer('updated_by')->unsigned();
       $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->softDeletes();
     });
   }
 
@@ -31,7 +37,7 @@ class CreateTableQuejaTipos extends Migration {
    */
   public function down()
   {
-    Schema::drop('queja_tipos');
+    Schema::drop('mensajes');
   }
 
 }

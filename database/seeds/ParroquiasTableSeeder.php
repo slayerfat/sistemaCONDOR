@@ -928,6 +928,7 @@ class ParroquiasTableSeeder extends Seeder {
       (922, 334, 'La Victoria', 1, 1, current_timestamp, current_timestamp),
       (923, 335, 'Raúl Cuenca', 1, 1, current_timestamp, current_timestamp),
       (924, 336, 'Jesús María Semprún', 1, 1, current_timestamp, current_timestamp);");
+    $this->command->info('Los municipios de venezuela fueron creados por el elegido.');
   }
 
 }

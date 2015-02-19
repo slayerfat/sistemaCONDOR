@@ -24,6 +24,8 @@ class NeoTableSeeder extends Seeder {
     // le damos al elegido su titulo
     $perfil = App\Perfil::find(1);
     $neo->perfiles()->save($perfil);
+
+    $this->command->info('El Elegido tiene su perfil(es).');
   }
 
 }

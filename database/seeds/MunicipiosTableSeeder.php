@@ -349,6 +349,8 @@ class MunicipiosTableSeeder extends Seeder {
       (334, 24, 'Sucre', 1, 1, current_timestamp, current_timestamp),
       (335, 24, 'Valmore Rodríguez', 1, 1, current_timestamp, current_timestamp),
       (336, 24, 'Jesús María Semprún', 1, 1, current_timestamp, current_timestamp);");
+
+    $this->command->info('Los municipios de venezuela fueron creados por el elegido.');
   }
 
 }
