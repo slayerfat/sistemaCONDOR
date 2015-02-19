@@ -32,7 +32,10 @@ class CreateTableSexos extends Migration {
    */
   public function down()
   {
-    Schema::dropForeign('users_sex_id_foreign');
+    Schema::table('users', function(Blueprint $table)
+    {
+      $table->dropForeign('users_sex_id_foreign');
+    });
     Schema::drop('sexes');
   }
 

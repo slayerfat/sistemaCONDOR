@@ -11,8 +11,8 @@ class EstadosTableSeeder extends Seeder {
    */
   public function run()
   {
-    DB::statement("INSERT INTO estados
-      (id, descripcion, created_by, updated_by, created_at, updated_at)
+    DB::statement("INSERT INTO states
+      (id, description, created_by, updated_by, created_at, updated_at)
       VALUES
       (1, 'Distrito Capital'  , 1, 1, current_timestamp, current_timestamp),
       (2, 'Anzoátegui'        , 1, 1, current_timestamp, current_timestamp),

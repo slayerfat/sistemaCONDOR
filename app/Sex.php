@@ -2,17 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sexo extends Model {
+class Sex extends Model {
 
-  protected $table = 'sexos';
+  protected $table = 'sexes';
 
-  protected $fillable = ['descripcion'];
+  protected $fillable = ['description'];
 
   /**
    * la asociacion entre personas y sexos en la base de datos
    */
   public function persona(){
-    return $this->belongsTo('App\Persona');
+    return $this->belongsTo('App\User');
   }
 
 }

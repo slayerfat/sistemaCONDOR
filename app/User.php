@@ -16,14 +16,25 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    *
    * @var string
    */
-  protected $table = 'usuarios';
+  protected $table = 'users';
 
   /**
    * The attributes that are mass assignable.
    *
    * @var array
    */
-  protected $fillable = ['seudonimo', 'email', 'password'];
+  protected $fillable = [
+    'username', 
+    'email', 
+    'password', 
+    'identity_card',
+    'first_name', 
+    'middle_name',
+    'first_surname', 
+    'last_surname',
+    'sex_id', 
+    'birth_date'
+  ];
 
   /**
    * The attributes excluded from the model's JSON form.
@@ -45,18 +56,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    * ('el modelo', 'el pivote', 'su llave foranea en pivote')
    */
   public function perfiles(){
-    return $this->belongsToMany('App\Perfil', 'perfil_usuario', 'usuario_id');
-  }
-
-  /**
-   * la asociacion entre usuarios y perfiles en la base de datos
-   */
-  public function persona(){
-    return $this->hasMany('App\Persona', 'usuario_id');
-  }
-
-  public function apartamentos(){
-    return $this->hasManyThrough('App\Apartamento', 'App\Persona', 'usuario_id');
+    return $this->belongsToMany('App\Profile');
   }
 
   /**
@@ -64,17 +64,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    * un mensaje pertenece a un usuario
    */
   public function mensajes(){
-    return $this->hasMany('App\Mensaje', 'autor_id');
+    return $this->hasMany('App\Message');
   }
 
   public function insertarMensaje($request){
-    $mensaje = \App\Mensaje::create([
-      'autor_id'    => $this->id,
-      'tipo_id'     => $request->input('tipos'),
-      'titulo'      => $request->input('titulo'),
-      'descripcion' => $request->input('descripcion'),
-      'created_by'  => $this->id,
-      'updated_by'  => $this->id,
+    $mensaje = \App\Message::create([
+      'user_id'         => $this->id,
+      'message_type_id' => $request->input('types'),
+      'title'           => $request->input('title'),
+      'description'     => $request->input('description'),
+      'created_by'      => $this->id,
+      'updated_by'      => $this->id,
     ]);
     return $mensaje;
   }

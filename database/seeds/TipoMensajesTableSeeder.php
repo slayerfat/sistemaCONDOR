@@ -11,11 +11,11 @@ class TipoMensajesTableSeeder extends Seeder {
    */
   public function run()
   {
-    $datos = ['Sugerencia', 'Queja', 'Comentario'];
+    $datos = ['Sugerencia', 'Queja', 'Comentario', 'otro'];
     
     foreach ($datos as $tipo) :
-      DB::table('mensaje_tipos')->insert([
-        'descripcion' => $tipo,
+      DB::table('message_types')->insert([
+        'description' => $tipo,
         'created_at' => \Carbon\Carbon::now(),
         'updated_at' => \Carbon\Carbon::now(),
         'created_by' => 1,

@@ -3,25 +3,25 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Direccion extends Model {
+class Direction extends Model {
 
-  protected $table = 'direcciones';
+  protected $table = 'directions';
 
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
-    'parroquia_id',
-    'direccion_exacta',
+    'parish_id',
+    'exact_direction',
     'created_by',
     'updated_by'
   ];
 
   public function parroquia(){
-    return $this->belongsTo('App\Parroquia', 'parroquia_id');
+    return $this->belongsTo('App\Parish');
   }
 
   public function edificios(){
-    return $this->hasMany('App\Edificio', 'direccion_id');
+    return $this->hasMany('App\Building');
   }
 
 }

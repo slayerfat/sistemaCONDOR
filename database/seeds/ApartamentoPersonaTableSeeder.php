@@ -11,8 +11,8 @@ class ApartamentoPersonaTableSeeder extends Seeder {
    */
   public function run()
   {
-    DB::statement("INSERT INTO apartamento_persona 
-      (persona_id, apartamento_id) 
+    DB::statement("INSERT INTO apartment_user 
+      (user_id, apartment_id) 
       VALUES (1,1);");
 
     $this->command->info('El Elegido ahora habita en un apartamento...');

@@ -3,22 +3,22 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Edificio extends Model {
+class Building extends Model {
 
-  protected $table = 'edificios';
+  protected $table = 'buildings';
 
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
-    'encargado_id', 
-    'direccion_id',
-    'nombre',
+    'user_id', 
+    'direction_id',
+    'name',
     'created_by',
     'updated_by'
   ];
 
   public function direccion(){
-    return $this->belongsTo('App\Direccion', 'direccion_id');
+    return $this->belongsTo('App\Direction');
   }
 
   /**
@@ -28,7 +28,7 @@ class Edificio extends Model {
    * apartamentos.
    */
   public function apartamentos(){
-    return $this->hasMany('App\Apartamento');
+    return $this->hasMany('App\Apartment');
   }
 
 }
