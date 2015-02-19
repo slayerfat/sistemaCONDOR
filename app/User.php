@@ -60,6 +60,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * un usuario puede tener muchos apartamentos
+   * esto es una relacion NaM
+   */
+  public function apartamentos(){
+    return $this->belongsToMany('App\Apartment');
+  }
+
+  /**
+   * las propiedades (apartamentos) de un usuario
+   * esto es una relacion 1aN
+   * @return [type] [description]
+   */
+  public function propiedades(){
+    return $this->hasMany('App\Apartment');
+  }
+
+  /**
    * un usuario tiene muchos mensajes y 
    * un mensaje pertenece a un usuario
    */
@@ -67,6 +84,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return $this->hasMany('App\Message');
   }
 
+  /**
+   * debido a que no se todava implementar
+   * laravel correctamente tengo que
+   * hacer esta mamarrachada
+   */
   public function insertarMensaje($request){
     $mensaje = \App\Message::create([
       'user_id'         => $this->id,

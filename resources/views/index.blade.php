@@ -4,25 +4,25 @@
     <h1>
       Edificio
       <a href="{{ url('#') }}">
-        {{ $apartamentos->edificio->nombre }}
+        {{ $apartamentos->edificio->name }}
       </a>
     </h1>
     <h3>
       <small>
-        Apartamento N°: {{ $apartamentos->numero }}, {{ $apartamentos->piso->descripcion }}
+        Apartamento N°: {{ $apartamentos->number }}, Piso {{ $apartamentos->floor }}
       </small>
     </h3>
     <p>
       Propietario:
-      {{ $apartamentos->propietario->primer_nombre }},
-      {{ $apartamentos->propietario->primer_apellido }}.
+      {{ $apartamentos->propietario->first_name }},
+      {{ $apartamentos->propietario->first_surname }}.
     </p>
   </div>
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
         <h3>Mensajes hechos por Ud.</h3>
-        <a href="{{ action('MensajesController@create') }}" class="btn btn-primary">
+        <a href="{{ action('MessagesController@create') }}" class="btn btn-primary">
           Crear Nuevo Mensaje
         </a>
         <section>
