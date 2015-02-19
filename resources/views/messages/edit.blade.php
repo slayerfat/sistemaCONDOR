@@ -2,7 +2,10 @@
 
 @section('contenido')
   <div class="container">
-    <h1>Crea un nuevo Mensaje</h1>
+    <h1>
+      Editar
+      <small>{{ $mensaje->title }}</small>
+    </h1>
 
     <hr/>
 
