@@ -21,7 +21,7 @@ class CreateTableSexos extends Migration {
 
     Schema::table('users', function(Blueprint $table)
     {
-      $table->foreign('sex_id')->references('sexes')->on('id');
+      $table->foreign('sex_id')->references('id')->on('sexes');
     });
   }
 
