@@ -18,7 +18,13 @@ class MessagesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$usuario = Auth::user();
+		$usuario->apartamentos;
+		$usuario->mensajes;
+		foreach ($usuario->apartamentos()->get() as $apartamento) :
+			$edificios[] = $apartamento->edificio;
+		endforeach;
+		return view('messages.index', compact('usuario', 'edificios'));
 	}
 
 	/**
@@ -62,13 +68,8 @@ class MessagesController extends Controller {
 	 */
 	public function show($id)
 	{
-		$usuario = Auth::user();
-		$usuario->apartamentos;
-		$usuario->mensajes;
-		foreach ($usuario->apartamentos()->get() as $apartamento) :
-			$edificios[] = $apartamento->edificio;
-		endforeach;
-		return view('messages.show', compact('usuario', 'edificios'));
+		$mensaje = Message::findOrFail($id);
+		return view('messages.show', compact('mensaje'));
 	}
 
 	/**
