@@ -1,16 +1,16 @@
 <div class="form-group">
-  {!! Form::label('titulo', 'Titulo:') !!}
-  {!! Form::text('titulo', null, ['class' => 'form-control']) !!}
+  {!! Form::label('title', 'Titulo:') !!}
+  {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-  {!! Form::label('descripcion', 'Descripcion:') !!}
-  {!! Form::textarea('descripcion', null, ['class' => 'form-control']) !!}
+  {!! Form::label('description', 'Descripcion:') !!}
+  {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-  {!! Form::label('tipos', 'Tipo de Mensaje:') !!}
-  {!! Form::select('tipos[]', $tipos, $mensaje->tipo_id, ['class' => 'form-control']) !!}
+  {!! Form::label('types[]', 'Tipo de Mensaje:') !!}
+  {!! Form::select('types[]', $types, $mensaje->message_type_id, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

@@ -25,17 +25,17 @@
         <a href="{{ action('MessagesController@create') }}" class="btn btn-primary">
           Crear Nuevo Mensaje
         </a>
-        @foreach ($mensajes as $mensaje)
-          <section>
-            <h4>
-              {!! link_to_action('MensajesController@edit', 
-                    $mensaje->title, $mensaje->id) !!}
-            </h4>
-            <p class="text-justify">
-              {{ $mensaje->description }}
-            </p>
-          </section>
-        @endforeach
+          @foreach ($mensajes as $mensaje)
+            <section>
+              <h4>
+                {!! link_to_action('MessagesController@edit', 
+                      $mensaje->title, $mensaje->id) !!}
+              </h4>
+              <p class="text-justify">
+                {{ $mensaje->description }}
+              </p>
+            </section>
+          @endforeach
       </div>
     </div>
     <div class="row">

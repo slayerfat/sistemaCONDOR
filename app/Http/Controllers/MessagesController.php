@@ -1,9 +1,10 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\MensajeRequest;
+use App\Http\Requests\MessageRequest;
 use App\Http\Controllers\Controller;
 use App\Message;
+use App\MessageType;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -27,9 +28,10 @@ class MessagesController extends Controller {
 	 */
 	public function create()
 	{
-		$tipos = \App\MessageType::lists('description', 'id');
+		$types = MessageType::lists('description', 'id');
+		$mensaje = new Message;
 
-		return view('messages.create', compact('types'));
+		return view('messages.create', compact('mensaje', 'types'));
 	}
 
 	/**
@@ -37,7 +39,7 @@ class MessagesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(MensajeRequest $request)
+	public function store(MessageRequest $request)
 	{
 		/**
 		 * se invoca el metodo insertarMensaje para 
@@ -68,9 +70,9 @@ class MessagesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$mensaje = Mensaje::findOrFail($id);
-		$tipos = \App\MensajeTipo::lists('descripcion', 'id');
-		return view('mensajes.edit', compact('mensaje', 'tipos'));
+		$mensaje = Message::findOrFail($id);
+		$types   = MessageType::lists('description', 'id');
+		return view('messages.edit', compact('mensaje', 'types'));
 	}
 
 	/**
@@ -79,9 +81,9 @@ class MessagesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, MensajeRequest $request)
+	public function update($id, MessageRequest $request)
 	{
-		$mensaje = Mensaje::findOrFail($id);
+		$mensaje = Message::findOrFail($id);
 		$mensaje->update($request->all());
 		flash('Su Mensaje ha sido actualizado con exito.');
 		return redirect()->action('IndexController@index');

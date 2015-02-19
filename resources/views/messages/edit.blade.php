@@ -7,7 +7,7 @@
     <hr/>
 
     {!! Form::model($mensaje, ['method' => 'PATCH', 'action' => ['MessagesController@update', $mensaje->id]]) !!}
-      @include('mensajes._form', ['textoBotonSubmit' => 'Editar Mensaje'])
+      @include('messages._form', ['textoBotonSubmit' => 'Editar Mensaje'])
     {!! Form::close() !!}
 
     @include('errors.lista')

@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class MensajeRequest extends Request {
+class MessageRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class MensajeRequest extends Request {
 	public function rules()
 	{
 		return [
-			'titulo'      => 'required|min:6',
-			'descripcion' => 'required',
-			'tipos'       => 'required'
+			'title'       => 'required|min:6',
+			'description' => 'required',
+			'types'       => 'required'
 		];
 	}
 

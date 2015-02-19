@@ -21,7 +21,7 @@ class Message extends Model {
    */
   protected $fillable = [
     'user_id', 
-    'message_type_id', 
+    'message_types_id', 
     'title', 
     'description', 
     'created_by', 
@@ -45,7 +45,7 @@ class Message extends Model {
    * un mensaje posee solo un tipo de mensaje
    */
   public function tipo(){
-    return $this->belongsTo('App\MenssageType', 'message_type');
+    return $this->belongsTo('App\MenssageType');
   }
 
 }
