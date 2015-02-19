@@ -41,7 +41,10 @@
     <div class="row">
       <div class="col-xs-12">
         <h3>Eventos del Edificio</h3>
-        <a href="#" class="btn btn-primary">Crear nuevo Evento</a>
+        {{-- validar si es administrador del edificio --}}
+        <a href="{!! action('EventsController@create') !!}" class="btn btn-primary">
+          Crear Nuevo Evento
+        </a>
         <section>
           <h5>Titulo</h5>
           <p class="text-justify">

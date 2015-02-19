@@ -17,6 +17,7 @@ Route::get('welcome', 'WelcomeController@index');
 
 Route::resource('edificio', 'BuildingController');
 Route::resource('mensajes', 'MessagesController');
+Route::resource('eventos',  'EventsController');
 
 Route::controllers([
   'auth' => 'Auth\AuthController',
