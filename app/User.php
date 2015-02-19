@@ -66,11 +66,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   public function mensajes(){
     return $this->hasMany('App\Mensaje', 'autor_id');
   }
-
+  /**
+   * debido a que la tabla es compleja y no se 
+   * un metodo de laravel para hacer el binding
+   * decidi hacerlo de esta forma
+   * debido al tipo_id
+   * @param  [type] $request [description]
+   * @return [type]          [description]
+   */
   public function insertarMensaje($request){
+    $tipo = $request->input('tipos');
     $mensaje = \App\Mensaje::create([
       'autor_id'    => $this->id,
-      'tipo_id'     => $request->input('tipos'),
+      'tipo_id'     => $tipo[0],
       'titulo'      => $request->input('titulo'),
       'descripcion' => $request->input('descripcion'),
       'created_by'  => $this->id,
