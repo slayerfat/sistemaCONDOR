@@ -11,7 +11,10 @@
 
       @foreach ($usuario->mensajes as $mensaje)
         <article>
-          <h2>{{ $mensaje->title }}</h2>
+          <h2>
+            {!! link_to_action('MessagesController@show', 
+                  $mensaje->title, $mensaje->id) !!}
+          </h2>
           <body>{{ $mensaje->description }}</body>
         </article>
       @endforeach
