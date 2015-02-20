@@ -72,7 +72,7 @@
       <p>
         Parece que su perfil no esta relacionado a ningun apartamento, 
         por favor <a href="{!! action('BuildingsController@index') !!}">
-          visite los Edificios disponibles en el sistema.
+        visite los Edificios disponibles en el sistema.
         </a>
         para empezar el proceso de registro.
       </p>

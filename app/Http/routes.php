@@ -15,7 +15,7 @@ Route::get('/', 'IndexController@index');
 
 Route::get('welcome', 'WelcomeController@index');
 
-Route::resource('edificio', 'BuildingsController');
+Route::resource('edificios', 'BuildingsController');
 Route::resource('mensajes', 'MessagesController');
 Route::resource('eventos',  'EventsController');
 

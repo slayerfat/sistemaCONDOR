@@ -29,6 +29,7 @@ class BuildingsController extends Controller {
 	 */
 	public function index()
 	{
+		// hacer resource o algo para validar como en eventscontroller
 		$edificios = Building::all();
 		return view('building.index', compact('edificios'));
 	}
