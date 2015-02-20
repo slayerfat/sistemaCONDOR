@@ -14,20 +14,24 @@
         </small>
       </h3>
       <p>
-        Propietario:
-        {{ $apartamentos->propietario->first_name }},
-        {{ $apartamentos->propietario->first_surname }}.
+        @if ($apartamentos->propietario)
+          Propietario:
+          {{ $apartamentos->propietario->first_name }},
+          {{ $apartamentos->propietario->first_surname }}.
+        @endif
       </p>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h3>
-            Mensajes hechos por Ud.
-            <a href="{{ action('MessagesController@index') }}"class="btn btn-default">
-              Ver todos los Mensajes
-            </a>
-          </h3>
+          @if ($usuario->mensajes->count())
+            <h3>
+              Mensajes hechos por Ud.
+              <a href="{{ action('MessagesController@index') }}"class="btn btn-default">
+                Ver todos los Mensajes
+              </a>
+            </h3>
+          @endif
           <a href="{{ action('MessagesController@create') }}" class="btn btn-primary">
             Crear Nuevo Mensaje
           </a>
@@ -47,21 +51,50 @@
       <hr/>
       <div class="row">
         <div class="col-xs-12">
-          <h3>Eventos en {{ $apartamentos->edificio->name }}</h3>
-          <a href="{{ action('EventsController@create') }}" class="btn btn-primary">
-            Crear Nuevo evento
-          </a>
-            @foreach ($eventos as $evento)
+          @if ($apartamentos->edificio)
+            <h3>Eventos en {{ $apartamentos->edificio->name }} 
+            <a href="{{ action('EventsController@index') }}"class="btn btn-default">
+              Ver todos los Eventos
+            </a>
+            </h3>
+            @foreach ($apartamentos->edificio->eventos as $evento)
               <section>
-                <h4>
-                  {!! link_to_action('EventsController@edit', 
-                        $evento->title, $evento->id) !!}
-                </h4>
+                @if ($usuario->perfiles->count())
+                  @foreach ($usuario->perfiles as $perfil)
+                    @if ($perfil)
+                      @if ($perfil->description === 'Administrador')
+                        <a href="{{ action('EventsController@create') }}" class="btn btn-primary">
+                          Crear Nuevo evento
+                        </a>
+                        <h4>
+                          {!! link_to_action('EventsController@edit', 
+                            $evento->title, $evento->id) !!}
+                        </h4>
+                      @else
+                        <h4>
+                          {!! link_to_action('EventsController@show', 
+                                $evento->title, $evento->id) !!}
+                        </h4>
+                      @endif
+                    @else
+                      <h4>
+                        {!! link_to_action('EventsController@show', 
+                              $evento->title, $evento->id) !!}
+                      </h4>
+                    @endif
+                  @endforeach
+                @else
+                  <h4>
+                    {!! link_to_action('EventsController@show', 
+                          $evento->title, $evento->id) !!}
+                  </h4>
+                @endif
                 <p class="text-justify">
                   {{ $evento->body }}
                 </p>
               </section>
             @endforeach
+          @endif
         </div>
       </div>
     </div>

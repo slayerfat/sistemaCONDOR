@@ -18,9 +18,6 @@ class CreateTablePerfiles extends Migration {
       $table->string('description');
       $table->timestamps();
     });
-    App\Profile::create([
-      'description' => 'El Elegido'
-    ]);
   }
 
   /**

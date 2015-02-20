@@ -40,7 +40,7 @@ class EventsController extends Controller {
       flash()->error('Ud. no tiene permisos para esta accion.');
       return redirect()->back();
     // se chequea el tipo de perfil
-    elseif ($data[0]['description'] !== 'El Elegido' and $data[0]['description'] !== 'Administrador') :
+    elseif ($data[0]['description'] !== 'Administrador') :
       flash()->error('Ud. no tiene permisos para esta accion.');
       return redirect()->back();
     endif;
