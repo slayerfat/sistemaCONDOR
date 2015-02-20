@@ -4,8 +4,8 @@
     <div class="container">
       <h1>
         Edificio
-        <a href="{{ url('#') }}">
-          {{ $apartamentos->edificio->name }}
+        {!! link_to_action('BuildingsController@show', 
+              $apartamentos->edificio->name, $apartamentos->edificio->id) !!}
         </a>
       </h1>
       <h3>

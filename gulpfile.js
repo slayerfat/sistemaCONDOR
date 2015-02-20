@@ -6,41 +6,6 @@ var elixir      = require('laravel-elixir');
     tag_version = require('gulp-tag-version');
 
 /**
- * gulp bump
- * 
- * suponiendo que verion actual es 1.0.0
- * 
- * para prerelease: gulp bump-pre   | 1.0.0-0
- * para patch:      gulp bump-patch | 1.0.1
- * para minor:      gulp bump-minor | 1.1.0
- * para major:      gulp bump-major | 2.0.0
- */
-
-gulp.task('bump-patch', function(){
-  gulp.src(['./bower.json', 'package.json'])
-  .pipe(bump())
-  .pipe(gulp.dest('./'));
-});
-
-gulp.task('bump-minor', function(){
-  gulp.src(['./bower.json', 'package.json'])
-  .pipe(bump({type:'minor'}))
-  .pipe(gulp.dest('./'));
-});
-
-gulp.task('bump-major', function(){
-  gulp.src(['./bower.json', 'package.json'])
-  .pipe(bump({type:'major'}))
-  .pipe(gulp.dest('./'));
-});
-
-gulp.task('bump-pre', function(){
-  gulp.src(['./bower.json', 'package.json'])
-  .pipe(bump({type:'prerelease'}))
-  .pipe(gulp.dest('./'));
-});
- 
-/**
  * Bumping version number and tagging the repository with it.
  * Please read http://semver.org/
  *
@@ -55,22 +20,22 @@ gulp.task('bump-pre', function(){
  */
  
 function inc(importance) {
-    // get all the files to bump version in 
-    return gulp.src(['./package.json', './bower.json'])
-        // bump the version number in those files 
-        .pipe(bump({type: importance}))
-        // save it back to filesystem 
-        .pipe(gulp.dest('./'))
-        // commit the changed version number 
-        .pipe(git.commit('bumps package version'))
- 
-        // read only one file to get the version number 
-        .pipe(filter('package.json'))
-        // **tag it in the repository** 
-        .pipe(tag_version());
+  // get all the files to bump version in 
+  return gulp.src(['./package.json', './bower.json'])
+    // bump the version number in those files 
+    .pipe(bump({type: importance}))
+    // save it back to filesystem 
+    .pipe(gulp.dest('./'))
+    // commit the changed version number 
+    .pipe(git.commit('bumps package version'))
+
+    // read only one file to get the version number 
+    .pipe(filter('package.json'))
+    // **tag it in the repository** 
+    .pipe(tag_version());
 }
  
-gulp.task('patch', function() { return inc('patch'); })
+gulp.task('patch',   function() { return inc('patch'); })
 gulp.task('feature', function() { return inc('minor'); })
 gulp.task('release', function() { return inc('major'); })
 
