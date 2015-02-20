@@ -16,7 +16,12 @@ class EventsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$usuario = Auth::user();
+		$usuario->apartamentos;
+		foreach ($usuario->apartamentos()->get() as $apartamento) :
+			$edificios[] = $apartamento->edificio;
+		endforeach;
+		return view('events.index', compact('usuario', 'edificios'));
 	}
 
 	/**
@@ -61,7 +66,8 @@ class EventsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$evento = Event::findOrFail($id);
+		return view('events.show', compact('evento'));
 	}
 
 	/**
@@ -72,7 +78,11 @@ class EventsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		// se busca el evento solicitado o falla
+		$evento = Event::findOrFail($id);
+		// los tipos de mensajes
+		$types   = EventType::lists('description', 'id');
+		return view('events.edit', compact('evento', 'types'));
 	}
 
 	/**
@@ -81,9 +91,16 @@ class EventsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, EventRequest $request)
 	{
-		//
+		// se busca el evento solicitado o falla
+		$evento = Event::findOrFail($id);
+		$evento->updated_by = Auth::user()->id;
+		// actualiza el evento
+		$evento->update($request->all());
+		// mensaje de exito
+		flash('El Evento ha sido actualizado con exito.');
+		return redirect()->action('IndexController@index');
 	}
 
 	/**

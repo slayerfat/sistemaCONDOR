@@ -4,18 +4,18 @@
   <div class="container">
     <article>
       <h1>
-        {!! $mensaje->title !!}
+        {!! $evento->title !!}
       </h1>
-      <body class="text-justify">{{ $mensaje->description }}</body>
+      <body class="text-justify">{{ $evento->body }}</body>
 
       <hr/>
 
       <p>
-        Creado el: {{ $mensaje->created_at }}
+        Creado el: {{ $evento->created_at }}
       </p>
 
       {{-- si usuario es valido --}}
-      {!! link_to_action('MessagesController@edit', 'Editar Mensaje', $mensaje->id) !!}
+      {!! link_to_action('EventsController@edit', 'Editar Evento', $evento->id) !!}
     </article>
   </div>
 @stop
