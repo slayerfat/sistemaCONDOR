@@ -1,8 +1,5 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.3.0"
-use Faker\Factory as Faker;
-
 use Illuminate\Database\Seeder;
 
 class NeoTableSeeder extends Seeder {
@@ -17,15 +14,17 @@ class NeoTableSeeder extends Seeder {
     // crea al elegido
     $sexo = App\Sex::where('description', '=', 'Masculino')->first();
     $neo = App\User::create([
-      'username'      => env('APP_USER'),
-      'email'         => env('APP_USER_EMAIL'),
-      'password'      => Hash::make( env('APP_USER_PASSWORD') ),
-      'sex_id'        => $sexo->id,
-      'identity_card' => '10000000',
-      'first_name'    => 'Keanu',
-      'middle_name'   => 'Charles',
-      'first_surname' => 'Reaves',
-      'birth_date'    => '1964-09-02'
+      'username'        => env('APP_USER'),
+      'email'           => env('APP_USER_EMAIL'),
+      'password'        => Hash::make( env('APP_USER_PASSWORD') ),
+      'sex_id'          => $sexo->id,
+      'identity_card'   => '10000000',
+      'first_name'      => 'Keanu',
+      'middle_name'     => 'Charles',
+      'first_surname'   => 'Reaves',
+      'birth_date'      => '1964-09-02',
+      'phone'           => '01234567890',
+      'aditional_phone' => '11234567891'
     ]);
 
     // le damos al elegido su titulo

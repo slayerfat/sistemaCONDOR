@@ -18,7 +18,9 @@
           Propietario:
           @unless ( $apartamento->propietario()->get()->isEmpty() )
             {{ $apartamento->propietario->first_name }}
-            {{ $apartamento->propietario->first_surname }}
+            {{ $apartamento->propietario->first_surname }} 
+            Telf: {{ $apartamento->propietario->phone }}
+            Email: {!! Html::mailto($apartamento->propietario->email) !!}
           @else
             <i>Sin Propietario</i>
           @endunless
