@@ -10,6 +10,16 @@ use Auth;
 class EventsController extends Controller {
 
   /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('administrador.evento', ['only' => ['edit', 'create', 'store']]);
+  }
+
+  /**
    * Display a listing of the resource.
    *
    * @return Response
@@ -31,20 +41,6 @@ class EventsController extends Controller {
    */
   public function create()
   {
-    // toda esta mamarrachada tiene que ser limpiada
-    $data = Auth::user()->perfiles()->get()->toArray();
-    // todo esto es un asco
-
-    // se chequea que no este vacio
-    if (sizeof($data) === 0): 
-      flash()->error('Ud. no tiene permisos para esta accion.');
-      return redirect()->back();
-    // se chequea el tipo de perfil
-    elseif ($data[0]['description'] !== 'Administrador') :
-      flash()->error('Ud. no tiene permisos para esta accion.');
-      return redirect()->back();
-    endif;
-
     $types = EventType::lists('description', 'id');
     $evento = new Event;
     return view('events.create', compact('types', 'evento'));

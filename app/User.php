@@ -122,4 +122,30 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return $mensaje;
   }
 
+  public function esAdministrador(){
+    // si el usuario no tiene perfiles
+    if ($this->perfiles->count() === 0) return false;
+    // se ven los perfiles del usuario
+    foreach ($this->perfiles as $perfil) :
+      $autorizacion = false;
+      if ($perfil->description === 'Administrador'):
+        $autorizacion = true;
+      endif;
+    endforeach;
+    return $autorizacion;
+  }
+
+  public function esJuntaCondominio(){
+    // si el usuario no tiene perfiles
+    if ($this->perfiles->count() === 0) return false;
+    // se ven los perfiles del usuario
+    foreach ($this->perfiles as $perfil) :
+      $autorizacion = false;
+      if ($perfil->description === 'Junta de Condominio'):
+        $autorizacion = true;
+      endif;
+    endforeach;
+    return $autorizacion;
+  }
+
 }
