@@ -13,3 +13,6 @@ bower_components
 
 ### Composer ###
 composer.phar
+
+### npm ###
+npm-debug.log
