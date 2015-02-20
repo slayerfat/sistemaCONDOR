@@ -2,25 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Session;
-use Auth;
-use App\Building;
-use App\Apartment;
-use App\User;
 
 use Illuminate\Http\Request;
 
-class BuildingsController extends Controller {
-
-	/**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware('auth');
-  }
+class ApartmentsController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -29,9 +14,7 @@ class BuildingsController extends Controller {
 	 */
 	public function index()
 	{
-		// hacer resource o algo para validar como en eventscontroller
-		$edificios = Building::all();
-		return view('buildings.index', compact('edificios'));
+		//
 	}
 
 	/**
@@ -62,11 +45,7 @@ class BuildingsController extends Controller {
 	 */
 	public function show($id)
 	{
-		$edificio = Building::findOrFail($id);
-
-		// dd($edificio);
-
-		return view('buildings.show', compact('edificio'));
+		//
 	}
 
 	/**
