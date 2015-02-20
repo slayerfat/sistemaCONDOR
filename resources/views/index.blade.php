@@ -1,59 +1,114 @@
 @extends('master')
 @section('contenido')
-  <div class="container">
-    <h1>
-      Edificio
-      <a href="{{ url('#') }}">
-        {{ $apartamentos->edificio->name }}
-      </a>
-    </h1>
-    <h3>
-      <small>
-        Apartamento N°: {{ $apartamentos->number }}, Piso {{ $apartamentos->floor }}
-      </small>
-    </h3>
-    <p>
-      Propietario:
-      {{ $apartamentos->propietario->first_name }},
-      {{ $apartamentos->propietario->first_surname }}.
-    </p>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h3>Mensajes hechos por Ud.</h3>
-        <a href="{{ action('MessagesController@create') }}" class="btn btn-primary">
-          Crear Nuevo Mensaje
+  @if (isset($apartamentos))  
+    <div class="container">
+      <h1>
+        Edificio
+        <a href="{{ url('#') }}">
+          {{ $apartamentos->edificio->name }}
         </a>
-          @foreach ($mensajes as $mensaje)
-            <section>
-              <h4>
-                {!! link_to_action('MessagesController@edit', 
-                      $mensaje->title, $mensaje->id) !!}
-              </h4>
-              <p class="text-justify">
-                {{ $mensaje->description }}
-              </p>
-            </section>
-          @endforeach
+      </h1>
+      <h3>
+        <small>
+          Apartamento N°: {{ $apartamentos->number }}, Piso {{ $apartamentos->floor }}
+        </small>
+      </h3>
+      <p>
+        @if ($apartamentos->propietario)
+          Propietario:
+          {{ $apartamentos->propietario->first_name }},
+          {{ $apartamentos->propietario->first_surname }}.
+        @endif
+      </p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          @if ($usuario->mensajes->count())
+            <h3>
+              Mensajes hechos por Ud.
+              <a href="{{ action('MessagesController@index') }}"class="btn btn-default">
+                Ver todos los Mensajes
+              </a>
+            </h3>
+          @endif
+          <a href="{{ action('MessagesController@create') }}" class="btn btn-primary">
+            Crear Nuevo Mensaje
+          </a>
+            @foreach ($mensajes as $mensaje)
+              <section>
+                <h4>
+                  {!! link_to_action('MessagesController@edit', 
+                        $mensaje->title, $mensaje->id) !!}
+                </h4>
+                <p class="text-justify">
+                  {{ $mensaje->description }}
+                </p>
+              </section>
+            @endforeach
+        </div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-xs-12">
+          @if ($apartamentos->edificio)
+            <h3>Eventos en {{ $apartamentos->edificio->name }} 
+            <a href="{{ action('EventsController@index') }}"class="btn btn-default">
+              Ver todos los Eventos
+            </a>
+            </h3>
+            @foreach ($apartamentos->edificio->eventos as $evento)
+              <section>
+                @if ($usuario->perfiles->count())
+                  @foreach ($usuario->perfiles as $perfil)
+                    @if ($perfil)
+                      @if ($perfil->description === 'Administrador')
+                        <a href="{{ action('EventsController@create') }}" class="btn btn-primary">
+                          Crear Nuevo evento
+                        </a>
+                        <h4>
+                          {!! link_to_action('EventsController@edit', 
+                            $evento->title, $evento->id) !!}
+                        </h4>
+                      @else
+                        <h4>
+                          {!! link_to_action('EventsController@show', 
+                                $evento->title, $evento->id) !!}
+                        </h4>
+                      @endif
+                    @else
+                      <h4>
+                        {!! link_to_action('EventsController@show', 
+                              $evento->title, $evento->id) !!}
+                      </h4>
+                    @endif
+                  @endforeach
+                @else
+                  <h4>
+                    {!! link_to_action('EventsController@show', 
+                          $evento->title, $evento->id) !!}
+                  </h4>
+                @endif
+                <p class="text-justify">
+                  {{ $evento->body }}
+                </p>
+              </section>
+            @endforeach
+          @endif
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h3>Eventos del Edificio</h3>
-        <a href="#" class="btn btn-primary">Crear nuevo Evento</a>
-        <section>
-          <h5>Titulo</h5>
-          <p class="text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </section>
-      </div>
+  @endif
+  @unless (isset($apartamentos))
+    <div class="container">
+      <h1>Hola!! {{ $usuario->first_name }}, {{ $usuario->first_surname }}</h1>
+      <p>
+        Parece que su perfil no esta relacionado a ningun apartamento, 
+        por favor <a href="{!! action('BuildingsController@index') !!}">
+        visite los Edificios disponibles en el sistema.
+        </a>
+        para empezar el proceso de registro.
+      </p>
     </div>
-  </div>
+  @endunless
 @stop

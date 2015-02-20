@@ -85,6 +85,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * un usuario tiene muchos mensajes y 
+   * un mensaje pertenece a un usuario
+   */
+  public function eventos(){
+    return $this->hasMany('App\Event');
+  }
+
+  /**
+   * un usuario tiene muchos edificios (encargado) y 
+   * un edificio pertenece a un usuario
+   */
+  public function edificios(){
+    return $this->hasMany('App\Building', 'user_id');
+  }
+
+  /**
    * debido a que no se todava implementar
    * laravel correctamente tengo que
    * hacer esta mamarrachada
@@ -104,6 +120,32 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     //   'updated_by'      => $this->id
     // ]);
     return $mensaje;
+  }
+
+  public function esAdministrador(){
+    // si el usuario no tiene perfiles
+    if ($this->perfiles->count() === 0) return false;
+    // se ven los perfiles del usuario
+    foreach ($this->perfiles as $perfil) :
+      $autorizacion = false;
+      if ($perfil->description === 'Administrador'):
+        $autorizacion = true;
+      endif;
+    endforeach;
+    return $autorizacion;
+  }
+
+  public function esJuntaCondominio(){
+    // si el usuario no tiene perfiles
+    if ($this->perfiles->count() === 0) return false;
+    // se ven los perfiles del usuario
+    foreach ($this->perfiles as $perfil) :
+      $autorizacion = false;
+      if ($perfil->description === 'Junta de Condominio'):
+        $autorizacion = true;
+      endif;
+    endforeach;
+    return $autorizacion;
   }
 
 }

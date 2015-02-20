@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Http\Requests\MessageRequest;
 use App\Http\Controllers\Controller;
 use App\Message;

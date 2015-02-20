@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TipoMensajesTableSeeder extends Seeder {
+class TipoEventosTableSeeder extends Seeder {
 
   /**
    * Run the database seeds.
@@ -11,10 +11,15 @@ class TipoMensajesTableSeeder extends Seeder {
    */
   public function run()
   {
-    $datos = ['Sugerencia', 'Queja', 'Comentario', 'Otro'];
+    $datos = [
+      'Problema Tecnico', 
+      'Emergencia', 
+      'Informacion General', 
+      'Morosidad'
+    ];
     
     foreach ($datos as $tipo) :
-      DB::table('message_types')->insert([
+      DB::table('event_types')->insert([
         'description' => $tipo,
         'created_at' => \Carbon\Carbon::now(),
         'updated_at' => \Carbon\Carbon::now(),
@@ -22,7 +27,7 @@ class TipoMensajesTableSeeder extends Seeder {
         'updated_by' => 1
       ]);
     endforeach;
-    $this->command->info('El Elegido ha creado tipos de mensajes.');
+    $this->command->info('El Elegido ha creado tipos de eventos.');
   }
 
 }

@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder {
     Model::unguard();
     
     $this->call('SexosTableSeeder');
-    $this->call('NeoTableSeeder');
     $this->call('PerfilesTableSeeder');
+    $this->call('NeoTableSeeder');
     $this->call('UsuariosTableSeeder');
     $this->call('EstadosTableSeeder');
     $this->call('MunicipiosTableSeeder');
@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder {
     $this->call('ApartamentosTableSeeder');
     $this->call('ApartamentoPersonaTableSeeder');
     $this->call('TipoMensajesTableSeeder');
+    $this->call('TipoEventosTableSeeder');
+    $this->call('ElRestoDeApartamentosTableSeeder');
   }
 
 }

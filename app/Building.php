@@ -17,6 +17,10 @@ class Building extends Model {
     'updated_by'
   ];
 
+  public function encargado(){
+    return $this->belongsTo('App\User', 'user_id');
+  }
+
   public function direccion(){
     return $this->belongsTo('App\Direction');
   }
@@ -29,6 +33,16 @@ class Building extends Model {
    */
   public function apartamentos(){
     return $this->hasMany('App\Apartment');
+  }
+
+  /**
+   * la relacion entre eventos y edificios
+   * donde UN evento tiene UN edificio y
+   * en UN edificio pueden haber VARIOS
+   * eventos.
+   */
+  public function eventos(){
+    return $this->hasMany('App\Event');
   }
 
   public function habitantes(){
