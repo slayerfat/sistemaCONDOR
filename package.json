@@ -1,6 +1,6 @@
 {
   "name": "sistemaCONDOR",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "sistemaCONDOR",
   "main": "gulpfile.js",
   "directories": {
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "gulp": "^3.8.11",
+    "gulp-bump": "^0.1.13",
     "laravel-elixir": "^0.10.7"
   },
   "repository": {
