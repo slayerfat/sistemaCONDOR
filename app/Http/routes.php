@@ -15,9 +15,13 @@ Route::get('/', 'IndexController@index');
 
 Route::get('welcome', 'WelcomeController@index');
 
-Route::resource('edificio', 'BuildingController');
+Route::resource('edificio', 'BuildingsController');
 Route::resource('mensajes', 'MessagesController');
 Route::resource('eventos',  'EventsController');
+
+Route::group(['prefix' => 'asignarEdificio', 'as' => 'asignarApartamento'], function(){
+  Route::get('/{id}/create', 'AssignAparmentController@create');
+});
 
 Route::controllers([
   'auth' => 'Auth\AuthController',

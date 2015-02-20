@@ -2,25 +2,12 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Session;
-use Auth;
 use App\Building;
 use App\Apartment;
-use App\User;
 
 use Illuminate\Http\Request;
 
-class BuildingsController extends Controller {
-
-	/**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware('auth');
-  }
+class AssignAparmentController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -29,8 +16,7 @@ class BuildingsController extends Controller {
 	 */
 	public function index()
 	{
-		$edificios = Building::all();
-		return view('building.index', compact('edificios'));
+		//
 	}
 
 	/**
@@ -38,9 +24,14 @@ class BuildingsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id)
 	{
-		//
+		$edificio = Building::findOrFail($id);
+		$apartamentos = Apartment::lists('number', 'id');
+
+		$apartamentos = Apartment::listaHumana($apartamentos);
+
+		return view('assignApartments.create', compact('edificio', 'apartamentos'));
 	}
 
 	/**
@@ -61,11 +52,7 @@ class BuildingsController extends Controller {
 	 */
 	public function show($id)
 	{
-		$edificio = Building::findOrFail($id);
-
-		// dd($edificio);
-
-		return view('edificio.show', compact('edificio'));
+		//
 	}
 
 	/**

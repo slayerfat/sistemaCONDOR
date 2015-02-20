@@ -30,7 +30,8 @@ class IndexController extends Controller {
 		$apartamentos = $this->obtenerApartamento();
     $mensajes = Auth::user()->mensajes;
     $eventos  = Auth::user()->eventos;
-		return view('index', compact('apartamentos', 'mensajes', 'eventos'));
+    $usuario  = Auth::user();
+		return view('index', compact('apartamentos', 'mensajes', 'eventos', 'usuario'));
 	}
 
   /**
@@ -50,7 +51,8 @@ class IndexController extends Controller {
       $apartamentos->edificio;
       $apartamentos->propietario;
     }
-		return $apartamentos;
+    return isset($apartamentos) ? $apartamentos : null;
+		
 	}
 
 }

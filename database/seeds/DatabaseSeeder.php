@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder {
     $this->call('ApartamentoPersonaTableSeeder');
     $this->call('TipoMensajesTableSeeder');
     $this->call('TipoEventosTableSeeder');
+    $this->call('ElRestoDeApartamentosTableSeeder');
   }
 
 }

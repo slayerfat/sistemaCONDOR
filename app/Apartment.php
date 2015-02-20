@@ -45,4 +45,11 @@ class Apartment extends Model {
     return $this->belongsToMany('App\User');
   }
 
+  static function listaHumana($apartamentos){
+    foreach ($apartamentos as $id => $valor) :
+      $lista[$id] = "Apartamento ".$valor;
+    endforeach;
+    return isset($lista) ? $lista : null;
+  }
+
 }
