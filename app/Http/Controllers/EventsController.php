@@ -1,11 +1,11 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
 use App\EventType;
 use App\Event;
-
-use Illuminate\Http\Request;
+use App\Building;
+use Auth;
 
 class EventsController extends Controller {
 
@@ -36,9 +36,21 @@ class EventsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(EventRequest $request)
 	{
-		//
+		// se crea un nuevo objeto con los valores de request
+		$evento = new Event($request->all());
+		// se asignan el creado por y actualizado por
+		$evento->user_id    = Auth::user()->id;
+		$evento->created_by = Auth::user()->id;
+		$evento->updated_by = Auth::user()->id;
+		
+		$edificio = Auth::user()->edificios->first();
+		$edificio = Building::find($edificio->id);
+		$edificio->eventos()->save($evento);
+		// evento de exito
+		flash('Su Mensaje ha sido creado con exito.');
+		return redirect()->action('IndexController@index');
 	}
 
 	/**

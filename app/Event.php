@@ -37,10 +37,24 @@ class Event extends Model {
   protected $dates = ['deleted_at'];
 
   /**
+   * un evento posee solo un autor
+   */
+  public function autor(){
+    return $this->belongsTo('App\User');
+  }
+
+  /**
    * un evento posee solo un tipo de mensaje
    */
   public function tipo(){
     return $this->belongsTo('App\EventType');
+  }
+
+  /**
+   * un evento posee solo un edificio
+   */
+  public function edificio(){
+    return $this->belongsTo('App\Building');
   }
 
 }

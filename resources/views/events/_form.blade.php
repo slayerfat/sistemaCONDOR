@@ -4,13 +4,13 @@
 </div>
 
 <div class="form-group">
-  {!! Form::label('description', 'Descripcion:') !!}
-  {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+  {!! Form::label('body', 'Descripcion:') !!}
+  {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-  {!! Form::label('message_types_id', 'Tipo de Evento:') !!}
-  {!! Form::select('message_types_id', $types, $evento->message_types_id, ['class' => 'form-control']) !!}
+  {!! Form::label('event_type_id', 'Tipo de Evento:') !!}
+  {!! Form::select('event_type_id', $types, $evento->message_types_id, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

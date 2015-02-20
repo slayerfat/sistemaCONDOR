@@ -29,7 +29,8 @@ class IndexController extends Controller {
 	{
 		$apartamentos = $this->obtenerApartamento();
     $mensajes = Auth::user()->mensajes;
-		return view('index', compact('apartamentos', 'mensajes'));
+    $eventos  = Auth::user()->eventos;
+		return view('index', compact('apartamentos', 'mensajes', 'eventos'));
 	}
 
   /**

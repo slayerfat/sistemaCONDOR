@@ -85,6 +85,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * un usuario tiene muchos mensajes y 
+   * un mensaje pertenece a un usuario
+   */
+  public function eventos(){
+    return $this->hasMany('App\Event');
+  }
+
+  /**
+   * un usuario tiene muchos edificios (encargado) y 
+   * un edificio pertenece a un usuario
+   */
+  public function edificios(){
+    return $this->hasMany('App\Building', 'user_id');
+  }
+
+  /**
    * debido a que no se todava implementar
    * laravel correctamente tengo que
    * hacer esta mamarrachada
