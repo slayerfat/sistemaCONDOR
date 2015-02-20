@@ -2,18 +2,11 @@
 
 @section('contenido')
   <div class="container">
-    <h1>
-      Editar
-      <small>{{ $edificio->name }}</small>
-    </h1>
-
-    <hr/>
-
     {!! Form::model($edificio, [
-          'method' => 'PATCH', 
-          'action' => ['EventsController@update', $edificio->id]
+          'method' => 'POST', 
+          'action' => ['AssignAparmentsController@store', $edificio->id]
         ]) !!}
-      @include('assignApartments._form', ['textoBotonSubmit' => 'Editar edificio'])
+      @include('assignApartments._form', ['textoBotonSubmit' => 'Pedir Solicitud'])
     {!! Form::close() !!}
 
     @include('errors.lista')

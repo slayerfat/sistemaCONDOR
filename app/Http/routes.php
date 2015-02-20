@@ -20,7 +20,9 @@ Route::resource('mensajes', 'MessagesController');
 Route::resource('eventos',  'EventsController');
 
 Route::group(['prefix' => 'asignarEdificio', 'as' => 'asignarApartamento'], function(){
-  Route::get('/{id}/create', 'AssignAparmentController@create');
+  Route::get('/{id}/create', 'AssignAparmentsController@create');
+  // esta es la version mamarracha
+  Route::post('/{id}', 'AssignAparmentsController@store');
 });
 
 Route::controllers([

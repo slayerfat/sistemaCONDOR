@@ -4,10 +4,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Building;
 use App\Apartment;
-
+use Auth;
 use Illuminate\Http\Request;
 
-class AssignAparmentController extends Controller {
+class AssignAparmentsController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -39,9 +39,17 @@ class AssignAparmentController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($id, Request $request)
 	{
-		//
+		// validacion de campos
+		$this->validate($request, [
+      'apartment_id' => 'required|integer'
+    ]);
+		$edificio = Building::findOrFail($id);
+
+		Auth::user()->apartamentos()->attach($request->input('apartment_id'));
+		
+		return redirect()->action('IndexController@index');
 	}
 
 	/**

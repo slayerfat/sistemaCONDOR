@@ -31,6 +31,11 @@ class EventsController extends Controller {
 	 */
 	public function create()
 	{
+		$data = Auth::user()->perfiles;
+		if (sizeof($data) === 0): 
+			flash()->error('Error, Ud. no tiene permisos para esta accion.');
+			return redirect()->back();
+		endif;
 		$types = EventType::lists('description', 'id');
 		$evento = new Event;
 		return view('events.create', compact('types', 'evento'));
