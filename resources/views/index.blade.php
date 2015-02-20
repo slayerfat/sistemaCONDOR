@@ -42,7 +42,7 @@
                         $mensaje->title, $mensaje->id) !!}
                 </h4>
                 <p class="text-justify">
-                  {{ $mensaje->description }}
+                  {{ $mensaje->body }}
                 </p>
               </section>
             @endforeach
@@ -57,15 +57,21 @@
               Ver todos los Eventos
             </a>
             </h3>
+            @if ($usuario->perfiles->count())
+              @foreach ($usuario->perfiles as $perfil)
+                @if ($perfil->description === 'Administrador')
+                  <a href="{{ action('EventsController@create') }}" class="btn btn-primary">
+                    Crear Nuevo evento
+                  </a>
+                @endif
+              @endforeach
+            @endif
             @foreach ($apartamentos->edificio->eventos as $evento)
               <section>
                 @if ($usuario->perfiles->count())
                   @foreach ($usuario->perfiles as $perfil)
                     @if ($perfil)
                       @if ($perfil->description === 'Administrador')
-                        <a href="{{ action('EventsController@create') }}" class="btn btn-primary">
-                          Crear Nuevo evento
-                        </a>
                         <h4>
                           {!! link_to_action('EventsController@edit', 
                             $evento->title, $evento->id) !!}
