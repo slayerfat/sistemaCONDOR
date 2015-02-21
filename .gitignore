@@ -1,6 +1,7 @@
 /vendor
 /node_modules
 /pruebas
+/public/vendor
 .env
 composer.lock
 

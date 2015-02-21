@@ -23,6 +23,7 @@
   // etc.
   ```
 * se usara a la medida de lo posible declaracion de estructuras condicionales, repetitivas, etc, sin brakets "`{}`"
+
   ```php
   $nombres = ['juan', 'pepe', 'luis'];
   foreach ($nombres as $nombre) :
@@ -33,6 +34,7 @@
     echo $nombre;
   }
   ```
+
 * se adoptara a la medida de lo posible el uso de cammelCase en vez de en_barra.
 * las clases se declararan como NombreDeLaClaseTal no en minusculas ni MAYUSCULAS.
 * la declaracion de los metodos se haran en minusculaCamelCase.
@@ -40,4 +42,15 @@
 * se respetara la estructura de directorios establecida por el framework.
 
 # sobre la estructura de directorios
-TEP
+
+para el caso de los directorios del sistema, no es necesario alterar la estructura preestablecida por el framework. Sin embargo, dentro de las carpetas de MVC si se pueden hacer los directorios segun la conveniencia para la organizacion del codigo fuente.
+
+directorios aplicables: (respetando las conveniciones de MVC)
+
+app->http->directorios->(controllers, middlewares, requests) tu nuevo directorio
+
+public->(js, css) tu nuevo directorio
+
+resources->views->tu nuevo directorio 
+
+tests->tu nuevo directorio

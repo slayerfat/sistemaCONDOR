@@ -52,5 +52,15 @@ gulp.task('release', function() { return inc('major'); })
  */
 
 elixir(function(mix) {
-  mix.less('app.less');
+  mix.sass('app.sass');
+  // javascripts
+  mix.copy('vendor/bower_components/jquery/dist/jquery.min.js', 'public/vendor/js/jquery/jquery.min.js')
+     .copy('vendor/bower_components/jquery/dist/jquery.min.map', 'public/vendor/js/jquery/jquery.min.map')
+     .copy('vendor/bower_components/bootstrap/dist/js/bootstrap.min.js', 'public/vendor/js/bootstrap/bootstrap.min.js')
+     .copy('vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js', 'public/vendor/js/bootstrap-datepicker/bootstrap-datepicker.js')
+     .copy('vendor/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js', 'public/vendor/js/bootstrap-datepicker/bootstrap-datepicker.es.js')
+     .copy('vendor/bower_components/bootstrap-datepicker/css/datepicker.css', 'public/vendor/css/bootstrap-datepicker/datepicker.css')
+     .copy('vendor/bower_components/bootstrap-table/src/bootstrap-table.css', 'public/vendor/css/bootstrap-table/bootstrap-table.css')
+     .copy('vendor/bower_components/bootstrap-table/src/bootstrap-table.js', 'public/vendor/js/bootstrap-table/bootstrap-table.js')
+     .copy('vendor/bower_components/bootstrap-table/src/locale/bootstrap-table-es-CR.js', 'public/vendor/js/bootstrap-table/bootstrap-table-es-CR.js');
 });

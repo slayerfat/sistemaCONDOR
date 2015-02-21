@@ -46,7 +46,6 @@
   </select>
 </div>
 
-
 <div class="form-group">
   {!! Form::submit($textoBotonSubmit, 
     ['class' => 'form-control btn btn-primary']) !!}
