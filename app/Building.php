@@ -22,7 +22,7 @@ class Building extends Model {
   }
 
   public function direccion(){
-    return $this->belongsTo('App\Direction');
+    return $this->belongsTo('App\Direction', 'direction_id');
   }
 
   /**
