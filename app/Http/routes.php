@@ -26,9 +26,9 @@ Route::group(['prefix' => 'asignarEdificio', 'as' => 'asignarApartamento'], func
   Route::post('/{id}', 'AssignAparmentsController@store');
 });
 
-Route::get('/estados',    'DirectionsController@states');
-Route::get('/municipios', 'DirectionsController@towns');
-Route::get('/parroquias', 'DirectionsController@parishes');
+Route::get('/estados', 'DirectionsController@states');
+Route::get('/municipios/{id}', 'DirectionsController@towns');
+Route::get('/parroquias/{id}', 'DirectionsController@parishes');
 
 Route::controllers([
   'auth' => 'Auth\AuthController',

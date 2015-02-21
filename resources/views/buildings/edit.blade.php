@@ -20,5 +20,5 @@
   </div>
 
   <!-- ajax de edo/mun/par -->
-  {!! Html::script('js/ajax/direcciones.js') !!}
+  {!! Html::script('js/ajax/getDirecciones.js') !!}
 @stop

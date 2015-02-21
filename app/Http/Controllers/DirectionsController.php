@@ -15,14 +15,14 @@ class DirectionsController extends Controller {
     return State::all();
   }
 
-  public function towns()
+  public function towns($id)
   {
-    return Town::all();
+    return Town::where('state_id', $id)->get();
   }
 
-  public function parishes()
+  public function parishes($id)
   {
-    return Parish::all();
+    return Parish::where('town_id', $id)->get();
   }
 
 }

@@ -35,15 +35,13 @@
 
 <div class="form-group">
   {!! Form::label('town_id', 'Municipio:') !!}
-  <select name="town_id" class="form-control">
-    <option>tal</option>
+  <select name="town_id" id="town_id" class="form-control">
   </select>
 </div>
 
 <div class="form-group">
   {!! Form::label('parish_id', 'Parroquia:') !!}
-  <select name="parish_id" class="form-control">
-    <option value="1">tal</option>
+  <select name="parish_id" id="parish_id" class="form-control">
   </select>
 </div>
 
