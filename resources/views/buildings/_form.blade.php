@@ -42,6 +42,7 @@
 <div class="form-group">
   {!! Form::label('parish_id', 'Parroquia:') !!}
   <select name="parish_id" id="parish_id" class="form-control">
+    <option value="{!! $edificio->direccion->parish_id !!}"></option>
   </select>
 </div>
 

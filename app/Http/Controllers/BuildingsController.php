@@ -95,6 +95,7 @@ class BuildingsController extends Controller {
 		// se busca el edificio solicitado o falla
 		$edificio = Building::findOrFail($id);
 		$edificio->updated_by = Auth::user()->id;
+		// dd($request->all());
 		// se guarda la informacion del edificio
 		$edificio->update($request->all());
 		// se guarda la direccion por el edifico

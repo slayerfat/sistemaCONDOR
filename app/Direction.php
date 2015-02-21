@@ -17,7 +17,7 @@ class Direction extends Model {
   ];
 
   public function parroquia(){
-    return $this->belongsTo('App\Parish');
+    return $this->belongsTo('App\Parish', 'parish_id');
   }
 
   public function edificios(){

@@ -20,8 +20,22 @@ class DirectionsController extends Controller {
     return Town::where('state_id', $id)->get();
   }
 
+  public function town($id)
+  {
+    $municipio = Town::where('id', $id)->first();
+    $numero = $municipio->state_id;
+    return Town::where('state_id', $numero)->get();
+  }
+
   public function parishes($id)
   {
+    return Parish::where('town_id', $id)->get();
+  }
+
+  public function parish($id)
+  {
+    $parroquia = Town::where('id', $id)->first();
+    $numero = $parroquia->town_id;
     return Parish::where('town_id', $id)->get();
   }
 
