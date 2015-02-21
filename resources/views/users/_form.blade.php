@@ -24,11 +24,11 @@
 
 <div class="form-group">
   {!! Form::label('birth_date', 'Fecha de Nacimiento:') !!}
-  {!! Form::input('date', 'birth_date', date('Y-m-d'), ['class' => 'form-control']) !!}
+  {!! Form::input('date', 'birth_date', $usuario->birth_date, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-  {!! Form::label('sex_id', 'Tipo de Mensaje:') !!}
+  {!! Form::label('sex_id', 'Genero:') !!}
   {!! Form::select('sex_id', $sexos, $usuario->sex_id, ['class' => 'form-control']) !!}
 </div>
 

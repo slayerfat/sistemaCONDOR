@@ -2,9 +2,11 @@
 
 use App\Http\Requests;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Sex;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -31,7 +33,7 @@ class UsersController extends Controller {
     $usuario = new User;
     $sexos = Sex::lists('description', 'id');
 
-    return view('users.create', compact('usuario', 'sexos', 'edificios'));
+    return view('users.create', compact('usuario', 'sexos'));
   }
 
   /**
@@ -56,7 +58,9 @@ class UsersController extends Controller {
    */
   public function show($id)
   {
-    //
+    $usuario = User::findOrFail($id);
+
+    return view('users.show', compact('usuario'));
   }
 
   /**
@@ -67,7 +71,10 @@ class UsersController extends Controller {
    */
   public function edit($id)
   {
-    //
+    $usuario = User::findOrFail($id);
+    $sexos = Sex::lists('description', 'id');
+
+    return view('users.edit', compact('usuario', 'sexos'));
   }
 
   /**
@@ -76,9 +83,14 @@ class UsersController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update($id, UserUpdateRequest $request)
   {
-    //
+    $usuario = User::findOrFail($id);
+    // actualiza el usuario
+    $usuario->update($request->all());
+    // mensaje de exito
+    flash('El usuario ha sido actualizado con exito.');
+    return redirect()->action('UsersController@index');
   }
 
   /**

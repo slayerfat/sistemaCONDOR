@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration {
       $table->integer('sex_id')->unsigned();
       $table->string('email')->unique()->index();
       $table->string('password', 60);
-      $table->string('username')->unique()->index();
+      $table->string('username')->index();
       $table->string('identity_card')->unique()->index();
       $table->string('first_name');
       $table->string('middle_name')->nullable()->default('-');

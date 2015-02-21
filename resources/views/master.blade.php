@@ -27,8 +27,8 @@
   @yield('contenido')
 
   <!-- javascript -->
-  <script src="vendor/js/jquery/jquery.min.js"></script>
-  <script src="vendor/js/bootstrap/bootstrap.min.js"></script>
+  <script src="{!! asset('vendor/js/jquery/jquery.min.js') !!}"></script>
+  <script src="{!! asset('vendor/js/bootstrap/bootstrap.min.js') !!}"></script>
   {{-- js de una libreria en alguna vista --}}
   @yield('js')
 </body>
