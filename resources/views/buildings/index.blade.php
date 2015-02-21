@@ -8,6 +8,9 @@
           {!! link_to_action('AssignAparmentsController@create', 
             $edificio->name, $edificio->id) !!}
         </h1>
+        <p>
+          {{ $edificio->direccion->exact_direction }}.
+        </p>
         <p>Encargado: 
           <i>
             {{ $edificio->encargado->first_name }},
