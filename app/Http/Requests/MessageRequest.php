@@ -23,7 +23,7 @@ class MessageRequest extends Request {
 	{
 		return [
 			'title'            => 'required|min:6',
-			'description'      => 'required',
+			'body'             => 'required',
 			'message_types_id' => 'required'
 		];
 	}

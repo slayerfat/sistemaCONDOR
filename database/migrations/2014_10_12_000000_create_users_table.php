@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration {
       $table->string('first_surname');
       $table->string('last_surname')->nullable()->default('-');
       $table->date('birth_date');
+      $table->string('phone')->nullable()->default('-');
+      $table->string('aditional_phone')->nullable()->default('-');
       $table->rememberToken();
       $table->timestamps();
       $table->softDeletes();

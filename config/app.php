@@ -200,7 +200,8 @@ return [
     'Form'      => 'Illuminate\Html\FormFacade',
     'Html'      => 'Illuminate\Html\HtmlFacade',
     'Flash'     => 'Laracasts\Flash\Flash',
-    'Debugbar' => 'Barryvdh\Debugbar\Facade'
+    'Debugbar'  => 'Barryvdh\Debugbar\Facade',
+    'Faker'     => 'Faker\Factory'
 
   ],
 

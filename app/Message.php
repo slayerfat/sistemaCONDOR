@@ -23,7 +23,7 @@ class Message extends Model {
     'user_id', 
     'message_types_id', 
     'title', 
-    'description', 
+    'body', 
     'created_by', 
     'updated_by'
   ];

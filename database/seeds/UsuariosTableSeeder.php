@@ -18,16 +18,18 @@ class UsuariosTableSeeder extends Seeder {
 
     foreach(range(1, 5) as $index):
       App\User::create([
-        'username' => $faker->userName(),
-        'email'     => $faker->email(),
-        'password'  => Hash::make( env('APP_USERS_PASSWORD') ),
-        'sex_id'        => rand(1,2),
-        'identity_card' => rand(99999, 99999999),
-        'first_name'    => $faker->firstName(),
-        'middle_name'   => $faker->firstName(),
-        'first_surname' => $faker->lastName(),
-        'last_surname'  => $faker->lastName(),
-        'birth_date'    => $faker->date($format = 'Y-m-d', $max = '-5 years')
+        'username'        => $faker->userName(),
+        'email'           => $faker->email(),
+        'password'        => Hash::make( env('APP_USERS_PASSWORD') ),
+        'sex_id'          => rand(1,2),
+        'identity_card'   => rand(99999, 99999999),
+        'first_name'      => $faker->firstName(),
+        'middle_name'     => $faker->firstName(),
+        'first_surname'   => $faker->lastName(),
+        'last_surname'    => $faker->lastName(),
+        'birth_date'      => $faker->date($format = 'Y-m-d', $max = '-5 years'),
+        'phone'           => $faker->phoneNumber(),
+        'aditional_phone' => $faker->phoneNumber()
       ]);
     endforeach;
 

@@ -20,7 +20,7 @@ class CreateTableMensajes extends Migration {
       $table->integer('message_types_id')->unsigned();
       $table->foreign('message_types_id')->references('id')->on('message_types');
       $table->string('title');
-      $table->text('description');
+      $table->text('body');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('users');

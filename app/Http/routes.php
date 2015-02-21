@@ -16,6 +16,7 @@ Route::get('/', 'IndexController@index');
 Route::get('welcome', 'WelcomeController@index');
 
 Route::resource('edificios', 'BuildingsController');
+Route::resource('apartamentos', 'ApartmentsController');
 Route::resource('mensajes', 'MessagesController');
 Route::resource('eventos',  'EventsController');
 
@@ -24,6 +25,12 @@ Route::group(['prefix' => 'asignarEdificio', 'as' => 'asignarApartamento'], func
   // esta es la version mamarracha
   Route::post('/{id}', 'AssignAparmentsController@store');
 });
+
+Route::get('/estados', 'DirectionsController@states');
+Route::get('/municipios/{id}', 'DirectionsController@towns');
+Route::get('/municipio/{id}', 'DirectionsController@town');
+Route::get('/parroquias/{id}', 'DirectionsController@parishes');
+Route::get('/parroquia/{id}', 'DirectionsController@parish');
 
 Route::controllers([
   'auth' => 'Auth\AuthController',

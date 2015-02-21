@@ -15,7 +15,7 @@
             {!! link_to_action('MessagesController@show', 
                   $mensaje->title, $mensaje->id) !!}
           </h2>
-          <body>{{ $mensaje->description }}</body>
+          <body>{{ $mensaje->body }}</body>
         </article>
       @endforeach
 
