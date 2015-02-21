@@ -11,8 +11,8 @@ class Sex extends Model {
   /**
    * la asociacion entre personas y sexos en la base de datos
    */
-  public function persona(){
-    return $this->belongsTo('App\User');
+  public function personas(){
+    return $this->hasMany('App\User');
   }
 
 }

@@ -15,6 +15,7 @@ Route::get('/', 'IndexController@index');
 
 Route::get('welcome', 'WelcomeController@index');
 
+Route::resource('usuarios', 'UsersController');
 Route::resource('edificios', 'BuildingsController');
 Route::resource('apartamentos', 'ApartmentsController');
 Route::resource('mensajes', 'MessagesController');

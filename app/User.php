@@ -70,6 +70,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * un usuario puede tener un sexo
+   * esto es una relacion 1aN
+   */
+  public function sexo(){
+    return $this->belongsTo('App\Sex');
+  }
+
+  /**
    * las propiedades (apartamentos) de un usuario
    * esto es una relacion 1aN
    * @return [type] [description]
