@@ -25,6 +25,7 @@ $("document").ready(function(){
       success: function (datos){
         // se borran los municipios existentes
         $('#town_id').empty();
+        $('#town_id').append('<option value="">Seleccione</option>');
         // se chequea entre los datos recibidos (json)
         $.each(datos, function(index, municipio) {
           $('#town_id').append(
@@ -46,6 +47,7 @@ $("document").ready(function(){
       data: null,
       success: function (datos){
         $('#parish_id').empty();
+        $('#parish_id').append('<option value="">Seleccione</option>');
         $.each(datos, function(index, municipio) {
           $('#parish_id').append(
             '<option value="'+municipio.id+'">'+municipio.description+'</option>');

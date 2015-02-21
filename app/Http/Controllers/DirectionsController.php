@@ -34,9 +34,9 @@ class DirectionsController extends Controller {
 
   public function parish($id)
   {
-    $parroquia = Town::where('id', $id)->first();
+    $parroquia = Parish::where('id', $id)->first();
     $numero = $parroquia->town_id;
-    return Parish::where('town_id', $id)->get();
+    return Parish::where('town_id', $numero)->get();
   }
 
 }
