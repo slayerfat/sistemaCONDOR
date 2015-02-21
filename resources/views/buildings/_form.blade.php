@@ -29,8 +29,7 @@
 
 <div class="form-group">
   {!! Form::label('state_id', 'Estado:') !!}
-  <select name="state_id" class="form-control">
-    <option>tal</option>
+  <select name="state_id" id="state_id" class="form-control">
   </select>
 </div>
 

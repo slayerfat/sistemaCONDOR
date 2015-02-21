@@ -18,4 +18,7 @@
 
     @include('errors.lista')
   </div>
+
+  <!-- ajax de edo/mun/par -->
+  {!! Html::script('js/ajax/direcciones.js') !!}
 @stop

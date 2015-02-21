@@ -6,9 +6,18 @@ class Parish extends Model {
 
   protected $table = 'parishes';
 
-  protected $fillable = [
-    'town_id',
-    'description'
+  protected $fillable = [];
+
+  /**
+   * The attributes excluded from the model's JSON form.
+   *
+   * @var array
+   */
+  protected $hidden = [
+    'created_at', 
+    'updated_at', 
+    'created_by',
+    'updated_by',
   ];
 
   public function municipio(){
