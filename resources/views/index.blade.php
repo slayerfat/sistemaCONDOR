@@ -16,8 +16,12 @@
       <p>
         @if ($apartamentos->propietario)
           Propietario:
-          {{ $apartamentos->propietario->first_name }},
-          {{ $apartamentos->propietario->first_surname }}.
+          {!! link_to_action('UsersController@show',
+                $apartamentos->propietario->first_name.
+                ", ".
+                $apartamentos->propietario->first_surname,
+                $apartamentos->propietario->id
+              ) !!}
         @endif
       </p>
     </div>
@@ -38,7 +42,7 @@
             @foreach ($mensajes as $mensaje)
               <section>
                 <h4>
-                  {!! link_to_action('MessagesController@edit', 
+                  {!! link_to_action('MessagesController@show', 
                         $mensaje->title, $mensaje->id) !!}
                 </h4>
                 <p class="text-justify">
@@ -110,7 +114,7 @@
       <h1>Hola!! {{ $usuario->first_name }}, {{ $usuario->first_surname }}</h1>
       <p>
         Parece que su perfil no esta relacionado a ningun apartamento, 
-        por favor <a href="{!! action('BuildingsController@index') !!}">
+        por favor <a href="{!! action('AssignApartmentsController@index') !!}">
         visite los Edificios disponibles en el sistema.
         </a>
         para empezar el proceso de registro.

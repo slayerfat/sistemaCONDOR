@@ -1,12 +1,28 @@
 @extends('master')
 
 @section('contenido')
+  @include('errors.lista')
   @foreach ($edificios as $edificio)
     <div class="container">
-      <h1>Mensajes relacionados 
-        <small>Con {{ $edificio->name }}</small>
+      <h1>
+        Mensajes relacionados 
+        <small>
+          Con 
+          {!! link_to_action('BuildingsController@show',
+                $edificio->name,
+                $edificio->id
+              ) !!}
+        </small>
       </h1>
-      <h2>De {{ $usuario->first_name }}, {{ $usuario->first_surname }}</h2>
+      <h3>
+        De
+        {!! link_to_action('UsersController@show',
+                $usuario->first_name.
+                ', '.
+                $usuario->first_surname,
+                $usuario->id
+              ) !!}
+      </h3>
       <hr/>
 
       @foreach ($usuario->mensajes as $mensaje)
@@ -18,8 +34,6 @@
           <body>{{ $mensaje->body }}</body>
         </article>
       @endforeach
-
-      @include('errors.lista')
     </div>
   @endforeach
 @stop

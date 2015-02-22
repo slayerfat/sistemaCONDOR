@@ -40,7 +40,7 @@ class Event extends Model {
    * un evento posee solo un autor
    */
   public function autor(){
-    return $this->belongsTo('App\User');
+    return $this->belongsTo('App\User', 'user_id');
   }
 
   /**

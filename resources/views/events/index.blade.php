@@ -1,10 +1,18 @@
 @extends('master')
 
 @section('contenido')
+  @include('errors.lista')
   @foreach ($edificios as $edificio)
     <div class="container">
-      <h1>Eventos relacionados 
-        <small>Con {{ $edificio->name }}</small>
+      <h1>
+        Eventos relacionados 
+        <small>
+          Con 
+          {!! link_to_action('BuildingsController@show',
+                $edificio->name,
+                $edificio->id
+              ) !!}
+        </small>
       </h1>
       <hr/>
 
@@ -17,8 +25,6 @@
           <body>{{ $evento->body }}</body>
         </article>
       @endforeach
-
-      @include('errors.lista')
     </div>
   @endforeach
 @stop

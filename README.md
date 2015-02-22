@@ -25,8 +25,9 @@ mv composer.phar /usr/local/bin/composer
 
 `npm install -g bower`
 
-###clonar este repositorio
-`git clone https://github.com/slayerfat/sistemaCONDOR`
+##fork el repositorio
+
+![](fork.png)
 
 ###obtener las dependecias del sistema
 _desde la carpeta clonada_ 
@@ -37,7 +38,25 @@ _desde la carpeta clonada_
 
 `composer install`
 
-eso debera generar las carpetas vendor/ node_modules/ y vendor/bower_components/ sumando a otras dependecias.
+si composer se queja sobre mcrypt o mysql es probable que no tengan los modulos correspondentes activados/instalados
+
+para ello deberan
+
+`sudo apt-get install php5-mcrypt`
+`sudo apt-get install php5-mysql`
+`sudo apt-get install php5-gd`
+
+si usan xampp, wampp, lampp, deberan referirse a la documentacion de php para esos paquetes, puesto que, si falla composer, es muy probable que sea debido a los binarios de PHP utilizados por su computadora.
+
+otra opcion es copiar el archivo de composer.phar a donde estan los archivos de php de xampp.
+
+*google es tu aliado*
+
+si todo sale bien, debera generar las carpetas vendor/ node_modules/ y vendor/bower_components/ sumando a otras dependecias.
+
+#sobre las dependencias
+
+es importante destacar que cada branch puede tener diferentes dependencias, lo que implica hacer installs adicionales segun el branch.
 
 #La base de datos
 

@@ -4,7 +4,7 @@
   <div class="container">
     {!! Form::model($edificio, [
           'method' => 'POST', 
-          'action' => ['AssignAparmentsController@store', $edificio->id]
+          'action' => ['AssignApartmentsController@store', $edificio->id]
         ]) !!}
       @include('assignApartments._form', ['textoBotonSubmit' => 'Pedir Solicitud'])
     {!! Form::close() !!}
