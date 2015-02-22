@@ -29,8 +29,9 @@ class ApartmentsController extends Controller {
 	{
 		$apartamento = new Apartment;
 		$usuarios = User::all();
+		$edificios = Building::all();
 
-		return view('apartments.create', compact('apartamento', 'usuarios'));
+		return view('apartments.create', compact('apartamento', 'usuarios', 'edificios'));
 	}
 
 	/**

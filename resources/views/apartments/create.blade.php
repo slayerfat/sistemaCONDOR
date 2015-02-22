@@ -6,6 +6,7 @@
     @include('errors.lista')
     
     <hr/>
+    <a href="show.blade.php"></a>
 
     {!! Form::open(['action' => 'UsersController@store']) !!}
       @include('apartments._form', ['textoBotonSubmit' => 'Añadir nuevo Apartamento'])

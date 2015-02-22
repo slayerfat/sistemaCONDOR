@@ -17,3 +17,8 @@ composer.phar
 
 ### npm ###
 npm-debug.log
+
+### netbeans ###
+/nbproject/private/
+/nbproject
+_ide_helper.php
