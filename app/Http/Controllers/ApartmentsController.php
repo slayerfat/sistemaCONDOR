@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Apartment;
 use App\Building;
+use App\User;
 
 use Illuminate\Http\Request;
 
@@ -26,7 +27,10 @@ class ApartmentsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		$apartamento = new Apartment;
+		$usuarios = User::all();
+
+		return view('apartments.create', compact('apartamento', 'usuarios'));
 	}
 
 	/**
