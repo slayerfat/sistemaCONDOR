@@ -18,6 +18,10 @@ class CreateTablePerfiles extends Migration {
       $table->string('description');
       $table->timestamps();
     });
+    Schema::table('users', function(Blueprint $table)
+    {
+      $table->foreign('profile_id')->references('id')->on('profiles');
+    });
   }
 
   /**
@@ -27,6 +31,10 @@ class CreateTablePerfiles extends Migration {
    */
   public function down()
   {
+    Schema::table('users', function(Blueprint $table)
+    {
+      $table->dropForeign('users_profile_id_foreign');
+    });
     Schema::drop('profiles');
   }
 
