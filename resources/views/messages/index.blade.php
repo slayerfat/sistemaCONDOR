@@ -17,11 +17,11 @@
       <h3>
         De
         {!! link_to_action('UsersController@show',
-                $usuario->first_name.
-                ', '.
-                $usuario->first_surname,
-                $usuario->id
-              ) !!}
+              $usuario->first_name.
+              ', '.
+              $usuario->first_surname,
+              $usuario->id
+            ) !!}
       </h3>
       <hr/>
 

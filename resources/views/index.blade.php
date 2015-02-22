@@ -10,7 +10,10 @@
       </h1>
       <h3>
         <small>
-          Apartamento N°: {{ $apartamentos->number }}, Piso {{ $apartamentos->floor }}
+          <a href="{!! action('ApartmentsController@show', $apartamentos->id) !!}">
+            Apartamento N°: {{ $apartamentos->number }},
+          </a>
+          Piso {{ $apartamentos->floor }}
         </small>
       </h3>
       <p>
@@ -68,20 +71,19 @@
             @endif
             @foreach ($apartamentos->edificio->eventos as $evento)
               <section>
-                @if ($usuario->perfil->description === 'Administrador')
-                  <h4>
-                    {!! link_to_action('EventsController@edit', 
-                      $evento->title, $evento->id) !!}
-                  </h4>
-                @else
-                  <h4>
-                    {!! link_to_action('EventsController@show', 
-                          $evento->title, $evento->id) !!}
-                  </h4>
-                @endif
+                <h4>
+                  {!! link_to_action('EventsController@show', 
+                        $evento->title, $evento->id) !!}
+                </h4>
                 <p class="text-justify">
                   {{ $evento->body }}
                 </p>
+                @if ($usuario->perfil->description === 'Administrador')
+                  {!! link_to_action('EventsController@edit', 
+                    'Editar', $evento->id,
+                    ['class' => 'btn btn-default']) !!}
+                @endif
+                <hr/>
               </section>
             @endforeach
           @endif
