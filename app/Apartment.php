@@ -34,7 +34,7 @@ class Apartment extends Model {
    * apartamentos. (propietario = persona)
    */
   public function propietario(){
-    return $this->belongsTo('App\User', 'user_id', 'id');
+    return $this->belongsTo('App\User', 'user_id');
   }
 
   /**

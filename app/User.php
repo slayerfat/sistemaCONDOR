@@ -83,7 +83,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    * @return [type] [description]
    */
   public function propiedades(){
-    return $this->hasMany('App\Apartment');
+    return $this->hasMany('App\Apartment', 'apartment_id');
   }
 
   /**

@@ -2,6 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Apartment;
+use App\Building;
 
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class ApartmentsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return redirect()->action('BuildingsController@index');
 	}
 
 	/**
@@ -45,7 +47,9 @@ class ApartmentsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$apartamento = Apartment::findOrFail($id);
+
+		return view('apartments.show', compact('apartamento'));
 	}
 
 	/**
