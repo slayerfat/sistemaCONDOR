@@ -6,11 +6,43 @@
 
 @section('contenido')
   <div class="container">
-    <h1>Usuarios en el sistema</h1>
-    @include('errors.lista')
+    <h1>
+      Apartamento N° {{ $apartamento->number }}
+      <small>
+        Piso {{ $apartamento->floor }}
+      </small>
+    </h1>
+
+    <h3>
+      Edificio
+      {!! link_to_action('BuildingsController@show',
+            $apartamento->edificio->name,
+            $apartamento->edificio->id
+          ) !!}
+    </h3>
+
     <hr/>
+
+    @unless ($apartamento->propietario()->get()->isEmpty())
+      <h3>
+        Propietario
+        {!! link_to_action('UsersController@show',
+              $apartamento->propietario->first_name.
+              ', '.
+              $apartamento->propietario->first_surname,
+              $apartamento->propietario->id
+            ) !!}
+        <small>
+          Email: {!! Html::mailto($apartamento->propietario->email) !!}
+        </small>
+      </h3>
+    @endunless
+
     <div class="row">
       <div class="col-sm-12">
+        <h3>
+          Habitantes
+        </h3>
         <table 
           id="tabla"
           data-toggle="table"
@@ -39,7 +71,7 @@
             </th>
           </thead>
           <tbody>
-            @foreach ($usuarios as $usuario)
+            @foreach ($apartamento->habitantes as $usuario)
               <tr>
                 <td>
                   {{ $usuario->first_name }}
@@ -59,6 +91,7 @@
         </table>
       </div>
     </div>
+
   </div>
 @stop
 

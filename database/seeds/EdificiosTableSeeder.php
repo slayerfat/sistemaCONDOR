@@ -19,6 +19,7 @@ class EdificiosTableSeeder extends Seeder {
       'user_id'      => $neo->id,
       'direction_id' => $direccion->id,
       'name'         => 'Residencias Matasiete',
+      'total_floors' => 10,
       'created_by'   => $neo->id,
       'updated_by'   => $neo->id
     ]);

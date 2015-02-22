@@ -7,7 +7,7 @@
     <hr/>
 
     {!! Form::open(['action' => 'UsersController@store']) !!}
-      @include('users._form', ['textoBotonSubmit' => 'Añadir nuevo Uusario'])
+      @include('users._form', ['textoBotonSubmit' => 'Añadir nuevo Usario'])
     {!! Form::close() !!}
 
   </div>

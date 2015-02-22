@@ -20,6 +20,7 @@ class CreateTableEdificios extends Migration {
       $table->integer('direction_id')->unsigned();
       $table->foreign('direction_id')->references('id')->on('directions');
       $table->string('name');
+      $table->tinyInteger('total_floors')->unsigned();
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('users');
