@@ -48,12 +48,10 @@
     </section>
     <hr/>
     <section>
-      Perfiles
-      @foreach ($usuario->perfiles as $perfil)
+      Perfil
         <h4>
-          {{ $perfil->description }}
+          {{ $usuario->perfil->description }}
         </h4>
-      @endforeach
     </section>
 
     <hr/>

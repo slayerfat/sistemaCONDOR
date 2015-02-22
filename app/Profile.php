@@ -6,13 +6,13 @@ class Profile extends Model {
 
   protected $table = 'profiles';
 
-  protected $fillable = ['description'];
+  protected $fillable = [];
 
   /**
    * la asociacion entre usuarios y perfiles en la base de datos
    */
   public function usuarios(){
-    return $this->belongsToMany('App\User');
+    return $this->hasMany('App\User', 'user_id');
   }
 
 }
