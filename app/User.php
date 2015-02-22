@@ -58,7 +58,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    * ('el modelo', 'el pivote', 'su llave foranea en pivote')
    */
   public function perfil(){
-    return $this->belongsTo('App\Profile', 'user_id');
+    return $this->belongsTo('App\Profile', 'profile_id');
   }
 
   /**
