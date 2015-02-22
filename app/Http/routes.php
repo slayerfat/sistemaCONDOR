@@ -12,20 +12,20 @@
 */
 
 Route::get('/', 'IndexController@index');
-
-Route::get('welcome', 'WelcomeController@index');
-
+Route::resource('usuarios', 'UsersController');
 Route::resource('edificios', 'BuildingsController');
 Route::resource('apartamentos', 'ApartmentsController');
 Route::resource('mensajes', 'MessagesController');
 Route::resource('eventos',  'EventsController');
 
-Route::group(['prefix' => 'asignarEdificio', 'as' => 'asignarApartamento'], function(){
-  Route::get('/{id}/create', 'AssignAparmentsController@create');
+Route::group(['prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
+  Route::get('/', 'AssignApartmentsController@index');
+  Route::get('/{id}/create', 'AssignApartmentsController@create');
   // esta es la version mamarracha
-  Route::post('/{id}', 'AssignAparmentsController@store');
+  Route::post('/{id}', 'AssignApartmentsController@store');
 });
 
+// para ajax de direcciones
 Route::get('/estados', 'DirectionsController@states');
 Route::get('/municipios/{id}', 'DirectionsController@towns');
 Route::get('/municipio/{id}', 'DirectionsController@town');

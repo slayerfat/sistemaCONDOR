@@ -7,7 +7,7 @@ use App\Apartment;
 use Auth;
 use Illuminate\Http\Request;
 
-class AssignAparmentsController extends Controller {
+class AssignApartmentsController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,7 +16,10 @@ class AssignAparmentsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		// hacer resource o algo para validar como en eventscontroller
+		$edificios = Building::all();
+		$usuario = Auth::user()->apartamentos;
+		return view('assignApartments.index', compact('edificios', 'usuario'));
 	}
 
 	/**

@@ -5,7 +5,7 @@
     @unless (!isset($edificios))
       @foreach ($edificios as $edificio)
         <h1>Edificio 
-          {!! link_to_action('BuildingsController@show', 
+          {!! link_to_action('AssignApartmentsController@create', 
             $edificio->name, $edificio->id) !!}
         </h1>
         <p>

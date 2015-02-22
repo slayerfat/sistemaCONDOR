@@ -7,8 +7,8 @@
   <title>sistemaCondor</title>
 
   <link href="/css/app.css" rel="stylesheet">
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  {{-- css de una libreria en alguna vista --}}
+  @yield('css')
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,8 +26,10 @@
 
   @yield('contenido')
 
-  <!-- Scripts -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <!-- javascript -->
+  <script src="{!! asset('vendor/js/jquery/jquery.min.js') !!}"></script>
+  <script src="{!! asset('vendor/js/bootstrap/bootstrap.min.js') !!}"></script>
+  {{-- js de una libreria en alguna vista --}}
+  @yield('js')
 </body>
 </html>

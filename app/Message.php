@@ -54,7 +54,7 @@ class Message extends Model {
    * un mensaje posee solo un autor
    */
   public function autor(){
-    return $this->belongsTo('App\User');
+    return $this->belongsTo('App\User', 'user_id');
   }
   /**
    * un mensaje posee solo un tipo de mensaje
