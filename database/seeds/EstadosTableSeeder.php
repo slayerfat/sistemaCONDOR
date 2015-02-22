@@ -11,8 +11,8 @@ class EstadosTableSeeder extends Seeder {
    */
   public function run()
   {
-    DB::statement("INSERT INTO estados
-      (id, descripcion, created_by, updated_by, created_at, updated_at)
+    DB::statement("INSERT INTO states
+      (id, description, created_by, updated_by, created_at, updated_at)
       VALUES
       (1, 'Distrito Capital'  , 1, 1, current_timestamp, current_timestamp),
       (2, 'Anzoátegui'        , 1, 1, current_timestamp, current_timestamp),
@@ -38,6 +38,8 @@ class EstadosTableSeeder extends Seeder {
       (22, 'Yaracuy'          , 1, 1, current_timestamp, current_timestamp),
       (23, 'Vargas'           , 1, 1, current_timestamp, current_timestamp),
       (24, 'Zulia'            , 1, 1, current_timestamp, current_timestamp);");
+
+    $this->command->info('Los estados de venezuela fueron creados por el elegido.');
   }
 
 }

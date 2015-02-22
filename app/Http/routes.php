@@ -11,9 +11,28 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'IndexController@index');
+Route::resource('usuarios', 'UsersController');
+Route::resource('edificios', 'BuildingsController');
+// para ajax de pisos
+Route::get('edificios/floors/{edificios}', 'BuildingsController@floors');
+Route::resource('apartamentos', 'ApartmentsController');
+Route::resource('mensajes', 'MessagesController');
+Route::resource('eventos',  'EventsController');
 
-Route::get('home', 'HomeController@index');
+Route::group(['prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
+  Route::get('/', 'AssignApartmentsController@index');
+  Route::get('/{id}/create', 'AssignApartmentsController@create');
+  // esta es la version mamarracha
+  Route::post('/{id}', 'AssignApartmentsController@store');
+});
+
+// para ajax de direcciones
+Route::get('/estados', 'DirectionsController@states');
+Route::get('/municipios/{id}', 'DirectionsController@towns');
+Route::get('/municipio/{id}', 'DirectionsController@town');
+Route::get('/parroquias/{id}', 'DirectionsController@parishes');
+Route::get('/parroquia/{id}', 'DirectionsController@parish');
 
 Route::controllers([
   'auth' => 'Auth\AuthController',

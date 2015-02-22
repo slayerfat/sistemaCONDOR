@@ -12,15 +12,16 @@ class CreateTablePerfiles extends Migration {
    */
   public function up()
   {
-    Schema::create('perfiles', function(Blueprint $table)
+    Schema::create('profiles', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->string('description');
       $table->timestamps();
     });
-    App\Perfil::create([
-      'descripcion' => 'El Elegido'
-    ]);
+    Schema::table('users', function(Blueprint $table)
+    {
+      $table->foreign('profile_id')->references('id')->on('profiles');
+    });
   }
 
   /**
@@ -30,7 +31,11 @@ class CreateTablePerfiles extends Migration {
    */
   public function down()
   {
-    Schema::drop('perfiles');
+    Schema::table('users', function(Blueprint $table)
+    {
+      $table->dropForeign('users_profile_id_foreign');
+    });
+    Schema::drop('profiles');
   }
 
 }

@@ -1,6 +1,7 @@
 /vendor
 /node_modules
 /pruebas
+/public/vendor
 .env
 composer.lock
 
@@ -13,3 +14,11 @@ bower_components
 
 ### Composer ###
 composer.phar
+
+### npm ###
+npm-debug.log
+
+### netbeans ###
+/nbproject/private/
+/nbproject
+_ide_helper.php

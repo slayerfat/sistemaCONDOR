@@ -17,10 +17,11 @@ class SexosTableSeeder extends Seeder {
     ];
 
     foreach($tipos as $perfil):
-      App\Sexo::create([
-        'descripcion' => $perfil
+      App\Sex::create([
+        'description' => $perfil
       ]);
     endforeach;
+    $this->command->info('los sexos fueron creados por el elegido.');
   }
 
 }

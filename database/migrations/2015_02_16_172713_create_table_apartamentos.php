@@ -12,21 +12,20 @@ class CreateTableApartamentos extends Migration {
    */
   public function up()
   {
-    Schema::create('apartamentos', function(Blueprint $table)
+    Schema::create('apartments', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('edificio_id')->unsigned();
-      $table->foreign('edificio_id')->references('id')->on('edificios');
-      $table->integer('propietario_id')->unsigned()->nullable();
-      $table->foreign('propietario_id')->references('id')->on('personas');
-      $table->integer('piso_id')->unsigned();
-      $table->foreign('piso_id')->references('id')->on('pisos');
-      $table->integer('numero')->unsigned();
+      $table->integer('building_id')->unsigned();
+      $table->foreign('building_id')->references('id')->on('buildings');
+      $table->integer('user_id')->unsigned()->nullable();
+      $table->foreign('user_id')->references('id')->on('users');
+      $table->integer('floor')->unsigned();
+      $table->integer('number')->unsigned();
       $table->timestamps();
       $table->integer('created_by')->unsigned();
-      $table->foreign('created_by')->references('id')->on('usuarios');
+      $table->foreign('created_by')->references('id')->on('users');
       $table->integer('updated_by')->unsigned();
-      $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->foreign('updated_by')->references('id')->on('users');
       $table->softDeletes();
     });
   }
@@ -38,7 +37,7 @@ class CreateTableApartamentos extends Migration {
    */
   public function down()
   {
-    Schema::drop('apartamentos');
+    Schema::drop('apartments');
   }
 
 }

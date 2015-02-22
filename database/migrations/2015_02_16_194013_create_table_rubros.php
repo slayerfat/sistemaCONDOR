@@ -12,18 +12,18 @@ class CreateTableRubros extends Migration {
    */
   public function up()
   {
-    Schema::create('rubros', function(Blueprint $table)
+    Schema::create('items', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('edificio_id')->unsigned();
-      $table->foreign('edificio_id')->references('id')->on('edificios');
-      $table->string('descripcion');
+      $table->integer('building_id')->unsigned();
+      $table->foreign('building_id')->references('id')->on('buildings');
+      $table->string('description');
       $table->integer('total')->unsigned();
       $table->timestamps();
       $table->integer('created_by')->unsigned();
-      $table->foreign('created_by')->references('id')->on('usuarios');
+      $table->foreign('created_by')->references('id')->on('users');
       $table->integer('updated_by')->unsigned();
-      $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->foreign('updated_by')->references('id')->on('users');
       $table->softDeletes();
     });
   }
@@ -35,7 +35,7 @@ class CreateTableRubros extends Migration {
    */
   public function down()
   {
-    Schema::drop('rubros');
+    Schema::drop('items');
   }
 
 }

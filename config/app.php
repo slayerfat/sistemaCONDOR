@@ -137,6 +137,9 @@ return [
     'Illuminate\View\ViewServiceProvider',
     'Illuminate\Html\HtmlServiceProvider',
 
+    'Barryvdh\Debugbar\ServiceProvider',
+    'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+
     /*
      * Application Service Providers...
      */
@@ -197,7 +200,9 @@ return [
     'View'      => 'Illuminate\Support\Facades\View',
     'Form'      => 'Illuminate\Html\FormFacade',
     'Html'      => 'Illuminate\Html\HtmlFacade',
-    'Flash'     => 'Laracasts\Flash\Flash'
+    'Flash'     => 'Laracasts\Flash\Flash',
+    'Debugbar'  => 'Barryvdh\Debugbar\Facade',
+    'Faker'     => 'Faker\Factory'
 
   ],
 

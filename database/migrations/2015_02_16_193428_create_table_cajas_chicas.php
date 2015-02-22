@@ -12,18 +12,18 @@ class CreateTableCajasChicas extends Migration {
    */
   public function up()
   {
-    Schema::create('cajas_chicas', function(Blueprint $table)
+    Schema::create('movements', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('cuenta_id')->unsigned();
-      $table->foreign('cuenta_id')->references('id')->on('cuentas');
-      $table->double('movimiento', 15, 6);
-      $table->string('concepto')->default('-');
+      $table->integer('account_id')->unsigned();
+      $table->foreign('account_id')->references('id')->on('accounts');
+      $table->double('operation', 15, 6);
+      $table->string('concept')->default('-');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
-      $table->foreign('created_by')->references('id')->on('usuarios');
+      $table->foreign('created_by')->references('id')->on('users');
       $table->integer('updated_by')->unsigned();
-      $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->foreign('updated_by')->references('id')->on('users');
       $table->softDeletes();
     });
   }
@@ -35,7 +35,7 @@ class CreateTableCajasChicas extends Migration {
    */
   public function down()
   {
-    Schema::drop('cajas_chicas');
+    Schema::drop('movements');
   }
 
 }

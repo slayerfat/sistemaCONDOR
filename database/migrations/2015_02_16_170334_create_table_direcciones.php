@@ -12,17 +12,17 @@ class CreateTableDirecciones extends Migration {
    */
   public function up()
   {
-    Schema::create('direcciones', function(Blueprint $table)
+    Schema::create('directions', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('parroquia_id')->unsigned();
-      $table->foreign('parroquia_id')->references('id')->on('parroquias');
-      $table->string('direccion_exacta')->nullable()->default('-');
+      $table->integer('parish_id')->unsigned();
+      $table->foreign('parish_id')->references('id')->on('parishes');
+      $table->string('exact_direction')->nullable()->default('-');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
-      $table->foreign('created_by')->references('id')->on('usuarios');
+      $table->foreign('created_by')->references('id')->on('users');
       $table->integer('updated_by')->unsigned();
-      $table->foreign('updated_by')->references('id')->on('usuarios');
+      $table->foreign('updated_by')->references('id')->on('users');
       $table->softDeletes();
     });
   }
@@ -34,7 +34,7 @@ class CreateTableDirecciones extends Migration {
    */
   public function down()
   {
-    Schema::drop('direcciones');
+    Schema::drop('directions');
   }
 
 }

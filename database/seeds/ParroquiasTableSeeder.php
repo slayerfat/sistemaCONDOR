@@ -11,8 +11,8 @@ class ParroquiasTableSeeder extends Seeder {
    */
   public function run()
   {
-    DB::statement("INSERT INTO parroquias
-      (id, municipio_id, descripcion, created_by, updated_by, created_at, updated_at)
+    DB::statement("INSERT INTO parishes
+      (id, town_id, description, created_by, updated_by, created_at, updated_at)
       VALUES
       (1, 1, 'Altagracia', 1, 1, current_timestamp, current_timestamp),
       (2, 1, 'Antímano', 1, 1, current_timestamp, current_timestamp),
@@ -928,6 +928,7 @@ class ParroquiasTableSeeder extends Seeder {
       (922, 334, 'La Victoria', 1, 1, current_timestamp, current_timestamp),
       (923, 335, 'Raúl Cuenca', 1, 1, current_timestamp, current_timestamp),
       (924, 336, 'Jesús María Semprún', 1, 1, current_timestamp, current_timestamp);");
+    $this->command->info('Las parroquias de venezuela fueron creadas por el elegido.');
   }
 
 }
