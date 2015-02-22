@@ -52,4 +52,17 @@ class Apartment extends Model {
     return isset($lista) ? $lista : null;
   }
 
+  /**
+   * si el user_id es un espacio vacio
+   * se muta a null para mysql
+   * @param integer $id
+   */
+  public function setUserIdAttribute($id){
+    if (trim($id) === '') {
+      $this->attributes['user_id'] =  null;
+    }else{
+      $this->attributes['user_id'] = $id;
+    }
+  }
+
 }

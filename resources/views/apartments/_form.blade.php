@@ -34,7 +34,7 @@
   {!! Form::label('user_id', 'Seleccionar Propietario:') !!}
 
   <select name="user_id" id="user_id" class="form-control">
-    <option>Seleccionar</option>
+    <option value="">Seleccionar</option>
     @foreach ($usuarios as $usuario)
       @if ($apartamento->user_id === $usuario->id)
         <option value="{!! $usuario->id !!}" selected="selected">

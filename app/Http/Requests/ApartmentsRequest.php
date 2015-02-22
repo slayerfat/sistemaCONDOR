@@ -23,7 +23,7 @@ class ApartmentsRequest extends Request {
 	{
 		return [
 			'building_id' => 'required|integer',
-			'user_id' => 'required|integer',
+			'user_id' => 'integer',
 			'floor' => 'required|integer',
 			'number' => 'required|integer|min:1|max:999',
 		];

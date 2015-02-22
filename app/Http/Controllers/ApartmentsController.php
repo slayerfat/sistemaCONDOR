@@ -84,9 +84,15 @@ class ApartmentsController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update($id, ApartmentsRequest $request)
   {
-    //
+    $apartamento = Apartment::findOrFail($id);
+    $apartamento->created_by = Auth::user()->id;
+    $apartamento->updated_by = Auth::user()->id;
+    $apartamento->update($request->all());
+
+    flash('El Apartamento ha sido actualizado con exito.');
+    return redirect()->action('BuildingsController@index');
   }
 
   /**
