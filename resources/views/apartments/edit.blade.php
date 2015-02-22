@@ -8,8 +8,9 @@
     <hr/>
     <a href="show.blade.php"></a>
 
-    {!! Form::open(['action' => 'ApartmentsController@store']) !!}
-      @include('apartments._form', ['textoBotonSubmit' => 'Añadir nuevo Apartamento'])
+    {!! Form::model($apartamento, 
+      ['method' => 'PATCH', 'action' => ['ApartmentsController@update', $apartamento->id]]) !!}
+      @include('apartments._form', ['textoBotonSubmit' => 'Editar Mensaje'])
     {!! Form::close() !!}
   </div>
 @stop

@@ -14,6 +14,8 @@
 Route::get('/', 'IndexController@index');
 Route::resource('usuarios', 'UsersController');
 Route::resource('edificios', 'BuildingsController');
+// para ajax de pisos
+Route::get('edificios/floors/{edificios}', 'BuildingsController@floors');
 Route::resource('apartamentos', 'ApartmentsController');
 Route::resource('mensajes', 'MessagesController');
 Route::resource('eventos',  'EventsController');
