@@ -14,8 +14,12 @@
 Route::get('/', 'IndexController@index');
 Route::resource('usuarios', 'UsersController');
 Route::resource('edificios', 'BuildingsController');
-// para ajax de pisos
+// pisos en algun edificio (para ajax de pisos)
 Route::get('edificios/floors/{edificios}', 'BuildingsController@floors');
+// items en algun edificio
+Route::get('edificios/items/{edificios}', 'BuildingsController@items');
+// eventos en algun edificio
+Route::get('edificios/eventos/{edificios}', 'BuildingsController@eventos');
 Route::resource('apartamentos', 'ApartmentsController');
 Route::resource('mensajes', 'MessagesController');
 Route::resource('eventos',  'EventsController');

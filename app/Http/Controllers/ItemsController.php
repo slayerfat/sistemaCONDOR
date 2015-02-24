@@ -68,7 +68,9 @@ class ItemsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$item = Item::findOrFail($id);
+		$edificios = Building::all();
+		return view('items.edit', compact('item', 'edificios'));
 	}
 
 	/**
@@ -77,9 +79,14 @@ class ItemsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, ItemsRequest $request)
 	{
-		//
+		$item = Item::findOrFail($id);
+		$item->updated_at = Auth::user()->id;
+		$item->update($request->all());
+
+		flash('El item ha sido actualizado con exito.');
+		return redirect()->action('BuildingsController@index');
 	}
 
 	/**
