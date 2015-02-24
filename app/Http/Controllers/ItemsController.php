@@ -1,9 +1,10 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\ItemsRequest;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Item;
+use App\Building;
+use Auth;
 
 class ItemsController extends Controller {
 
@@ -24,7 +25,10 @@ class ItemsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		$item = new Item;
+		$edificios = Building::all();
+
+		return view('items.create', compact('item', 'edificios'));
 	}
 
 	/**
@@ -32,9 +36,16 @@ class ItemsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(ItemsRequest $request)
 	{
-		//
+		$item = new Item($request->all());
+		$item->created_by = Auth::user()->id;
+    $item->updated_by = Auth::user()->id;
+
+    $item->save();
+
+    flash('El nuevo Item ha sido creado con exito.');
+		return redirect()->action('BuildingsController@index');
 	}
 
 	/**
@@ -45,7 +56,8 @@ class ItemsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$item = Item::findOrFail($id);
+		return view('items.show', compact('item'));
 	}
 
 	/**

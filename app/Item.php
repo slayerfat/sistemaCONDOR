@@ -18,8 +18,8 @@ class Item extends Model {
    * @var array
    */
   protected $fillable = [
-    'description', 
     'building_id', 
+    'description', 
     'total',
     'created_by',
     'updated_by'
