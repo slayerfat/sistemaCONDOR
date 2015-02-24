@@ -19,6 +19,7 @@ Route::get('edificios/floors/{edificios}', 'BuildingsController@floors');
 Route::resource('apartamentos', 'ApartmentsController');
 Route::resource('mensajes', 'MessagesController');
 Route::resource('eventos',  'EventsController');
+Route::resource('items',  'ItemsController');
 
 Route::group(['prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');

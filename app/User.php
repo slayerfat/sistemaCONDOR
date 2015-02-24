@@ -111,6 +111,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * un usuario tiene muchos cuentas (titular) y 
+   * un cuenta pertenece a un usuario
+   */
+  public function cuentas(){
+    return $this->hasMany('App\Account', 'user_id');
+  }
+
+  /**
    * debido a que no se todava implementar
    * laravel correctamente tengo que
    * hacer esta mamarrachada
