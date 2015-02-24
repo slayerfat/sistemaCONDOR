@@ -10,6 +10,7 @@
           $edificio->id
         ) !!}
     </h3>
+    {!! link_to_action('ItemsController@create', 'Crear Nuevo Item o Rubro') !!}
   </div>
   @foreach ($edificio->items as $item)
     <div class="container">
