@@ -10,7 +10,7 @@
 
 <div class="form-group">
   {!! Form::label('event_type_id', 'Tipo de Evento:') !!}
-  {!! Form::select('event_type_id', $types, $evento->message_types_id, ['class' => 'form-control']) !!}
+  {!! Form::select('event_type_id', $types, $evento->message_type_id, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

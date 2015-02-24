@@ -26,8 +26,7 @@
                 $mensaje->autor->first_name.
                 ', '.
                 $mensaje->autor->first_surname, 
-                $mensaje->autor->id,
-                ['class' => 'btn btn-primary']
+                $mensaje->autor->id
               ) !!}
         </small>
       </h3>
