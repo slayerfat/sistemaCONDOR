@@ -3,7 +3,7 @@
 @section('contenido')
   <div class="container">
     <h3>
-      Edificio
+      Rubros del Edificio
       {!! link_to_action(
           'BuildingsController@show',
           $edificio->name,
@@ -11,7 +11,7 @@
         ) !!}
     </h3>
   </div>
-  @foreach ($items as $item)
+  @foreach ($edificio->items as $item)
     <div class="container">
         <h1>
           {{ $item->description }}

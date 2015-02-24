@@ -137,19 +137,27 @@ class BuildingsController extends Controller {
   public function items($id)
   {
     $edificio = Building::findOrFail($id);
-    $items = \App\Item::where('building_id', $edificio->id)->get();
-    return view('items.showByBuilding', compact('items', 'edificio'));
+    return view('items.showByBuilding', compact('edificio'));
   }
 
   /**
    * Muestra los events relacionados con
    * algun edificio en el sistema
    */
-  public function eventos($id)
+  public function events($id)
   {
     $edificio = Building::findOrFail($id);
-    $eventos = \App\Event::where('building_id', $edificio->id)->get();
-    return view('events.showByBuilding', compact('eventos', 'edificio'));
+    return view('events.showByBuilding', compact('edificio'));
+  }
+
+  /**
+   * Muestra los messages relacionados con
+   * algun edificio en el sistema
+   */
+  public function messages($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('messages.showByBuilding', compact('edificio'));
   }
 
 }

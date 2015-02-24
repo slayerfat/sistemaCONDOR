@@ -20,9 +20,9 @@
             $edificio->id, 
             ['class' => 'btn btn-default']
           ) !!}
-      {!! link_to_action('MessagesController@index', 
+      {!! link_to_action('BuildingsController@messages', 
             'Ver Mensajes', 
-            null, 
+            $edificio->id, 
             ['class' => 'btn btn-default']
           ) !!}
     @endif
@@ -59,9 +59,9 @@
       <div class="col-sm-6">
         <h2>
           Ultimos Eventos del Edificio
-          {!! link_to_action('EventsController@index', 
+          {!! link_to_action('BuildingsController@events', 
                 'Ver Todos', 
-                null, 
+                $edificio->id, 
                 ['class' => 'btn btn-default']
               ) !!}
         </h2>
