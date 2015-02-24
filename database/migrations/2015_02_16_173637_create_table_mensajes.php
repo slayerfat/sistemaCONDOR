@@ -17,6 +17,8 @@ class CreateTableMensajes extends Migration {
       $table->increments('id');
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users');
+      $table->integer('building_id')->unsigned();
+      $table->foreign('building_id')->references('id')->on('buildings');
       $table->integer('message_type_id')->unsigned();
       $table->foreign('message_type_id')->references('id')->on('message_types');
       $table->string('title');

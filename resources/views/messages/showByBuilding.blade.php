@@ -4,7 +4,7 @@
   @include('errors.lista')
   <div class="container">
     <h3>
-       del Edificio 
+      Del Edificio 
       {!! link_to_action('BuildingsController@show',
             $edificio->name,
             $edificio->id
