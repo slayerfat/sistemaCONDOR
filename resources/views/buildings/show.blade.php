@@ -14,13 +14,18 @@
         </a>
       @endif
     </h1>
-    {{-- validar usuario para ver estos enlaces --}}
-    <a href="#" class="btn btn-default">Ver Inventario</a>
-    {!! link_to_action('MessagesController@index', 
-          'Ver Mensajes', 
-          null, 
-          ['class' => 'btn btn-default']
-        ) !!}
+    @if (Auth::user()->perfil->description === 'Administrador')
+      {!! link_to_action('BuildingsController@items', 
+            'Ver Inventario', 
+            $edificio->id, 
+            ['class' => 'btn btn-default']
+          ) !!}
+      {!! link_to_action('BuildingsController@messages', 
+            'Ver Mensajes', 
+            $edificio->id, 
+            ['class' => 'btn btn-default']
+          ) !!}
+    @endif
     <div class="row">
       <div class="col-sm-6">
         <h2>
@@ -54,9 +59,9 @@
       <div class="col-sm-6">
         <h2>
           Ultimos Eventos del Edificio
-          {!! link_to_action('EventsController@index', 
+          {!! link_to_action('BuildingsController@events', 
                 'Ver Todos', 
-                null, 
+                $edificio->id, 
                 ['class' => 'btn btn-default']
               ) !!}
         </h2>

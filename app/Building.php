@@ -45,6 +45,26 @@ class Building extends Model {
     return $this->hasMany('App\Event');
   }
 
+  /**
+   * la relacion entre eventos y edificios
+   * donde UN evento tiene UN edificio y
+   * en UN edificio pueden haber VARIOS
+   * eventos.
+   */
+  public function mensajes(){
+    return $this->hasMany('App\Message');
+  }
+
+  /**
+   * la relacion entre items y edificios
+   * donde UN item tiene UN edificio y
+   * en UN edificio pueden haber VARIOS
+   * items.
+   */
+  public function items(){
+    return $this->hasMany('App\Item');
+  }
+
   public function habitantes(){
     return $this->hasManyThrough('App\User', 'App\Apartment');
   }

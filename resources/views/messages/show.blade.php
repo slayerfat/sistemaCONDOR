@@ -26,14 +26,14 @@
                 $mensaje->autor->first_name.
                 ', '.
                 $mensaje->autor->first_surname, 
-                $mensaje->autor->id,
-                ['class' => 'btn btn-primary']
+                $mensaje->autor->id
               ) !!}
         </small>
       </h3>
 
       <p>
-        Creado el: {{ $mensaje->created_at }}
+        Ultima Actualizacion
+        {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
       </p>
     </article>
   </div>

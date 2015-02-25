@@ -12,7 +12,7 @@ class Profile extends Model {
    * la asociacion entre usuarios y perfiles en la base de datos
    */
   public function usuarios(){
-    return $this->hasMany('App\User', 'user_id');
+    return $this->hasMany('App\User');
   }
 
 }

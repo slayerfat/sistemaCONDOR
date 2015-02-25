@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class ApartmentsRequest extends Request {
+class ItemsRequest extends Request {
 
   /**
    * Determine if the user is authorized to make this request.
@@ -23,9 +23,8 @@ class ApartmentsRequest extends Request {
   {
     return [
       'building_id' => 'required|integer',
-      'user_id' => 'integer',
-      'floor' => 'required|integer',
-      'number' => 'required|integer|min:1|max:999',
+      'description' => 'required|string|min:3|max:255',
+      'total'       => 'integer|max:9999999999'
     ];
   }
 

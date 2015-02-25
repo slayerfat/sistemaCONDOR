@@ -17,15 +17,21 @@
 
       <hr/>
       
-      <h3>
-        Autor: 
-        <small>
-          {{ $evento->autor->first_name }}
-          {{ $evento->autor->first_surname }}
-        </small>
-      </h3>
+      <h4>
+        Autor:
+        {!! link_to_action('UsersController@show',
+              $evento->autor->first_name.
+              ', '.
+              $evento->autor->first_surname,
+              $evento->autor->id,
+              null
+            ) !!}
+      </h4>
       <p>
-        Creado el: {{ $evento->created_at }}
+        <i>
+          Ultima Actualizacion
+          {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+        </i>
       </p>
     </article>
   </div>

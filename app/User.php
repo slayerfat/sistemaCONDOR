@@ -111,19 +111,27 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * un usuario tiene muchos cuentas (titular) y 
+   * un cuenta pertenece a un usuario
+   */
+  public function cuentas(){
+    return $this->hasMany('App\Account', 'user_id');
+  }
+
+  /**
    * debido a que no se todava implementar
    * laravel correctamente tengo que
    * hacer esta mamarrachada
    */
   public function insertarMensaje($request){
     $mensaje = new \App\Message($request->all());
-    $mensaje->message_types_id = $request->input('types')[0];
+    $mensaje->message_type_id = $request->input('types')[0];
     $mensaje->created_by = $this->id;
     $mensaje->updated_by = $this->id;
     // $types   = $request->input('types');
     // $mensaje = \App\Message::create([
     //   'user_id'         => $this->id,
-    //   'message_types_id' => $types[0],
+    //   'message_type_id' => $types[0],
     //   'title'           => $request->input('title'),
     //   'description'     => $request->input('description'),
     //   'created_by'      => $this->id,

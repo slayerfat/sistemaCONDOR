@@ -52,7 +52,7 @@ return [
   |
   */
 
-  'locale' => 'en',
+  'locale' => 'es',
 
   /*
   |--------------------------------------------------------------------------
@@ -139,6 +139,7 @@ return [
 
     'Barryvdh\Debugbar\ServiceProvider',
     'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+    'Jenssegers\Date\DateServiceProvider',
 
     /*
      * Application Service Providers...
@@ -202,7 +203,8 @@ return [
     'Html'      => 'Illuminate\Html\HtmlFacade',
     'Flash'     => 'Laracasts\Flash\Flash',
     'Debugbar'  => 'Barryvdh\Debugbar\Facade',
-    'Faker'     => 'Faker\Factory'
+    'Faker'     => 'Faker\Factory',
+    'Date'      => 'Jenssegers\Date\Date'
 
   ],
 

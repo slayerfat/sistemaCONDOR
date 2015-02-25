@@ -119,15 +119,45 @@ class BuildingsController extends Controller {
   }
 
    /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return Response
+   * Devuelve los pisos existentes en algun edificio
+   * para poder ser usado por el ajax
+   * dentro del formulario
+   * de apartamentos
    */
   public function floors($id)
   {
     $edificio = Building::findOrFail($id);
     return $edificio->total_floors;
+  }
+
+  /**
+   * Muestra los items relacionados con
+   * algun edificio en el sistema
+   */
+  public function items($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('items.showByBuilding', compact('edificio'));
+  }
+
+  /**
+   * Muestra los events relacionados con
+   * algun edificio en el sistema
+   */
+  public function events($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('events.showByBuilding', compact('edificio'));
+  }
+
+  /**
+   * Muestra los messages relacionados con
+   * algun edificio en el sistema
+   */
+  public function messages($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('messages.showByBuilding', compact('edificio'));
   }
 
 }
