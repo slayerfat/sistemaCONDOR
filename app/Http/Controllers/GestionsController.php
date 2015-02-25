@@ -1,8 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Building;
+use App\User;
 use Illuminate\Http\Request;
 
 class GestionsController extends Controller {
@@ -14,7 +14,7 @@ class GestionsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return redirect()->action('BuildingsController@gestions');
 	}
 
 	/**
@@ -24,7 +24,7 @@ class GestionsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return redirect()->action('BuildingsController@gestionsCreate');
 	}
 
 	/**
@@ -34,7 +34,16 @@ class GestionsController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		return $request->all();
+    $this->validate($request, [
+      'building_id' => 'required',
+      'user_id'     => 'required',
+    ]);
+    $edificio = Building::findOrFail($request->input('building_id'));
+    $usuario  = User::findOrFail($request->input('user_id'));
+    $edificio->miembrosDeGestion()->save($usuario);
+
+    flash('Miembro de Gestion Multifamiliar creado con exito.');
+    return redirect()->action('BuildingsController@gestions', $edificio->id);
 	}
 
 	/**
