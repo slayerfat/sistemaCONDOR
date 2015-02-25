@@ -57,24 +57,36 @@
         @endforeach
       </div>
       <div class="col-sm-6">
-        <h2>
-          Ultimos Eventos del Edificio
-          {!! link_to_action('BuildingsController@events', 
-                'Ver Todos', 
-                $edificio->id, 
-                ['class' => 'btn btn-default']
-              ) !!}
-        </h2>
-        @foreach ($edificio->eventos as $evento)
-          <article>
-            <h3>
-              {!! link_to_action('EventsController@show', $evento->title, $evento->id) !!}
-            </h3>
-            <body>
-              {{ $evento->body }}
-            </body>
-          </article>
-        @endforeach
+        <div class="row">
+          <h2>
+            Ultimos Movimientos
+            {!! link_to_action('BuildingsController@movements', 
+                  'Ver Todos', 
+                  $edificio->id, 
+                  ['class' => 'btn btn-default']
+                ) !!}
+          </h2>
+        </div>
+        <div class="row">
+          <h2>
+            Ultimos Eventos del Edificio
+            {!! link_to_action('BuildingsController@events', 
+                  'Ver Todos', 
+                  $edificio->id, 
+                  ['class' => 'btn btn-default']
+                ) !!}
+          </h2>
+          @foreach ($edificio->eventos as $evento)
+            <article>
+              <h3>
+                {!! link_to_action('EventsController@show', $evento->title, $evento->id) !!}
+              </h3>
+              <body>
+                {{ $evento->body }}
+              </body>
+            </article>
+          @endforeach
+        </div>
       </div>
     </div>
   </div>

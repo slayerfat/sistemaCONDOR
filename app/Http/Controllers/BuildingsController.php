@@ -160,4 +160,14 @@ class BuildingsController extends Controller {
     return view('messages.showByBuilding', compact('edificio'));
   }
 
+  /**
+   * Muestra los messages relacionados con
+   * algun edificio en el sistema
+   */
+  public function movements($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('movements.showByBuilding', compact('edificio'));
+  }
+
 }

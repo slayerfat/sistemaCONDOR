@@ -22,10 +22,13 @@ Route::get('edificios/items/{edificios}', 'BuildingsController@items');
 Route::get('edificios/eventos/{edificios}', 'BuildingsController@events');
 // mensajes de algun edificio
 Route::get('edificios/mensajes/{edificios}', 'BuildingsController@messages');
+// movimientos de algun edificio (caja chica)
+Route::get('edificios/movimientos/{edificios}', 'BuildingsController@movements');
 Route::resource('apartamentos', 'ApartmentsController');
 Route::resource('mensajes', 'MessagesController');
 Route::resource('eventos',  'EventsController');
 Route::resource('items',  'ItemsController');
+Route::resource('movimientos',  'MovementsController');
 
 Route::group(['prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');
