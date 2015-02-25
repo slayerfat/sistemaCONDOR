@@ -19,8 +19,13 @@
       
       <h4>
         Autor:
-          {{ $evento->autor->first_name }}
-          {{ $evento->autor->first_surname }}
+        {!! link_to_action('UsersController@show',
+              $evento->autor->first_name.
+              ', '.
+              $evento->autor->first_surname,
+              $evento->autor->id,
+              null
+            ) !!}
       </h4>
       <p>
         <i>
