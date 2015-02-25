@@ -30,11 +30,17 @@ Route::get('edificios/gestiones/{edificios}', 'BuildingsController@gestions');
 Route::get('edificios/gestiones/{edificios}/create', 'BuildingsController@gestionsCreate');
 Route::resource('apartamentos', 'ApartmentsController');
 Route::resource('mensajes', 'MessagesController');
-Route::resource('eventos',  'EventsController');
-Route::resource('items',  'ItemsController');
-Route::resource('movimientos',  'MovementsController');
-Route::resource('gestiones',  'GestionsController');
+Route::resource('eventos', 'EventsController');
+Route::resource('items', 'ItemsController');
+Route::resource('movimientos', 'MovementsController');
+// GESTIONES
+// guardar nuevo
+Route::post('gestiones', 'GestionsController@store');
+// actualizar
 Route::get('gestiones/{usuarios}/{edificios}', 'GestionsController@edit');
+// guardar actualizaciones
+Route::patch('gestiones/{gestiones}', 'GestionsController@update');
+Route::delete('gestiones/{usuarios}/{edificios}', 'GestionsController@destroy');
 
 Route::group(['prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');

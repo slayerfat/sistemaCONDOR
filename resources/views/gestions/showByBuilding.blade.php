@@ -43,22 +43,20 @@
             </h4>
           </article>
         </div>
-        <div class="col-xs-4">
-          @if (Auth::user()->perfil->description === 'Administrador')
-            <h2>
+        @if (Auth::user()->perfil->description === 'Administrador')
+          <div class="col-md-2">
               {!! link_to_action('GestionsController@edit',
                     'Actualizar Miembro',
                     [$usuario->id, $edificio->id],
                     ['class' => 'btn btn-default']
                   ) !!}
-              {!! link_to_action('GestionsController@destroy',
-                    'Quitar Miembro',
-                    [$usuario->id, $edificio->id],
-                    ['class' => 'btn btn-danger']
-                  ) !!}
-            </h2>
-          @endif
-        </div>
+          </div>
+          <div class="col-md-2">
+              {!! Form::open(['method' => 'DELETE', 'action' => ['GestionsController@destroy', $usuario->id, $edificio->id]]) !!}
+              {!! Form::submit('Quitar Miembro', ['class' => 'btn btn-danger']) !!}
+              {!! Form::close() !!}
+          </div>
+        @endif
       </div>
     </div>
   @endforeach

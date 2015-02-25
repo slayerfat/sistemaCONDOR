@@ -8,26 +8,6 @@ use Illuminate\Http\Request;
 class GestionsController extends Controller {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return redirect()->action('BuildingsController@gestions');
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return redirect()->action('BuildingsController@gestionsCreate');
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
@@ -44,17 +24,6 @@ class GestionsController extends Controller {
 
     flash('Miembro de Gestion Multifamiliar creado con exito.');
     return redirect()->action('BuildingsController@gestions', $edificio->id);
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
 	}
 
 	/**
@@ -96,9 +65,14 @@ class GestionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($usuario_id, $edificio_id)
 	{
-		//
+		$edificio = Building::findOrFail($edificio_id);
+	  $usuario  = User::findOrFail($usuario_id);
+	  $edificio->miembrosDeGestion()->detach([$usuario->id]);
+
+	  flash()->warning('Miembro de Gestion Multifamiliar eliminado con exito.');
+	  return redirect()->action('BuildingsController@gestions', $edificio->id);
 	}
 
 }
