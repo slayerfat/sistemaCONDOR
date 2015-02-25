@@ -187,7 +187,8 @@ class BuildingsController extends Controller {
   public function gestionsCreate($id)
   {
     $edificio = Building::findOrFail($id);
-    return view('gestions.create', compact('edificio'));
+    $usuario = new \App\User;
+    return view('gestions.create', compact('edificio', 'usuario'));
   }
 
 

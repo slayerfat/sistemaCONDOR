@@ -34,6 +34,7 @@ Route::resource('eventos',  'EventsController');
 Route::resource('items',  'ItemsController');
 Route::resource('movimientos',  'MovementsController');
 Route::resource('gestiones',  'GestionsController');
+Route::get('gestiones/{usuarios}/{edificios}', 'GestionsController@edit');
 
 Route::group(['prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');

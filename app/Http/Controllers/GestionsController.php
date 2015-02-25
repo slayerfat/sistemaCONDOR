@@ -63,9 +63,11 @@ class GestionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($usuario_id, $edificio_id)
 	{
-		//
+		$edificio = Building::findOrFail($edificio_id);
+    $usuario  = User::findOrFail($usuario_id);
+		return view('gestions.edit', compact('edificio', 'usuario'));
 	}
 
 	/**
@@ -74,9 +76,18 @@ class GestionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
-		//
+		$this->validate($request, [
+      'building_id' => 'required',
+      'user_id'     => 'required',
+    ]);
+    $edificio = Building::findOrFail($id);
+    $usuario  = User::findOrFail($request->input('user_id'));
+    $edificio->miembrosDeGestion()->sync([$usuario->id]);
+
+    flash('Miembro de Gestion Multifamiliar actualizado con exito.');
+    return redirect()->action('BuildingsController@gestions', $edificio->id);
 	}
 
 	/**

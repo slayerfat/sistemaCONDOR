@@ -3,7 +3,7 @@
 @section('contenido')
   <div class="container">
     <h1>
-      Crea un nuevo Miembro de la Gestion Multifamiliar del
+      Crea un nuevo Miembro de la Gestion Multifamiliar del Edificio
       {!! link_to_action('BuildingsController@show',
             $edificio->name,
             $edificio->id
