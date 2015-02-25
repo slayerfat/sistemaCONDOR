@@ -161,7 +161,7 @@ class BuildingsController extends Controller {
   }
 
   /**
-   * Muestra los messages relacionados con
+   * Muestra los movimientos relacionados con
    * algun edificio en el sistema
    */
   public function movements($id)
@@ -169,5 +169,26 @@ class BuildingsController extends Controller {
     $edificio = Building::findOrFail($id);
     return view('movements.showByBuilding', compact('edificio'));
   }
+
+  /**
+   * Muestra la gestion multifamiliar relacionada 
+   * con algun edificio en el sistema
+   */
+  public function gestions($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('gestions.showByBuilding', compact('edificio'));
+  }
+
+  /**
+   * crear gestion multifamiliar relacionada 
+   * con algun edificio en el sistema
+   */
+  public function gestionsCreate($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('gestions.create', compact('edificio'));
+  }
+
 
 }

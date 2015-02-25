@@ -110,6 +110,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return $this->hasMany('App\Building', 'user_id');
   }
 
+  public function gestiones(){
+    return $this->belongsToMany('App\Building');
+  }
   /**
    * un usuario tiene muchos cuentas (titular) y 
    * un cuenta pertenece a un usuario

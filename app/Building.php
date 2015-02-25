@@ -65,8 +65,14 @@ class Building extends Model {
     return $this->hasMany('App\Item');
   }
 
-  public function habitantes(){
-    return $this->hasManyThrough('App\User', 'App\Apartment');
+  /**
+   * la relacion entre miembros de la gestiones multifamiliares y edificios
+   * donde UN miembros de la gestion multifamiliar tiene VARIOS
+   * edificios y en UN edificio pueden haber VARIOS
+   * miembros de la gestiones multifamiliares.
+   */
+  public function miembrosDeGestion(){
+    return $this->belongsToMany('App\User');
   }
 
 }

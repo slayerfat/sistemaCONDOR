@@ -14,6 +14,11 @@
         </a>
       @endif
     </h1>
+    {!! link_to_action('BuildingsController@gestions', 
+            'Ver Miembros de Gestion Multifamiliar', 
+            $edificio->id, 
+            ['class' => 'btn btn-default']
+          ) !!}
     @if (Auth::user()->perfil->description === 'Administrador')
       {!! link_to_action('BuildingsController@items', 
             'Ver Inventario', 
