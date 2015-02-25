@@ -32,7 +32,8 @@
       </h3>
 
       <p>
-        Creado el: {{ $mensaje->created_at }}
+        Ultima Actualizacion
+        {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
       </p>
     </article>
   </div>

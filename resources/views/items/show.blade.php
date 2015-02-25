@@ -6,6 +6,12 @@
       {{ $item->description }}
       <small>Total {{ $item->total }}</small>
     </h1>
+    <p>
+      <i>
+        Ultima Actualizacion
+        {!! Date::parse($item->updated_at)->diffForHumans(); !!}.
+      </i>
+    </p>
     @if (Auth::user()->perfil->description === 'Administrador')
       {!! link_to_action(
             'ItemsController@edit',

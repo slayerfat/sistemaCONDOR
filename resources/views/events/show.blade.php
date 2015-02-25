@@ -17,15 +17,16 @@
 
       <hr/>
       
-      <h3>
-        Autor: 
-        <small>
+      <h4>
+        Autor:
           {{ $evento->autor->first_name }}
           {{ $evento->autor->first_surname }}
-        </small>
-      </h3>
+      </h4>
       <p>
-        Creado el: {{ $evento->created_at }}
+        <i>
+          Ultima Actualizacion
+          {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+        </i>
       </p>
     </article>
   </div>
