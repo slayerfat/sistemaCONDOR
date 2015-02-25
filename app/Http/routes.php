@@ -22,6 +22,8 @@ Route::get('edificios/items/{edificios}', 'BuildingsController@items');
 Route::get('edificios/eventos/{edificios}', 'BuildingsController@events');
 // mensajes de algun edificio
 Route::get('edificios/mensajes/{edificios}', 'BuildingsController@messages');
+// crear un movimiento relacionado con un edificio
+Route::get('edificios/movimientos/{edificios}/create', 'BuildingsController@movementsCreate');
 // movimientos de algun edificio (caja chica)
 Route::get('edificios/movimientos/{edificios}', 'BuildingsController@movements');
 // gestiones multifamiliares de algun edificio
@@ -42,6 +44,7 @@ Route::get('gestiones/{usuarios}/{edificios}', 'GestionsController@edit');
 Route::patch('gestiones/{gestiones}', 'GestionsController@update');
 Route::delete('gestiones/{usuarios}/{edificios}', 'GestionsController@destroy');
 
+// para asignar un usuario a un apartamento de un edifico
 Route::group(['prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');
   Route::get('/{id}/create', 'AssignApartmentsController@create');

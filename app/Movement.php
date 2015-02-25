@@ -20,6 +20,7 @@ class Movement extends Model {
   protected $fillable = [
     'account_id', 
     'user_id', 
+    'movement_type_id', 
     'operation',
     'concept',
     'created_by',
@@ -52,6 +53,13 @@ class Movement extends Model {
    */
   public function items(){
     return $this->belongsToMany('App\Item');
+  }
+
+  /**
+   * relacion 1aN
+   */
+  public function tipo(){
+    return $this->belongsTo('App\MovementType', 'movement_type_id');
   }
 
 }

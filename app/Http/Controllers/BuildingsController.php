@@ -161,16 +161,6 @@ class BuildingsController extends Controller {
   }
 
   /**
-   * Muestra los movimientos relacionados con
-   * algun edificio en el sistema
-   */
-  public function movements($id)
-  {
-    $edificio = Building::findOrFail($id);
-    return view('movements.showByBuilding', compact('edificio'));
-  }
-
-  /**
    * Muestra la gestion multifamiliar relacionada 
    * con algun edificio en el sistema
    */
@@ -189,6 +179,27 @@ class BuildingsController extends Controller {
     $edificio = Building::findOrFail($id);
     $usuario = new \App\User;
     return view('gestions.create', compact('edificio', 'usuario'));
+  }
+
+  /**
+   * Muestra la gestion multifamiliar relacionada 
+   * con algun edificio en el sistema
+   */
+  public function movements($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('movements.showByBuilding', compact('edificio'));
+  }
+
+  /**
+   * crear gestion multifamiliar relacionada 
+   * con algun edificio en el sistema
+   */
+  public function movementsCreate($id)
+  {
+    $edificio = Building::findOrFail($id);
+    $usuario = new \App\User;
+    return view('movements.create', compact('edificio', 'usuario'));
   }
 
 
