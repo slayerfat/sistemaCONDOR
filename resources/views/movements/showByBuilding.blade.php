@@ -44,8 +44,11 @@
             <p>
               Responsable:
               {{ $movimiento->responsable->first_name }}
-              {{ $movimiento->responsable->first_surname }} |
-              Numero de Cuenta: {{ $movimiento->cuenta->bank_number }}
+              {{ $movimiento->responsable->first_surname }} 
+              @if ($movimiento->cuenta)
+                | Numero de Cuenta:
+                {{ $movimiento->cuenta->bank_number }}
+              @endif
             </p>
           </div>
           @if (Auth::user()->perfil->description === 'Administrador')

@@ -40,6 +40,11 @@
 </div>
 
 <div class="form-group">
+  {!! Form::label('check_number', 'Numero de cheque:') !!}
+  {!! Form::text('check_number', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
   {!! Form::label('movement_type_id', 'Tipo de Movimiento:') !!}
   <select name="movement_type_id" id="movement_type_id" class="form-control">
     @foreach ($tipos as $tipo)

@@ -15,7 +15,7 @@ class MovementsController extends Controller {
    */
   public function index()
   {
-    //
+    return redirect()->action('IndexController@index');
   }
 
   /**
@@ -25,7 +25,7 @@ class MovementsController extends Controller {
    */
   public function create()
   {
-    //
+    return redirect()->action('IndexController@index');
   }
 
   /**
@@ -65,7 +65,7 @@ class MovementsController extends Controller {
    */
   public function show($id)
   {
-    //
+    return redirect()->action('IndexController@index');
   }
 
   /**
@@ -76,7 +76,26 @@ class MovementsController extends Controller {
    */
   public function edit($id)
   {
-    //
+    $movimiento = Movement::findOrFail($id);
+
+    // el edifico
+    $edificio = Building::findOrFail($id);
+
+    // por cada miembro de la gestion multifamiliar
+    // se sacan las cuentas segun su responsable
+    foreach ($edificio->miembrosDeGestion as $usuario) :
+      $cuentas[] = \App\Account::where('user_id', $usuario->id)->get();
+    endforeach;
+
+    // nuevo usuario vacio
+    $usuario = new \App\User;
+
+    // todos los tipos de movimientos
+    $tipos = \App\MovementType::all();
+
+    // los items segun el id del edificio
+    // para anclar concepto a un item
+    $items = \App\Item::where('building_id', $id)->get();
   }
 
   /**

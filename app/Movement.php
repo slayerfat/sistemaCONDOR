@@ -20,6 +20,7 @@ class Movement extends Model {
    */
   protected $fillable = [
     'account_id', 
+    'building_id', 
     'user_id', 
     'movement_type_id', 
     'operation',
@@ -58,6 +59,21 @@ class Movement extends Model {
   }
 
   /**
+   * para poner la el valor de cuenta a nulo
+   * el valor asignado es 0
+   * 
+   * @param integer la llave foranea de cuenta.
+   */
+  public function setAccountIdAttribute($valor)
+  {
+    if ( $valor === '0' ) :
+      $this->attributes['account_id'] = null;
+    else:
+      $this->attributes['account_id'] = $valor;
+    endif;
+  }
+
+  /**
    * relacion 1aN
    */
   public function responsable(){
@@ -83,6 +99,13 @@ class Movement extends Model {
    */
   public function tipo(){
     return $this->belongsTo('App\MovementType', 'movement_type_id');
+  }
+
+  /**
+   * relacion 1aN
+   */
+  public function edificio(){
+    return $this->belongsTo('App\Building', 'building_id');
   }
 
 }

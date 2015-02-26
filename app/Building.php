@@ -17,10 +17,16 @@ class Building extends Model {
     'updated_by'
   ];
 
+  /**
+   * relacion 1aN
+   */
   public function encargado(){
     return $this->belongsTo('App\User', 'user_id');
   }
 
+  /**
+   * relacion 1aN
+   */
   public function direccion(){
     return $this->belongsTo('App\Direction', 'direction_id');
   }
@@ -73,6 +79,16 @@ class Building extends Model {
    */
   public function miembrosDeGestion(){
     return $this->belongsToMany('App\User');
+  }
+
+  /**
+   * la relacion entre movimientos y edificios
+   * donde UN movimiento tiene UN edificio y
+   * en UN edificio pueden haber VARIOS
+   * movimientos.
+   */
+  public function movimientos(){
+    return $this->hasMany('App\Movement');
   }
 
 }
