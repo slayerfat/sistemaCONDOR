@@ -15,12 +15,12 @@ class CreateTableCajasChicas extends Migration {
     Schema::create('movements', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('account_id')->unsigned();
+      $table->integer('account_id')->unsigned()->nullable();
       $table->foreign('account_id')->references('id')->on('accounts');
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users');
       $table->double('operation', 15, 6);
-      $table->string('concept')->default('-');
+      $table->string('concept');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('users');

@@ -14,8 +14,10 @@ class AddForeignKeyToMovementsTable extends Migration {
   {
     Schema::table('movements', function(Blueprint $table)
     {
-      $table->integer('movement_type_id')->unsigned();
-      $table->foreign('movement_type_id')->references('id')->on('movement_types');
+      $table->integer('movement_type_id')->unsigned()->after('user_id');
+      $table->foreign('movement_type_id')
+            ->references('id')
+            ->on('movement_types');
     });
   }
 

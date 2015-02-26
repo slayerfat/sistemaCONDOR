@@ -11,8 +11,8 @@
           ) !!}
     </h3>
     @if (Auth::user()->perfil->description === 'Administrador')
-      {!! link_to_action('BuildingsController@gestionsCreate',
-            'Añadir Miembro',
+      {!! link_to_action('BuildingsController@movementsCreate',
+            'Añadir Movimiento',
             $edificio->id,
             ['class' => 'btn btn-primary']
           ) !!}

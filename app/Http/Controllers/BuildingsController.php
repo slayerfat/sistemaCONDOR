@@ -198,8 +198,12 @@ class BuildingsController extends Controller {
   public function movementsCreate($id)
   {
     $edificio = Building::findOrFail($id);
+    foreach ($edificio->miembrosDeGestion as $usuario) :
+      $cuentas[] = \App\Account::where('user_id', $usuario->id)->get();
+    endforeach;
     $usuario = new \App\User;
-    return view('movements.create', compact('edificio', 'usuario'));
+
+    return view('movements.create', compact('edificio', 'usuario', 'cuentas'));
   }
 
 

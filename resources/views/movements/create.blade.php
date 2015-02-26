@@ -13,7 +13,7 @@
     <hr/>
 
     {!! Form::model($edificio, ['action' => 'MovementsController@store']) !!}
-      @include('gestions._form', ['textoBotonSubmit' => 'Añadir nuevo Movimiento'])
+      @include('movements._form', ['textoBotonSubmit' => 'Añadir nuevo Movimiento'])
     {!! Form::close() !!}
 
     @include('errors.lista')
