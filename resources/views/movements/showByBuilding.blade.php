@@ -18,49 +18,56 @@
           ) !!}
     @endif
   </div>
-  {{-- datos de usuarios relacionados con la gestion --}}
-  @foreach ($edificio->miembrosDeGestion as $usuario)
-    @foreach ($usuario->movimientos as $movimiento)
-      {{-- expr --}}
-    @endforeach
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-8">
-          <article>
+  <div class="container">
+    {{-- datos de usuarios relacionados con la gestion --}}
+    @foreach ($edificio->miembrosDeGestion as $usuario)
+      @foreach ($usuario->movimientos as $movimiento)
+        <div class="row">
+          <div class="col-xs-8">
             <h2>
-              {{ $usuario->first_name }}
-              {{ $usuario->middle_name }}
-              {{ $usuario->first_surname }}
-              {{ $usuario->last_surname }}
+              {{ $movimiento->concept }}
             </h2>
             <h4>
               <small>
-                @if ($usuario->phone)
-                  Telefono:
-                  {{ $usuario->phone }}
-                @endif
-                @if ($usuario->email)
-                  {!! Html::mailto($usuario->email) !!}
-                @endif
+                Tipo: {{ $movimiento->tipo->description }}
               </small>
+              @if ($movimiento->tipo->description === 'Entrada')
+                <span class="entrada">
+                  {{ $movimiento->operation }}.
+                </span>
+              @else
+                <span class="salida">
+                  {{ $movimiento->operation }}.
+                </span>
+              @endif
             </h4>
-          </article>
+            <p>
+              Responsable:
+              {{ $movimiento->responsable->first_name }}
+              {{ $movimiento->responsable->first_surname }} |
+              Numero de Cuenta: {{ $movimiento->cuenta->bank_number }}
+            </p>
+          </div>
+          @if (Auth::user()->perfil->description === 'Administrador')
+            <div class="col-md-2">
+              <h2>
+                {!! link_to_action('MovementsController@edit',
+                      'Actualizar',
+                      $movimiento->id,
+                      ['class' => 'btn btn-default']
+                    ) !!}
+              </h2>
+            </div>
+            <div class="col-md-2">
+              <h2>
+                {!! Form::open(['method' => 'DELETE', 'action' => ['MovementsController@destroy', $movimiento->id]]) !!}
+                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
+                {!! Form::close() !!}
+              </h2>
+            </div>
+          @endif
         </div>
-        @if (Auth::user()->perfil->description === 'Administrador')
-          <div class="col-md-2">
-              {!! link_to_action('GestionsController@edit',
-                    'Actualizar Miembro',
-                    [$usuario->id, $edificio->id],
-                    ['class' => 'btn btn-default']
-                  ) !!}
-          </div>
-          <div class="col-md-2">
-              {!! Form::open(['method' => 'DELETE', 'action' => ['GestionsController@destroy', $usuario->id, $edificio->id]]) !!}
-              {!! Form::submit('Quitar Miembro', ['class' => 'btn btn-danger']) !!}
-              {!! Form::close() !!}
-          </div>
-        @endif
-      </div>
-    </div>
-  @endforeach
+      @endforeach
+    @endforeach
+  </div>
 @stop
