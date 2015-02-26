@@ -66,6 +66,7 @@
 <div class="form-group">
   {!! Form::label('item_id', 'Rubro relacionado:') !!}
   <select name="item_id" id="item_id" class="form-control">
+    <option value="0">Seleccionar</option>
     @foreach ($items as $item)
       <option value="{{ $item->id }}">
         {{ $item->description }} |
@@ -83,3 +84,13 @@
 <div class="form-group">
   {!! Form::submit($textoBotonSubmit, ['class' => 'form-control btn btn-primary']) !!}
 </div>
+
+@section('js')
+  <script type="text/javascript">
+    $(function() {
+      $('#item_id').change(function(){
+        $('#total').val('');
+      });
+    });
+  </script>
+@stop

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\MovementType;
 
 class Movement extends Model {
 
@@ -33,6 +34,16 @@ class Movement extends Model {
    * @var array
    */
   protected $dates = ['deleted_at'];
+
+  public function setOperationAttribute($valor)
+  {
+    $tipo = MovementType::where('id', $this->movement_type_id)->first();
+    if ( $tipo->description === 'Entrada' ) :
+      $this->attributes['operation'] = abs($valor);
+    else:
+      $this->attributes['operation'] = abs($valor) * -1;
+    endif;
+  }
 
   /**
    * relacion 1aN

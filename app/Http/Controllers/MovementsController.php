@@ -2,6 +2,8 @@
 
 use App\Http\Requests\MovementsRequest;
 use App\Http\Controllers\Controller;
+use App\Movement;
+use Auth;
 
 
 class MovementsController extends Controller {
@@ -33,6 +35,9 @@ class MovementsController extends Controller {
 	 */
 	public function store(MovementsRequest $request)
 	{
+		$movimiento = new Movement($request->all());
+		$movimiento->created_by = Auth::user()->id;
+		$movimiento->updated_by = Auth::user()->id;
 		return $request->all();
 	}
 
