@@ -2,6 +2,7 @@
 
 use App\Http\Requests\MovementsRequest;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Movement;
 use App\Building;
 use Auth;
@@ -116,7 +117,22 @@ class MovementsController extends Controller {
    */
   public function update($id, MovementsRequest $request)
   {
-    return $request->all();
+    $movimiento = Movement::findOrFail($id);
+
+    $movimiento->update($request->all());
+    $movimiento->updated_by = Auth::user()->id;
+    $movimiento->updated_at = Carbon::now();
+
+    // si el movimiento esta asociado a un item, se hace la relacion.
+    if (trim($request->input('item_id')) !== '' and $request->input('item_id') !== '0') :
+      if ($movimiento->items()->get()->isEmpty()) :
+        $movimiento->items()->attach([$request->input('item_id')]);
+      else :
+        $movimiento->items()->sync([$request->input('item_id')]);
+      endif;
+    endif;
+
+    return redirect()->action('BuildingsController@index');
   }
 
   /**

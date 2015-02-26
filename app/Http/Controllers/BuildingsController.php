@@ -200,6 +200,9 @@ class BuildingsController extends Controller {
     // el edifico
     $edificio = Building::findOrFail($id);
 
+    // el movimiento
+    $movimiento = new \App\Movement;
+
     // por cada miembro de la gestion multifamiliar
     // se sacan las cuentas segun su responsable
     foreach ($edificio->miembrosDeGestion as $usuario) :
@@ -217,6 +220,7 @@ class BuildingsController extends Controller {
     return view(
       'movements.create', compact(
         'edificio', 
+        'movimiento', 
         'cuentas', 
         'items', 
         'tipos'

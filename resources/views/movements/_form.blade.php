@@ -72,6 +72,12 @@
   {!! Form::label('item_id', 'Rubro relacionado:') !!}
   <select name="item_id" id="item_id" class="form-control">
     <option value="0">Seleccionar</option>
+    @foreach ($movimiento->items as $item)
+      <option value="{{ $item->id }}" selected="selected">
+        {{ $item->description }} |
+        {{ $item->total }} Unidades
+      </option>
+    @endforeach
     @foreach ($items as $item)
       <option value="{{ $item->id }}">
         {{ $item->description }} |
@@ -96,6 +102,17 @@
       $('#item_id').change(function(){
         $('#total').val('');
       });
+      var valor = new Object;
+      $('#item_id > option:selected').each(function(index){
+        valor.id = index;
+      });
+      if (Object.keys(valor).length != 0) {
+        for (index in valor) {
+        // valor.each(function(index, id) {
+          console.log(index);
+          // console.log($('#item_id > option[value="'+id+'"]'));
+        };
+      }
     });
   </script>
 @stop
