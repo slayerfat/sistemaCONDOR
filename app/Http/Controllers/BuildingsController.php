@@ -197,13 +197,34 @@ class BuildingsController extends Controller {
    */
   public function movementsCreate($id)
   {
+    // el edifico
     $edificio = Building::findOrFail($id);
+
+    // por cada miembro de la gestion multifamiliar
+    // se sacan las cuentas segun su responsable
     foreach ($edificio->miembrosDeGestion as $usuario) :
       $cuentas[] = \App\Account::where('user_id', $usuario->id)->get();
     endforeach;
+
+    // nuevo usuario vacio
     $usuario = new \App\User;
 
-    return view('movements.create', compact('edificio', 'usuario', 'cuentas'));
+    // todos los tipos de movimientos
+    $tipos = \App\MovementType::all();
+
+    // los items segun el id del edificio
+    // para anclar concepto a un item
+    $items = \App\Item::where('building_id', $id)->get();
+
+    // la vista con todas las variables
+    return view(
+      'movements.create', compact(
+        'edificio', 
+        'usuario', 
+        'cuentas', 
+        'items', 
+        'tipos'
+      ));
   }
 
 

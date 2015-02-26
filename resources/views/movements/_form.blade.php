@@ -27,14 +27,57 @@
 <div class="form-group">
   {!! Form::label('account_id', 'Numero de cuenta asociada:') !!}
   <select name="account_id" id="account_id" class="form-control">
+    <option selected="selected">Sin Cuenta Asociada</option>
     @foreach ($cuentas as $objeto)
       @foreach ($objeto as $cuenta)
         <option value="{{ $cuenta->id }}">
-          {{ $cuenta->bank_number }}
+          {{ $cuenta->bank_number }} |
+          {{ $cuenta->banco->description }}
         </option>
       @endforeach
     @endforeach
   </select>
+</div>
+
+<div class="form-group">
+  {!! Form::label('movement_type_id', 'Tipo de Movimiento:') !!}
+  <select name="movement_type_id" id="movement_type_id" class="form-control">
+    @foreach ($tipos as $tipo)
+      <option value="{{ $tipo->id }}">
+        {{ $tipo->description }}
+      </option>
+    @endforeach
+  </select>
+</div>
+
+<div class="form-group">
+  {!! Form::label('operation', 'Operacion:') !!}
+  {!! Form::input('number', 'operation', null, [
+        'class' => 'form-control', 
+        'max' => '9999999999'
+      ]) !!}
+</div>
+
+<div class="form-group">
+  {!! Form::label('concept', 'Concepto:') !!}
+  {!! Form::text('concept', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
+  {!! Form::label('item_id', 'Rubro relacionado:') !!}
+  <select name="item_id" id="item_id" class="form-control">
+    @foreach ($items as $item)
+      <option value="{{ $item->id }}">
+        {{ $item->description }} |
+        {{ $item->total }} Unidades
+      </option>
+    @endforeach
+  </select>
+</div>
+
+<div class="form-group">
+  {!! Form::label('total', 'Cantidad a añadir o retirar:') !!}
+  {!! Form::text('total', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
