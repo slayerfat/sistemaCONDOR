@@ -35,9 +35,21 @@ class Movement extends Model {
    */
   protected $dates = ['deleted_at'];
 
+  /**
+   * para poner la operacion segun su tipo
+   * si es entrada es un valor positivo
+   * si es una salida es negativo.
+   * 
+   * @param float la operacion asociada al movimiento.
+   */
   public function setOperationAttribute($valor)
   {
+    // se chequea que tipo tiene asignada
+    // la instancia de esta clase
     $tipo = MovementType::where('id', $this->movement_type_id)->first();
+
+    // si es entrada es positivo
+    // sino es negativo
     if ( $tipo->description === 'Entrada' ) :
       $this->attributes['operation'] = abs($valor);
     else:

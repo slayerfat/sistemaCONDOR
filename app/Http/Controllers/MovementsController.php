@@ -35,12 +35,22 @@ class MovementsController extends Controller {
    */
   public function store(MovementsRequest $request)
   {
+    // se crea un nuevo objeto con los datos del formulario
+    // se añaden los campos de creado por y actualizado por
+    // y se inserta en la base de datos del sistema.
     $movimiento = new Movement($request->all());
     $movimiento->created_by = Auth::user()->id;
     $movimiento->updated_by = Auth::user()->id;
     $movimiento->save();
-    $movimiento->items()->attach($request->input('item_id'));
+
+    // si el movimiento esta asociado a un item, se hace la relacion.
+    if (trim($request->input('item_id')) !== '' and $request->input('item_id') !== '0') :
+      $movimiento->items()->attach($request->input('item_id'));
+    endif;
+    
+    // el mensaje de exito.
     flash('Movimiento ha sido creado con exito.');
+    // redireccion a edificio tal.
     return redirect()->action(
       'BuildingsController@movements', 
       $request->input('building_id'
