@@ -38,7 +38,13 @@ class MovementsController extends Controller {
     $movimiento = new Movement($request->all());
     $movimiento->created_by = Auth::user()->id;
     $movimiento->updated_by = Auth::user()->id;
-    return $request->all();
+    $movimiento->save();
+    $movimiento->items()->attach($request->input('item_id'));
+    flash('Movimiento ha sido creado con exito.');
+    return redirect()->action(
+      'BuildingsController@movements', 
+      $request->input('building_id'
+    ));
   }
 
   /**
