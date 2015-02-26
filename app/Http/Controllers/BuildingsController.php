@@ -206,9 +206,6 @@ class BuildingsController extends Controller {
       $cuentas[] = \App\Account::where('user_id', $usuario->id)->get();
     endforeach;
 
-    // nuevo usuario vacio
-    $usuario = new \App\User;
-
     // todos los tipos de movimientos
     $tipos = \App\MovementType::all();
 
@@ -220,7 +217,6 @@ class BuildingsController extends Controller {
     return view(
       'movements.create', compact(
         'edificio', 
-        'usuario', 
         'cuentas', 
         'items', 
         'tipos'

@@ -25,6 +25,7 @@ class Movement extends Model {
     'movement_type_id', 
     'operation',
     'concept',
+    'check_number',
     'created_by',
     'updated_by'
   ];
@@ -70,6 +71,21 @@ class Movement extends Model {
       $this->attributes['account_id'] = null;
     else:
       $this->attributes['account_id'] = $valor;
+    endif;
+  }
+
+  /**
+   * pone a nulo el numero de cheque
+   * si este esta vacio.
+   * 
+   * @param string el numero de cheque.
+   */
+  public function setCheckNumberAttribute($valor)
+  {
+    if ( trim($valor) === '' ) :
+      $this->attributes['check_number'] = null;
+    else:
+      $this->attributes['check_number'] = $valor;
     endif;
   }
 

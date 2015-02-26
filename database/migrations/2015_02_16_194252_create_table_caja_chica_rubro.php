@@ -14,7 +14,6 @@ class CreateTableCajaChicaRubro extends Migration {
   {
     Schema::create('item_movement', function(Blueprint $table)
     {
-      $table->increments('id');
       $table->integer('movement_id')->unsigned();
       $table->foreign('movement_id')->references('id')->on('movements');
       $table->integer('item_id')->unsigned();

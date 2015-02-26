@@ -3,6 +3,7 @@
 use App\Http\Requests\MovementsRequest;
 use App\Http\Controllers\Controller;
 use App\Movement;
+use App\Building;
 use Auth;
 
 
@@ -79,7 +80,7 @@ class MovementsController extends Controller {
     $movimiento = Movement::findOrFail($id);
 
     // el edifico
-    $edificio = Building::findOrFail($id);
+    $edificio = Building::where('id', $movimiento->building_id)->first();
 
     // por cada miembro de la gestion multifamiliar
     // se sacan las cuentas segun su responsable
@@ -87,15 +88,24 @@ class MovementsController extends Controller {
       $cuentas[] = \App\Account::where('user_id', $usuario->id)->get();
     endforeach;
 
-    // nuevo usuario vacio
-    $usuario = new \App\User;
-
     // todos los tipos de movimientos
     $tipos = \App\MovementType::all();
 
     // los items segun el id del edificio
     // para anclar concepto a un item
     $items = \App\Item::where('building_id', $id)->get();
+
+    // la vista con todas las variables
+    return view(
+      'movements.edit', 
+      compact(
+        'movimiento',
+        'edificio', 
+        'cuentas', 
+        'items', 
+        'tipos'
+      )
+    );
   }
 
   /**
@@ -104,9 +114,9 @@ class MovementsController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update($id, MovementsRequest $request)
   {
-    //
+    return $request->all();
   }
 
   /**
