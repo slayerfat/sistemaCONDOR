@@ -27,7 +27,7 @@
 <div class="form-group">
   {!! Form::label('account_id', 'Numero de cuenta asociada:') !!}
   <select name="account_id" id="account_id" class="form-control">
-    <option selected="selected">Sin Cuenta Asociada</option>
+    <option selected="selected" value="0">Sin Cuenta Asociada</option>
     @foreach ($cuentas as $objeto)
       @foreach ($objeto as $cuenta)
         <option value="{{ $cuenta->id }}">

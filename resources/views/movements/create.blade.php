@@ -10,12 +10,12 @@
           ) !!}
     </h1>
 
+    @include('errors.lista')
+
     <hr/>
 
     {!! Form::model($edificio, ['action' => 'MovementsController@store']) !!}
       @include('movements._form', ['textoBotonSubmit' => 'Añadir nuevo Movimiento'])
     {!! Form::close() !!}
-
-    @include('errors.lista')
   </div>
 @stop

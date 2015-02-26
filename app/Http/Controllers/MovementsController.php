@@ -1,9 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\MovementsRequest;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
 
 class MovementsController extends Controller {
 
@@ -32,9 +31,9 @@ class MovementsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(MovementsRequest $request)
 	{
-		//
+		return $request->all();
 	}
 
 	/**
