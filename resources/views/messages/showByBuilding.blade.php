@@ -19,6 +19,12 @@
                 $evento->title, $evento->id) !!}
         </h2>
         <body>{{ $evento->body }}</body>
+        <p>
+          <i>
+            Ultima actualizacion
+            {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+          </i>
+        </p>
       </article>
     </div>
   @endforeach

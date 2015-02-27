@@ -22,11 +22,29 @@ Route::get('edificios/items/{edificios}', 'BuildingsController@items');
 Route::get('edificios/eventos/{edificios}', 'BuildingsController@events');
 // mensajes de algun edificio
 Route::get('edificios/mensajes/{edificios}', 'BuildingsController@messages');
+// crear un movimiento relacionado con un edificio
+Route::get('edificios/movimientos/{edificios}/create', 'BuildingsController@movementsCreate');
+// movimientos de algun edificio (caja chica)
+Route::get('edificios/movimientos/{edificios}', 'BuildingsController@movements');
+// gestiones multifamiliares de algun edificio
+Route::get('edificios/gestiones/{edificios}', 'BuildingsController@gestions');
+// crea un miembro de gestion multifamiliar de algun edificio
+Route::get('edificios/gestiones/{edificios}/create', 'BuildingsController@gestionsCreate');
 Route::resource('apartamentos', 'ApartmentsController');
 Route::resource('mensajes', 'MessagesController');
-Route::resource('eventos',  'EventsController');
-Route::resource('items',  'ItemsController');
+Route::resource('eventos', 'EventsController');
+Route::resource('items', 'ItemsController');
+Route::resource('movimientos', 'MovementsController');
+// GESTIONES
+// guardar nuevo
+Route::post('gestiones', 'GestionsController@store');
+// actualizar
+Route::get('gestiones/{usuarios}/{edificios}', 'GestionsController@edit');
+// guardar actualizaciones
+Route::patch('gestiones/{gestiones}', 'GestionsController@update');
+Route::delete('gestiones/{usuarios}/{edificios}', 'GestionsController@destroy');
 
+// para asignar un usuario a un apartamento de un edifico
 Route::group(['prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');
   Route::get('/{id}/create', 'AssignApartmentsController@create');

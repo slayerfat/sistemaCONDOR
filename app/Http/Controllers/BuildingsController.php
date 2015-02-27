@@ -160,4 +160,72 @@ class BuildingsController extends Controller {
     return view('messages.showByBuilding', compact('edificio'));
   }
 
+  /**
+   * Muestra la gestion multifamiliar relacionada 
+   * con algun edificio en el sistema
+   */
+  public function gestions($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('gestions.showByBuilding', compact('edificio'));
+  }
+
+  /**
+   * crear gestion multifamiliar relacionada 
+   * con algun edificio en el sistema
+   */
+  public function gestionsCreate($id)
+  {
+    $edificio = Building::findOrFail($id);
+    $usuario = new \App\User;
+    return view('gestions.create', compact('edificio', 'usuario'));
+  }
+
+  /**
+   * Muestra la gestion multifamiliar relacionada 
+   * con algun edificio en el sistema
+   */
+  public function movements($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('movements.showByBuilding', compact('edificio'));
+  }
+
+  /**
+   * crear gestion multifamiliar relacionada 
+   * con algun edificio en el sistema
+   */
+  public function movementsCreate($id)
+  {
+    // el edifico
+    $edificio = Building::findOrFail($id);
+
+    // el movimiento
+    $movimiento = new \App\Movement;
+
+    // por cada miembro de la gestion multifamiliar
+    // se sacan las cuentas segun su responsable
+    foreach ($edificio->miembrosDeGestion as $usuario) :
+      $cuentas[] = \App\Account::where('user_id', $usuario->id)->get();
+    endforeach;
+
+    // todos los tipos de movimientos
+    $tipos = \App\MovementType::all();
+
+    // los items segun el id del edificio
+    // para anclar concepto a un item
+    $items = \App\Item::where('building_id', $id)->get();
+
+    // la vista con todas las variables
+    return view(
+      'movements.create', compact(
+        'edificio', 
+        'movimiento', 
+        'cuentas', 
+        'items', 
+        'tipos'
+      ));
+  }
+
+
 }

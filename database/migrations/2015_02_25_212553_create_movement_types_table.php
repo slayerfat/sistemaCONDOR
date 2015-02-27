@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableCuentas extends Migration {
+class CreateMovementTypesTable extends Migration {
 
   /**
    * Run the migrations.
@@ -12,15 +12,10 @@ class CreateTableCuentas extends Migration {
    */
   public function up()
   {
-    Schema::create('accounts', function(Blueprint $table)
+    Schema::create('movement_types', function(Blueprint $table)
     {
       $table->increments('id');
-      $table->integer('bank_id')->unsigned();
-      $table->foreign('bank_id')->references('id')->on('banks');
-      $table->integer('user_id')->unsigned();
-      $table->foreign('user_id')->references('id')->on('users');
-      $table->string('bank_number');
-      $table->double('balance', 15, 6);
+      $table->string('description');
       $table->timestamps();
       $table->integer('created_by')->unsigned();
       $table->foreign('created_by')->references('id')->on('users');
@@ -37,7 +32,7 @@ class CreateTableCuentas extends Migration {
    */
   public function down()
   {
-    Schema::drop('accounts');
+    Schema::drop('movement_types');
   }
 
 }

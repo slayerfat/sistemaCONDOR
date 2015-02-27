@@ -109,13 +109,27 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   public function edificios(){
     return $this->hasMany('App\Building', 'user_id');
   }
+  /**
+   * la relacion de gestion multifamiliar
+   */
+  public function gestiones(){
+    return $this->belongsToMany('App\Building');
+  }
 
   /**
-   * un usuario tiene muchos cuentas (titular) y 
+   * un usuario tiene muchas cuentas (titular) y 
    * un cuenta pertenece a un usuario
    */
   public function cuentas(){
     return $this->hasMany('App\Account', 'user_id');
+  }
+
+  /**
+   * un usuario tiene muchos movimientos (responsable)  
+   * y un movimiento pertenece a un usuario
+   */
+  public function movimientos(){
+    return $this->hasMany('App\Movement', 'user_id');
   }
 
   /**

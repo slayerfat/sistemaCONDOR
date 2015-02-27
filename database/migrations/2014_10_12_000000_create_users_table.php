@@ -22,12 +22,12 @@ class CreateUsersTable extends Migration {
       $table->string('username')->index();
       $table->string('identity_card', 5)->unique()->index();
       $table->string('first_name', 20);
-      $table->string('middle_name', 20)->nullable()->default('-');
+      $table->string('middle_name', 20)->nullable();
       $table->string('first_surname', 20);
-      $table->string('last_surname', 20)->nullable()->default('-');
+      $table->string('last_surname', 20)->nullable();
       $table->date('birth_date')->nullable();
-      $table->string('phone')->nullable()->default('-');
-      $table->string('aditional_phone')->nullable()->default('-');
+      $table->string('phone')->nullable();
+      $table->string('aditional_phone')->nullable();
       $table->rememberToken();
       $table->timestamps();
       $table->softDeletes();
