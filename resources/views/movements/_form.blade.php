@@ -30,7 +30,11 @@
     <option selected="selected" value="0">Sin Cuenta Asociada</option>
     @foreach ($cuentas as $objeto)
       @foreach ($objeto as $cuenta)
-        <option value="{{ $cuenta->id }}">
+        @if ($cuenta->id === $movimiento->account_id)
+          <option value="{{ $cuenta->id }}" selected="selected">
+        @else
+          <option value="{{ $cuenta->id }}">
+        @endif
           {{ $cuenta->bank_number }} |
           {{ $cuenta->banco->description }}
         </option>
@@ -99,20 +103,34 @@
 @section('js')
   <script type="text/javascript">
     $(function() {
+      // si un item cambia, el total es eliminado
       $('#item_id').change(function(){
         $('#total').val('');
       });
-      var valor = new Object;
-      $('#item_id > option:selected').each(function(index){
-        valor.id = index;
+
+
+      // para quitar elementos duplicados que vienen
+      // del item y el objeto
+      
+      // la variable.
+      var valores = new Array;
+      $('#item_id > option[selected="selected"]').each(function(index){
+        // por cada item selected se agrega al array.
+        valores.push($(this).val());
       });
-      if (Object.keys(valor).length != 0) {
-        for (index in valor) {
-        // valor.each(function(index, id) {
-          console.log(index);
-          // console.log($('#item_id > option[value="'+id+'"]'));
-        };
+      // si no esta vacio.
+      if (Object.keys(valores).length != 0) {
+        // por cada elemento
+        Object.keys(valores).forEach(function (key) {
+          // se obtiene los datos (lo que esta en el option)
+          var val = $('#item_id > option[value="'+valores[key]+'"]').html();
+          // se quita del elemento #item_id (duplicados)
+          $('#item_id > option[value="'+valores[key]+'"]').detach();
+          // se reconstruye
+          $('#item_id').append('<option value="'+valores[key]+'" selected="selected">'+val+'</option>');
+        });
       }
+
     });
   </script>
 @stop

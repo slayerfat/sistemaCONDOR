@@ -132,6 +132,9 @@ class MovementsController extends Controller {
       endif;
     endif;
 
+    // el mensaje de exito.
+    flash('Movimiento ha sido actualizado con exito.');
+
     return redirect()->action('BuildingsController@index');
   }
 

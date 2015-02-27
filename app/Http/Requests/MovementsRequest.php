@@ -25,7 +25,7 @@ class MovementsRequest extends Request {
 			'account_id'       => 'required|integer',
 			'user_id'          => 'required|integer',
 			'movement_type_id' => 'required|integer',
-			'operation'        => 'required|integer|max:9999999999',
+			'operation'        => 'required|numeric|max:9999999999',
 			'concept'          => 'required',
 			'item_id'          => 'integer',
 			'total'            => 'integer',
