@@ -4501,12 +4501,6 @@ button.close {
     clear: both; }
   #lista-8-4 .modelo .detalles {
     position: relative;
-    float: left;
-    width: 100%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-    position: relative;
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px; }
@@ -4524,7 +4518,8 @@ button.close {
     width: 50%;
     min-height: 1px;
     padding-left: 15px;
-    padding-right: 15px; }
+    padding-right: 15px;
+    padding-top: 20px; }
     @media (min-width: 768px) {
       #lista-8-4 .modelo .botones {
         float: left;

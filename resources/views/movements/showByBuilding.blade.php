@@ -6,16 +6,16 @@
     <h1>
       Movimientos relacionados al Edificio
       {!! link_to_action('BuildingsController@show',
-            $edificio->name,
-            $edificio->id
-          ) !!}
+        $edificio->name,
+        $edificio->id
+      ) !!}
     </h1>
     @if (Auth::user()->perfil->description === 'Administrador')
       {!! link_to_action('BuildingsController@movementsCreate',
-            'Añadir Movimiento',
-            $edificio->id,
-            ['class' => 'btn btn-primary']
-          ) !!}
+        'Añadir Movimiento',
+        $edificio->id,
+        ['class' => 'btn btn-primary']
+      ) !!}
     @endif
   </div>
   <div id="lista-8-4">
@@ -53,20 +53,16 @@
           </div>
           @if (Auth::user()->perfil->description === 'Administrador')
             <div class="botones">
-              <h2>
-                {!! link_to_action('MovementsController@edit',
-                      'Actualizar',
-                      $movimiento->id,
-                      ['class' => 'btn btn-default']
-                    ) !!}
-              </h2>
+              {!! link_to_action('MovementsController@edit',
+                'Actualizar',
+                $movimiento->id,
+                ['class' => 'btn btn-default']
+              ) !!}
             </div>
             <div class="botones">
-              <h2>
-                {!! Form::open(['method' => 'DELETE', 'action' => ['MovementsController@destroy', $movimiento->id]]) !!}
-                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
-                {!! Form::close() !!}
-              </h2>
+              {!! Form::open(['method' => 'DELETE', 'action' => ['MovementsController@destroy', $movimiento->id]]) !!}
+              {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
+              {!! Form::close() !!}
             </div>
           @endif
         </div>

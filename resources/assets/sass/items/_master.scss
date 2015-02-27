@@ -1,9 +1,14 @@
 #apartamentos{
+
   @include make-row();
+
   #apartamentos-lista{
+
     @include make-sm-column(6);
+
     p{
       font-size: 16px;
     }
+    
   }
 }

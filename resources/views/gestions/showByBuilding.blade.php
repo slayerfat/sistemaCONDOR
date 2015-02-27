@@ -6,20 +6,20 @@
     <h1>
       Miembros de la Gestion Multifamiliar del Edificio
       {!! link_to_action('BuildingsController@show',
-            $edificio->name,
-            $edificio->id
-          ) !!}
+        $edificio->name,
+        $edificio->id
+      ) !!}
     </h1>
     @if (Auth::user()->perfil->description === 'Administrador')
       {!! link_to_action('BuildingsController@gestionsCreate',
-            'Añadir Miembro',
-            $edificio->id,
-            ['class' => 'btn btn-primary']
-          ) !!}
+        'Añadir Miembro',
+        $edificio->id,
+        ['class' => 'btn btn-primary']
+      ) !!}
     @endif
   </div>
   {{-- datos de usuarios relacionados con la gestion --}}
-  <div class="lista-8-4">
+  <div id="lista-8-4">
     @foreach ($edificio->miembrosDeGestion as $usuario)
       <div class="modelo">
         <div class="detalles">
@@ -46,10 +46,10 @@
         @if (Auth::user()->perfil->description === 'Administrador')
           <div class="botones">
               {!! link_to_action('GestionsController@edit',
-                    'Actualizar Miembro',
-                    [$usuario->id, $edificio->id],
-                    ['class' => 'btn btn-default']
-                  ) !!}
+                'Actualizar',
+                [$usuario->id, $edificio->id],
+                ['class' => 'btn btn-default']
+              ) !!}
           </div>
           <div class="botones">
               {!! Form::open(['method' => 'DELETE', 'action' => ['GestionsController@destroy', $usuario->id, $edificio->id]]) !!}
