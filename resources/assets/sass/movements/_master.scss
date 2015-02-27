@@ -1,0 +1,31 @@
+
+#edificio{
+  @extend .container;
+}
+
+.movimiento-lista{
+
+  @extend .container;
+
+  .movimiento{
+
+    @extend .row;
+
+    .detalles{
+      @extend .col-xs-12;
+      @extend .col-sm-8;
+
+      .verde{
+        color: $brand-success;
+      }
+      .rojo{
+        color: $brand-danger;
+      }
+    }
+
+    .botones{
+      @extend .col-sm-2;
+      @extend .col-xs-6;
+    }
+  }
+}

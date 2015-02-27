@@ -2,14 +2,14 @@
 
 @section('contenido')
   @include('errors.lista')
-  <div class="container">
-    <h3>
+  <div id="edificio">
+    <h1>
       Del Edificio 
       {!! link_to_action('BuildingsController@show',
             $edificio->name,
             $edificio->id
           ) !!}
-    </h3>
+    </h1>
   </div>
   @foreach ($edificio->eventos as $evento)
     <div class="container">
