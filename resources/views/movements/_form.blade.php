@@ -93,7 +93,10 @@
 
 <div class="form-group">
   {!! Form::label('total', 'Cantidad a añadir o retirar:') !!}
-  {!! Form::text('total', null, ['class' => 'form-control']) !!}
+  {!! Form::text('total', null, [
+        'class' => 'form-control',
+        'placeholder' => 'Utilice valores negativos para retirar cantidades EJ: -5'
+      ]) !!}
 </div>
 
 <div class="form-group">

@@ -32,6 +32,14 @@ class Item extends Model {
    */
   protected $dates = ['deleted_at'];
 
+  public function setTotalAttribute($valor)
+  {
+    $valor = (int)$valor;
+
+    $total = ($valor + $this->original['total'] < 0) ? 0 : $valor + $this->original['total'];
+    $this->attributes['total'] = $total;
+  }
+
   /**
    * relacion 1aN
    */
