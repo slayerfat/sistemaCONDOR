@@ -47,7 +47,18 @@ class MovementsController extends Controller {
 
     // si el movimiento esta asociado a un item, se hace la relacion.
     if (trim($request->input('item_id')) !== '' and $request->input('item_id') !== '0') :
-      $movimiento->items()->attach($request->input('item_id'));
+
+      // MEJORAR:
+      $item = \App\Item::findOrFail($request->input('item_id'));
+      $item->total = $request->input('total');
+      $item->updated_by = Auth::user()->id;
+      $item->updated_at = Carbon::now();
+      $item->update();
+      if ($movimiento->items()->get()->isEmpty()) :
+        $movimiento->items()->attach([$request->input('item_id')]);
+      else :
+        $movimiento->items()->sync([$request->input('item_id')]);
+      endif;
     endif;
     
     // el mensaje de exito.
@@ -142,7 +153,7 @@ class MovementsController extends Controller {
     // el mensaje de exito.
     flash('Movimiento ha sido actualizado con exito.');
 
-    return redirect()->action('BuildingsController@index');
+    return redirect()->action('BuildingsController@show', $movimiento->building_id);
   }
 
   /**
@@ -153,7 +164,12 @@ class MovementsController extends Controller {
    */
   public function destroy($id)
   {
-    //
+    $movimiento = Movement::findOrFail($id);
+
+    $movimiento->delete();
+
+    flash()->info('El movimiento fue eliminado con exito');
+    return redirect()->action('BuildingsController@show', $movimiento->building_id);
   }
 
 }
