@@ -1,0 +1,33 @@
+#lista-8-4{
+
+  @extend .container;
+
+  .modelo{
+
+    @extend .row;
+
+    .detalles{
+      @extend .col-xs-12;
+      @extend .col-sm-8;
+    }
+
+    .botones{
+      @extend .col-sm-2;
+      @extend .col-xs-6;
+    }
+  }
+}
+
+#lista-12{
+
+  @extend .container;
+
+  .modelo{
+
+    @extend .row;
+
+    .detalles{
+      @extend .col-xs-12;
+    }
+  }
+}

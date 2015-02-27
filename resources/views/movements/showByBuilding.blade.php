@@ -18,11 +18,11 @@
           ) !!}
     @endif
   </div>
-  <div class="movimiento-lista">
+  <div id="lista-8-4">
     {{-- datos de usuarios relacionados con la gestion --}}
     @foreach ($edificio->miembrosDeGestion as $usuario)
       @foreach ($usuario->movimientos as $movimiento)
-        <div class="movimiento">
+        <div class="modelo">
           <div class="detalles">
             <h2>
               {{ $movimiento->concept }}

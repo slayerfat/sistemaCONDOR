@@ -11,21 +11,31 @@
           ) !!}
     </h1>
   </div>
-  @foreach ($edificio->eventos as $evento)
-    <div class="container">
-      <article>
-        <h2>
-          {!! link_to_action('EventsController@show', 
-                $evento->title, $evento->id) !!}
-        </h2>
-        <body>{{ $evento->body }}</body>
-        <p>
-          <i>
-            Ultima actualizacion
-            {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
-          </i>
-        </p>
-      </article>
-    </div>
-  @endforeach
+  <div id="lista-12">
+    @foreach ($edificio->eventos as $evento)
+      <div class="modelo">
+        <div class="detalles">
+          <article>
+            <header>
+              <h1>
+                {!! link_to_action('EventsController@show', 
+                      $evento->title, $evento->id) !!}
+              </h1>
+            </header>
+            <p class="body">
+              {{ $evento->body }}
+            </p>
+            <footer>
+              <p>
+                <i>
+                  Ultima actualizacion
+                  {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+                </i>
+              </p>
+            </footer>
+          </article>
+        </div>
+      </div>
+    @endforeach
+  </div>
 @stop
