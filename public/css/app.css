@@ -4461,6 +4461,12 @@ button.close {
 .rojo {
   color: #d9534f; }
 
+.amarillo {
+  color: #f0ad4e; }
+
+.mediano {
+  font-size: 18px; }
+
 .detalles article .body {
   font-size: 24px;
   text-align: justify; }

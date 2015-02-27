@@ -15,21 +15,31 @@
       @endif
     </h1>
     {!! link_to_action('BuildingsController@gestions', 
-            'Ver Miembros de Gestion Multifamiliar', 
-            $edificio->id, 
-            ['class' => 'btn btn-default']
-          ) !!}
+      'Miembros de Gestion Multifamiliar', 
+      $edificio->id, 
+      ['class' => 'btn btn-default']
+    ) !!}
     @if (Auth::user()->perfil->description === 'Administrador')
-      {!! link_to_action('BuildingsController@items', 
-            'Ver Inventario', 
-            $edificio->id, 
-            ['class' => 'btn btn-default']
-          ) !!}
       {!! link_to_action('BuildingsController@messages', 
-            'Ver Mensajes', 
-            $edificio->id, 
-            ['class' => 'btn btn-default']
-          ) !!}
+        'Mensajes', 
+        $edificio->id, 
+        ['class' => 'btn btn-default']
+      ) !!}
+      {!! link_to_action('BuildingsController@events', 
+        'Eventos', 
+        $edificio->id, 
+        ['class' => 'btn btn-default']
+      ) !!}
+      {!! link_to_action('BuildingsController@movements', 
+        'Movimientos', 
+        $edificio->id, 
+        ['class' => 'btn btn-default']
+      ) !!}
+      {!! link_to_action('BuildingsController@items', 
+        'Inventario', 
+        $edificio->id, 
+        ['class' => 'btn btn-default']
+      ) !!}
     @endif
     <div class="row">
       <div class="col-sm-6">
@@ -65,43 +75,56 @@
         <div class="row">
           <h2>
             Ultimos Movimientos
-            {!! link_to_action('BuildingsController@movements', 
-                  'Ver Todos', 
-                  $edificio->id, 
-                  ['class' => 'btn btn-default']
-                ) !!}
           </h2>
           @foreach ($edificio->movimientos as $movimiento)
             <article>
-              <h3>
-                {!! $movimiento->concept !!}
-              </h3>
-              <body>
-                <p>
+              <header>
+                <h3>
+                  {!! $movimiento->concept !!}
+                </h3>
+              </header>
+              <section>
+                <p class="body">
                   @unless ($movimiento->cuenta()->get()->isEmpty())
                     Cuenta N°: {{ $movimiento->cuenta->bank_number }}
                   @endunless
                 </p>
+              </section>
+              <section>
                 <p>
                   @unless ($movimiento->tipo()->get()->isEmpty())
                     @if ($movimiento->tipo->description === 'Entrada')
-                      <span class="verde">
-                        {{ $movimiento->tipo->description }}
+                      <span class="mediano verde">
+                        <i>
+                          {{ $movimiento->tipo->description }}
+                        </i>
+                        <strong>
+                          {{ $movimiento->operation }}
+                        </strong>
                       </span>
                     @elseif ($movimiento->tipo->description === 'Salida')
-                      <span class="rojo">
-                        {{ $movimiento->tipo->description }}
+                      <span class="mediano rojo">
+                        <i>
+                          {{ $movimiento->tipo->description }}
+                        </i>
+                        <strong>
+                          {{ $movimiento->operation }}
+                        </strong>
                       </span>
                     @else
-                      <span class="amarillo">
-                        {{ $movimiento->tipo->description }}
+                      <span class="mediano amarillo">
+                        <i>
+                          {{ $movimiento->tipo->description }}
+                        </i>
+                        <strong>
+                          {{ $movimiento->operation }}
+                        </strong>
                       </span>
                     @endif
                   @endunless
-                  <strong>
-                    {{ $movimiento->operation }}
-                  </strong>
                 </p>
+              </section>
+              <section>
                 <p>
                   <strong>
                     @if($movimiento->check_number)
@@ -112,13 +135,15 @@
                   </strong>
                   {!! Html::mailto($movimiento->responsable->email) !!}
                 </p>
+              </section>
+              <footer>
                 <p>
                   <i>
                     Ultima actualizacion
                     {!! Date::parse($movimiento->updated_at)->diffForHumans(); !!}.
                   </i>
                 </p>
-              </body>
+              </footer>
             </article>
           @endforeach
         </div>
@@ -126,26 +151,25 @@
         <div class="row">
           <h2>
             Ultimos Eventos del Edificio
-            {!! link_to_action('BuildingsController@events', 
-                  'Ver Todos', 
-                  $edificio->id, 
-                  ['class' => 'btn btn-default']
-                ) !!}
           </h2>
           @foreach ($edificio->eventos as $evento)
             <article>
-              <h3>
-                {!! link_to_action('EventsController@show', $evento->title, $evento->id) !!}
-              </h3>
-              <body>
+              <header>
+                <h3>
+                  {!! link_to_action('EventsController@show', $evento->title, $evento->id) !!}
+                </h3>
+              </header>
+              <p class="body">
                 {{ $evento->body }}
-              </body>
-              <p>
-                <i>
-                  Ultima actualizacion
-                  {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
-                </i>
               </p>
+              <footer>
+                <p>
+                  <i>
+                    Ultima actualizacion
+                    {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+                  </i>
+                </p>
+              </footer>
             </article>
           @endforeach
         </div>

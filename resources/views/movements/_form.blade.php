@@ -52,7 +52,11 @@
   {!! Form::label('movement_type_id', 'Tipo de Movimiento:') !!}
   <select name="movement_type_id" id="movement_type_id" class="form-control">
     @foreach ($tipos as $tipo)
-      <option value="{{ $tipo->id }}">
+      @if ($tipo->id === $movimiento->movement_type_id)
+        <option value="{{ $tipo->id }}" selected="selected">
+      @else
+        <option value="{{ $tipo->id }}">
+      @endif
         {{ $tipo->description }}
       </option>
     @endforeach
