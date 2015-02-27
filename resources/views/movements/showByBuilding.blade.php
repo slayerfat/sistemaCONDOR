@@ -23,7 +23,7 @@
     @foreach ($edificio->miembrosDeGestion as $usuario)
       @foreach ($usuario->movimientos as $movimiento)
         <div class="row">
-          <div class="col-xs-8">
+          <div class="col-sm-8 col-xs-12">
             <h2>
               {{ $movimiento->concept }}
             </h2>
@@ -52,7 +52,7 @@
             </p>
           </div>
           @if (Auth::user()->perfil->description === 'Administrador')
-            <div class="col-md-2">
+            <div class="col-sm-2 col-xs-6">
               <h2>
                 {!! link_to_action('MovementsController@edit',
                       'Actualizar',
@@ -61,7 +61,7 @@
                     ) !!}
               </h2>
             </div>
-            <div class="col-md-2">
+            <div class="col-sm-2 col-xs-6">
               <h2>
                 {!! Form::open(['method' => 'DELETE', 'action' => ['MovementsController@destroy', $movimiento->id]]) !!}
                 {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}

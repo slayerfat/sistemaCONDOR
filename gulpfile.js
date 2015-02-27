@@ -52,10 +52,9 @@ gulp.task('release', function() { return inc('major'); })
  */
 
 elixir(function(mix) {
-  mix.sass('app.sass');
+  mix.sass('app.scss');
   // javascripts
   mix.copy('vendor/bower_components/jquery/dist/jquery.min.js', 'public/vendor/js/jquery/jquery.min.js')
-     .copy('vendor/bower_components/jquery/dist/jquery.js', 'public/vendor/js/jquery/jquery.js')
      .copy('vendor/bower_components/jquery/dist/jquery.min.map', 'public/vendor/js/jquery/jquery.min.map')
      .copy('vendor/bower_components/bootstrap/dist/js/bootstrap.min.js', 'public/vendor/js/bootstrap/bootstrap.min.js')
      .copy('vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js', 'public/vendor/js/bootstrap-datepicker/bootstrap-datepicker.js')
