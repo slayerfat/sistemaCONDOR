@@ -51,6 +51,12 @@
                 <p class="text-justify">
                   {{ $mensaje->body }}
                 </p>
+                <p>
+                  <i>
+                    Ultima actualizacion
+                    {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
+                  </i>
+                </p>
               </section>
             @endforeach
         </div>
@@ -78,11 +84,12 @@
                 <p class="text-justify">
                   {{ $evento->body }}
                 </p>
-                @if ($usuario->perfil->description === 'Administrador')
-                  {!! link_to_action('EventsController@edit', 
-                    'Editar', $evento->id,
-                    ['class' => 'btn btn-default']) !!}
-                @endif
+                <p>
+                  <i>
+                    Ultima actualizacion
+                    {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+                  </i>
+                </p>
                 <hr/>
               </section>
             @endforeach

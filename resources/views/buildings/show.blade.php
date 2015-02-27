@@ -71,7 +71,58 @@
                   ['class' => 'btn btn-default']
                 ) !!}
           </h2>
+          @foreach ($edificio->movimientos as $movimiento)
+            <article>
+              <h3>
+                {!! $movimiento->concept !!}
+              </h3>
+              <body>
+                <p>
+                  @unless ($movimiento->cuenta()->get()->isEmpty())
+                    Cuenta N°: {{ $movimiento->cuenta->bank_number }}
+                  @endunless
+                </p>
+                <p>
+                  @unless ($movimiento->tipo()->get()->isEmpty())
+                    @if ($movimiento->tipo->description === 'Entrada')
+                      <span class="verde">
+                        {{ $movimiento->tipo->description }}
+                      </span>
+                    @elseif ($movimiento->tipo->description === 'Salida')
+                      <span class="rojo">
+                        {{ $movimiento->tipo->description }}
+                      </span>
+                    @else
+                      <span class="amarillo">
+                        {{ $movimiento->tipo->description }}
+                      </span>
+                    @endif
+                  @endunless
+                  <strong>
+                    {{ $movimiento->operation }}
+                  </strong>
+                </p>
+                <p>
+                  <strong>
+                    @if($movimiento->check_number)
+                      Cheque N°: {{ $movimiento->check_number }}
+                    @endif
+                    {{ $movimiento->responsable->first_name }}
+                    {{ $movimiento->responsable->first_surname }}
+                  </strong>
+                  {!! Html::mailto($movimiento->responsable->email) !!}
+                </p>
+                <p>
+                  <i>
+                    Ultima actualizacion
+                    {!! Date::parse($movimiento->updated_at)->diffForHumans(); !!}.
+                  </i>
+                </p>
+              </body>
+            </article>
+          @endforeach
         </div>
+        <hr/>
         <div class="row">
           <h2>
             Ultimos Eventos del Edificio
@@ -89,6 +140,12 @@
               <body>
                 {{ $evento->body }}
               </body>
+              <p>
+                <i>
+                  Ultima actualizacion
+                  {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+                </i>
+              </p>
             </article>
           @endforeach
         </div>

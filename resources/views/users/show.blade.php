@@ -81,6 +81,12 @@
         <p>
           {{ $mensaje->body }}
         </p>
+        <p>
+          <i>
+            Ultima actualizacion
+            {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
+          </i>
+        </p>
       @endforeach
     </section>
   </div>
