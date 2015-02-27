@@ -41,34 +41,38 @@
         ['class' => 'btn btn-default']
       ) !!}
     @endif
-    <div class="row">
-      <div class="col-sm-6">
+    <div id="apartamentos">
+      <div id="apartamentos-lista">
         <h2>
           Apartamentos existentes
         </h2>
         @foreach ($edificio->apartamentos as $apartamento)
-          <p>
-            {!! link_to_action('ApartmentsController@show', 
-                  'Numero '.$apartamento->number, 
-                  $apartamento->id
-                ) !!}
-            <br>
-            <small>
-              Propietario:
-              @unless ( $apartamento->propietario()->get()->isEmpty() )
-                {!! link_to_action('UsersController@show',
-                      $apartamento->propietario->first_name.
-                      ', '.
-                      $apartamento->propietario->first_surname,
-                      $apartamento->propietario->id
-                    ) !!}
-                Telf: {{ $apartamento->propietario->phone }}
-                Email: {!! Html::mailto($apartamento->propietario->email) !!}
-              @else
-                <i>Sin Propietario</i>
-              @endunless
-            </small>
-          </p>
+          <section>
+            <p>
+              {!! link_to_action('ApartmentsController@show', 
+                'Numero '.$apartamento->number, 
+                $apartamento->id
+              ) !!}
+              <small>
+                @unless ( $apartamento->propietario()->get()->isEmpty() )
+                  Propietario:
+                  {!! link_to_action('UsersController@show',
+                    $apartamento->propietario->first_name.
+                    ', '.
+                    $apartamento->propietario->first_surname,
+                    $apartamento->propietario->id
+                  ) !!}
+                  <br>
+                  <strong>
+                    Telf: {{ $apartamento->propietario->phone }}
+                  </strong> -
+                  Email: {!! Html::mailto($apartamento->propietario->email) !!}
+                @else
+                  <i>Sin Propietario</i>
+                @endunless
+              </small>
+            </p>
+          </section>
         @endforeach
       </div>
       <div class="col-sm-6">

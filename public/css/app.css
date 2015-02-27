@@ -4471,6 +4471,26 @@ button.close {
   font-size: 24px;
   text-align: justify; }
 
+#apartamentos {
+  margin-left: -15px;
+  margin-right: -15px; }
+  #apartamentos:before, #apartamentos:after {
+    content: " ";
+    display: table; }
+  #apartamentos:after {
+    clear: both; }
+  #apartamentos #apartamentos-lista {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px; }
+    @media (min-width: 768px) {
+      #apartamentos #apartamentos-lista {
+        float: left;
+        width: 50%; } }
+    #apartamentos #apartamentos-lista p {
+      font-size: 16px; }
+
 #lista-8-4 .modelo {
   margin-left: -15px;
   margin-right: -15px; }
