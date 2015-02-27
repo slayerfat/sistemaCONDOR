@@ -4,16 +4,16 @@
 
   .modelo{
 
-    @extend .row;
+    @include make-row();
 
     .detalles{
-      @extend .col-xs-12;
-      @extend .col-sm-8;
+      @include make-xs-column(12);
+      @include make-sm-column(8);
     }
 
     .botones{
-      @extend .col-sm-2;
-      @extend .col-xs-6;
+      @include make-sm-column(2);
+      @include make-xs-column(6);
     }
   }
 }
@@ -24,10 +24,10 @@
 
   .modelo{
 
-    @extend .row;
+    @include make-row();
 
     .detalles{
-      @extend .col-xs-12;
+      @include make-xs-column(12);
     }
   }
 }

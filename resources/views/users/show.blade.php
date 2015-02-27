@@ -53,41 +53,48 @@
           {{ $usuario->perfil->description }}
         </h4>
     </section>
-
-    <hr/>
-    <section>
-      <h3>
-        Ultimos mensajes
-        {!!link_to_action(
-          'MessagesController@create', 
-          'Crear Nuevo', null,
-          ['class' => 'btn btn-primary']) !!}
-      </h3>
-      
-      @foreach ($usuario->mensajes as $mensaje)
-        <h4>
-          @if (Auth::user()->id === $usuario->id)
-            {!!link_to_action(
-              'MessagesController@edit',
-              $mensaje->title,
-              $mensaje->id) !!}
-          @else
-            {!!link_to_action(
-              'MessagesController@show', 
-              $mensaje->title,
-              $mensaje->id) !!}
-          @endif
-        </h4>
-        <p>
-          {{ $mensaje->body }}
-        </p>
-        <p>
-          <i>
-            Ultima actualizacion
-            {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
-          </i>
-        </p>
-      @endforeach
-    </section>
+  </div>  
+  <div id="lista-12">
+    <h3>
+      Ultimos mensajes
+      {!!link_to_action(
+        'MessagesController@create', 
+        'Crear Nuevo', null,
+        ['class' => 'btn btn-primary']) !!}
+    </h3>
+    @foreach ($usuario->mensajes as $mensaje)
+      <div class="modelo">
+        <div class="detalles">
+          <article>
+            <header>
+              <h4>
+                @if (Auth::user()->id === $usuario->id)
+                  {!!link_to_action(
+                    'MessagesController@edit',
+                    $mensaje->title,
+                    $mensaje->id) !!}
+                @else
+                  {!!link_to_action(
+                    'MessagesController@show', 
+                    $mensaje->title,
+                    $mensaje->id) !!}
+                @endif
+              </h4>
+            </header>
+            <p class="body">
+              {{ $mensaje->body }}
+            </p>
+            <footer>
+              <p>
+                <i>
+                  Ultima actualizacion
+                  {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
+                </i>
+              </p>
+            </footer>
+          </article>
+        </div>
+      </div>
+    @endforeach
   </div>
 @stop
