@@ -15,27 +15,19 @@
         ) !!}
     </h1>
     {!! link_to_action(
-          'ItemsController@create', 
+          'ItemsController@create',
           'Crear Nuevo Item o Rubro',
           null,
           ['class' => 'btn btn-primary']
         ) !!}
   </div>
-  <div id="lista-12">
+  <div id="lista-8-4">
     @foreach ($edificio->items as $item)
       <div class="modelo">
         <div class="detalles">
           <h1>
             {{ $item->description }}
             <small>Total {{ $item->total }}</small>
-            @if (Auth::user()->perfil->description === 'Administrador')
-              {!! link_to_action(
-                    'ItemsController@edit',
-                    'Editar',
-                    $item->id,
-                    ['class' => 'btn btn-primary']
-                  ) !!}
-            @endif
           </h1>
           <p>
             <i>
@@ -44,6 +36,21 @@
             </i>
           </p>
         </div>
+        @if (Auth::user()->perfil->description === 'Administrador')
+          <div class="botones">
+            {!! link_to_action(
+                  'ItemsController@edit',
+                  'Actualizar',
+                  $item->id,
+                  ['class' => 'btn btn-default']
+                ) !!}
+          </div>
+          <div class="botones">
+              {!! Form::open(['method' => 'DELETE', 'action' => ['ItemsController@destroy', $item->id]]) !!}
+              {!! Form::submit('Eliminar Item', ['class' => 'btn btn-danger']) !!}
+              {!! Form::close() !!}
+          </div>
+        @endif
       </div>
     @endforeach
   </div>

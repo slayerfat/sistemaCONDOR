@@ -107,7 +107,12 @@ class ItemsController extends Controller {
    */
   public function destroy($id)
   {
-    //
+    $item = Item::findOrFail($id);
+
+    $item->delete();
+
+    flash()->info('El Item fue eliminado con exito');
+    return redirect()->action('BuildingsController@show', $item->building_id);
   }
 
 }

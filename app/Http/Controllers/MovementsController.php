@@ -10,7 +10,7 @@ use Auth;
 
 class MovementsController extends Controller {
 
-  **
+  /**
    * Create a new controller instance.
    *
    * @return void
@@ -178,7 +178,7 @@ class MovementsController extends Controller {
 
     $movimiento->delete();
 
-    flash()->info('El movimiento fue eliminado con exito');
+    flash()->info('El Movimiento fue eliminado con exito');
     return redirect()->action('BuildingsController@show', $movimiento->building_id);
   }
 
