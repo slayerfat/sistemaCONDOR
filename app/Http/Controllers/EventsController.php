@@ -7,6 +7,7 @@ use App\Event;
 use App\Building;
 use Auth;
 use Mail;
+use App\User;
 
 class EventsController extends Controller {
 
@@ -68,9 +69,7 @@ class EventsController extends Controller {
       'usuario' => Auth::user(),
     ];
 
-    Mail::send('emails.eventCreated', $data, function($message){
-      $message->to(Auth::user()->email)->subject('Nuevo Evento en sistemaCONDOR.');
-    });
+    $this->enviarEmailAdministradores($data);
 
     // evento de exito
     flash('Su Mensaje ha sido creado con exito.');
@@ -132,6 +131,36 @@ class EventsController extends Controller {
   public function destroy($id)
   {
     //
+  }
+
+  /**
+   * Se chequean los administradores especificos relacionados
+   * con el edificio del evento y se les envia
+   * un correo de notificacion.
+   *
+   * @param  array    $data  el array con los datos relacionados
+   * @return boolean
+   */
+  private function enviarEmailAdministradores($data)
+  {
+    // por si acaso...
+    if (!isset($data)) return null;
+
+    // se buscan los administradores
+    $administradores = User::administradores()->get();
+    // de los administradores se busca su edificio
+    // para no mandar email a todos los admins del sistema.
+    foreach ($administradores as $administrador) :
+      foreach ($administrador->apartamentos as $apartamento) :
+        if ($apartamento->building_id === $data['evento']->building_id) :
+          Mail::send(['emails.eventCreated', 'emails.eventCreatedPlain'], $data, function($message) use ($administrador){
+            $message->to($administrador->email)->subject('Nuevo Evento en sistemaCONDOR.');
+          });
+        endif;
+      endforeach;
+    endforeach;
+
+    return true;
   }
 
 }

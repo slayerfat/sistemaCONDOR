@@ -6,6 +6,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Profile;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -51,6 +52,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    * @var array
    */
   protected $dates = ['deleted_at'];
+
+  public function scopeAdministradores($query)
+  {
+    $perfil = Profile::where('description', 'Administrador')->first();
+    return $query->where('profile_id', $perfil->id);
+  }
 
   /**
    * la asociacion entre usuarios y perfiles en la base de datos
