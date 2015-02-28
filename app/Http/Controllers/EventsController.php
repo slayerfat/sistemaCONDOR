@@ -6,6 +6,7 @@ use App\EventType;
 use App\Event;
 use App\Building;
 use Auth;
+use Mail;
 
 class EventsController extends Controller {
 
@@ -61,6 +62,16 @@ class EventsController extends Controller {
 
     $edificio = Building::findOrFail($request->input('building_id'));
     $edificio->eventos()->save($evento);
+
+    $data = [
+      'evento'  => $evento,
+      'usuario' => Auth::user(),
+    ];
+
+    Mail::send('emails.eventCreated', $data, function($message){
+      $message->to(Auth::user()->email)->subject('Nuevo Evento en sistemaCONDOR.');
+    });
+
     // evento de exito
     flash('Su Mensaje ha sido creado con exito.');
     return redirect()->action('IndexController@index');
