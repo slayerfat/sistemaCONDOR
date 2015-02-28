@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title')
-  - Mensajes - {{ $edificio->name }}
+  - Mensajes
 @stop
 
 @section('contenido')
@@ -9,9 +9,9 @@
   @foreach ($edificios as $edificio)
     <div class="container">
       <h1>
-        Mensajes relacionados 
+        Mensajes relacionados
         <small>
-          Con 
+          Con
           {!! link_to_action('BuildingsController@show',
               $edificio->name,
               $edificio->id
@@ -32,7 +32,7 @@
       @foreach ($usuario->mensajes as $mensaje)
         <article>
           <h2>
-            {!! link_to_action('MessagesController@show', 
+            {!! link_to_action('MessagesController@show',
                   $mensaje->title, $mensaje->id) !!}
           </h2>
           <body>{{ $mensaje->body }}</body>

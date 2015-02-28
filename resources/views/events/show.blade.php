@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title')
-  - Eventos - {{ $edificio->name }} - {!! $evento->title !!}
+  - Eventos - {!! $evento->title !!}
 @stop
 
 @section('contenido')
@@ -11,8 +11,8 @@
         <h1>
           {!! $evento->title !!}
           @if (Auth::user()->id === $evento->autor->id)
-            {!! link_to_action('MessagesController@edit', 
-              'Editar Mensaje', 
+            {!! link_to_action('EventsController@edit',
+              'Editar Evento',
               $evento->id,
               ['class' => 'btn btn-primary']
             ) !!}
@@ -22,7 +22,7 @@
       <p class="body">{{ $evento->body }}</p>
 
       <hr/>
-      
+
       <footer>
         <address>
           <h3>

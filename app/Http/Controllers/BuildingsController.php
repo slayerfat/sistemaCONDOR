@@ -23,7 +23,7 @@ class BuildingsController extends Controller {
     $this->middleware('auth');
 
     $this->middleware('administrador.evento',
-      ['except' => ['index', 'show', 'floors']
+      ['except' => ['index', 'show', 'floors', 'events']
     ]);
   }
 
@@ -145,7 +145,7 @@ class BuildingsController extends Controller {
   }
 
   /**
-   * Muestra los events relacionados con
+   * Muestra los eventos relacionados con
    * algun edificio en el sistema
    */
   public function events($id)

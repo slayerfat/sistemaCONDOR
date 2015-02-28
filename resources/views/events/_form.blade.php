@@ -14,5 +14,20 @@
 </div>
 
 <div class="form-group">
+  {!! Form::label('building_id', 'Asociado a Edifico:') !!}
+  <select class="form-control" name="building_id">
+    @foreach ($usuario->apartamentos as $apartamento)
+      @if ($apartamento->edificio->id === $evento->building_id)
+        <option value="{{ $apartamento->edificio->id }}" selected="selected">
+      @else
+        <option value="{{ $apartamento->edificio->id }}">
+      @endif
+        {{ $apartamento->edificio->name }}
+      </option>
+    @endforeach
+  </select>
+</div>
+
+<div class="form-group">
   {!! Form::submit($textoBotonSubmit, ['class' => 'form-control btn btn-primary']) !!}
 </div>

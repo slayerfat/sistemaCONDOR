@@ -7,7 +7,7 @@
 @section('contenido')
   <div class="container">
     <h1>
-      Edificio 
+      Edificio
       @if (Auth::user()->id === $edificio->encargado->id)
         <a href="{{ action('BuildingsController@edit', $edificio->id) }}">
           {{ $edificio->name }}
@@ -18,33 +18,33 @@
         </a>
       @endif
     </h1>
-    {!! link_to_action('BuildingsController@gestions', 
-      'Miembros de Gestion Multifamiliar', 
-      $edificio->id, 
+    {!! link_to_action('BuildingsController@gestions',
+      'Miembros de Gestion Multifamiliar',
+      $edificio->id,
       ['class' => 'btn btn-default']
     ) !!}
     @if (Auth::user()->perfil->description === 'Administrador')
-      {!! link_to_action('BuildingsController@messages', 
-        'Mensajes', 
-        $edificio->id, 
+      {!! link_to_action('BuildingsController@messages',
+        'Mensajes',
+        $edificio->id,
         ['class' => 'btn btn-default']
       ) !!}
-      {!! link_to_action('BuildingsController@events', 
-        'Eventos', 
-        $edificio->id, 
+      {!! link_to_action('BuildingsController@movements',
+        'Movimientos',
+        $edificio->id,
         ['class' => 'btn btn-default']
       ) !!}
-      {!! link_to_action('BuildingsController@movements', 
-        'Movimientos', 
-        $edificio->id, 
-        ['class' => 'btn btn-default']
-      ) !!}
-      {!! link_to_action('BuildingsController@items', 
-        'Inventario', 
-        $edificio->id, 
+      {!! link_to_action('BuildingsController@items',
+        'Inventario',
+        $edificio->id,
         ['class' => 'btn btn-default']
       ) !!}
     @endif
+    {!! link_to_action('BuildingsController@events',
+      'Eventos',
+      $edificio->id,
+      ['class' => 'btn btn-default']
+    ) !!}
     <div id="apartamentos">
       <div id="apartamentos-lista">
         <h2>
@@ -53,8 +53,8 @@
         @foreach ($edificio->apartamentos as $apartamento)
           <section>
             <p>
-              {!! link_to_action('ApartmentsController@show', 
-                'Numero '.$apartamento->number, 
+              {!! link_to_action('ApartmentsController@show',
+                'Numero '.$apartamento->number,
                 $apartamento->id
               ) !!}
               <small>
