@@ -137,7 +137,7 @@ return [
     'Illuminate\View\ViewServiceProvider',
     'Illuminate\Html\HtmlServiceProvider',
 
-    'Barryvdh\Debugbar\ServiceProvider',
+    // 'Barryvdh\Debugbar\ServiceProvider',
     'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
     'Jenssegers\Date\DateServiceProvider',
 
@@ -202,7 +202,7 @@ return [
     'Form'      => 'Illuminate\Html\FormFacade',
     'Html'      => 'Illuminate\Html\HtmlFacade',
     'Flash'     => 'Laracasts\Flash\Flash',
-    'Debugbar'  => 'Barryvdh\Debugbar\Facade',
+    // 'Debugbar'  => 'Barryvdh\Debugbar\Facade',
     'Faker'     => 'Faker\Factory',
     'Date'      => 'Jenssegers\Date\Date'
 

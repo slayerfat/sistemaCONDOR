@@ -1,15 +1,19 @@
 @extends('master')
 
 @section('title')
-  - Index - {{ $apartamentos->edificio->name }}
+  @if (isset($apartamentos))
+    - Index - {{ $apartamentos->edificio->name }}
+  @else
+    - Index - Bienvenido
+  @endif
 @stop
 
 @section('contenido')
-  @if (isset($apartamentos))  
+  @if (isset($apartamentos))
     <div id="edificio">
       <h1>
         Edificio
-        {!! link_to_action('BuildingsController@show', 
+        {!! link_to_action('BuildingsController@show',
               $apartamentos->edificio->name, $apartamentos->edificio->id) !!}
         </a>
       </h1>
@@ -56,7 +60,7 @@
           <div class="detalles">
             <article>
               <h1>
-                {!! link_to_action('MessagesController@show', 
+                {!! link_to_action('MessagesController@show',
                       $mensaje->title, $mensaje->id) !!}
               </h1>
               <p class="body">
@@ -80,7 +84,7 @@
       @if ($apartamentos->edificio)
         <div class="row">
           <div class="col-xs-12">
-            <h3>Eventos en {{ $apartamentos->edificio->name }} 
+            <h3>Eventos en {{ $apartamentos->edificio->name }}
             <a href="{{ action('EventsController@index') }}"class="btn btn-default">
               Ver todos los Eventos
             </a>
@@ -98,7 +102,7 @@
               <article>
                 <header>
                   <h1>
-                    {!! link_to_action('EventsController@show', 
+                    {!! link_to_action('EventsController@show',
                           $evento->title, $evento->id) !!}
                   </h1>
                 </header>
@@ -121,11 +125,10 @@
   @unless (isset($apartamentos))
     <div class="container">
       <h1>Hola!! {{ $usuario->first_name }}, {{ $usuario->first_surname }}</h1>
-      <p>
-        Parece que su perfil no esta relacionado a ningun apartamento, 
+      <p style="font-size:24px;">
+        Parece que su perfil no esta relacionado a ningun apartamento,
         por favor <a href="{!! action('AssignApartmentsController@index') !!}">
-        visite los Edificios disponibles en el sistema.
-        </a>
+        visite los Edificios disponibles en el sistema.</a>
         para empezar el proceso de registro.
       </p>
     </div>
