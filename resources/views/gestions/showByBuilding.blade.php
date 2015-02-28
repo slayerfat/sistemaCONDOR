@@ -1,28 +1,32 @@
 @extends('master')
 
+@section('title')
+  - Index - Gestion Multifamiliar - {{ $edificio->name }}
+@stop
+
 @section('contenido')
   @include('errors.lista')
-  <div class="container">
-    <h3>
+  <div id="edificio">
+    <h1>
       Miembros de la Gestion Multifamiliar del Edificio
       {!! link_to_action('BuildingsController@show',
-            $edificio->name,
-            $edificio->id
-          ) !!}
-    </h3>
+        $edificio->name,
+        $edificio->id
+      ) !!}
+    </h1>
     @if (Auth::user()->perfil->description === 'Administrador')
       {!! link_to_action('BuildingsController@gestionsCreate',
-            'Añadir Miembro',
-            $edificio->id,
-            ['class' => 'btn btn-primary']
-          ) !!}
+        'Añadir Miembro',
+        $edificio->id,
+        ['class' => 'btn btn-primary']
+      ) !!}
     @endif
   </div>
   {{-- datos de usuarios relacionados con la gestion --}}
-  @foreach ($edificio->miembrosDeGestion as $usuario)
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-8">
+  <div id="lista-8-4">
+    @foreach ($edificio->miembrosDeGestion as $usuario)
+      <div class="modelo">
+        <div class="detalles">
           <article>
             <h2>
               {{ $usuario->first_name }}
@@ -44,20 +48,20 @@
           </article>
         </div>
         @if (Auth::user()->perfil->description === 'Administrador')
-          <div class="col-md-2">
+          <div class="botones">
               {!! link_to_action('GestionsController@edit',
-                    'Actualizar Miembro',
-                    [$usuario->id, $edificio->id],
-                    ['class' => 'btn btn-default']
-                  ) !!}
+                'Actualizar',
+                [$usuario->id, $edificio->id],
+                ['class' => 'btn btn-default']
+              ) !!}
           </div>
-          <div class="col-md-2">
+          <div class="botones">
               {!! Form::open(['method' => 'DELETE', 'action' => ['GestionsController@destroy', $usuario->id, $edificio->id]]) !!}
               {!! Form::submit('Quitar Miembro', ['class' => 'btn btn-danger']) !!}
               {!! Form::close() !!}
           </div>
         @endif
       </div>
-    </div>
-  @endforeach
+    @endforeach
+  </div>
 @stop

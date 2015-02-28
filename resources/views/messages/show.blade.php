@@ -1,40 +1,49 @@
 @extends('master')
 
+@section('title')
+  - Mensajes - {{ $mensaje->title }}
+@stop
+
 @section('contenido')
   <div class="container">
     <article>
-      <h1>
-        {!! $mensaje->title !!}
+      <header>
+        <h1>
+          {!! $mensaje->title !!}
 
-        @if (Auth::user()->id === $mensaje->autor->id)
-          {!! link_to_action('MessagesController@edit', 
-                'Editar Mensaje', 
-                $mensaje->id,
-                ['class' => 'btn btn-primary']
-              ) !!}
-        @endif
-      </h1>
-      <body class="text-justify">{{ $mensaje->body }}</body>
+          @if (Auth::user()->id === $mensaje->autor->id)
+            {!! link_to_action('MessagesController@edit', 
+                  'Editar Mensaje', 
+                  $mensaje->id,
+                  ['class' => 'btn btn-primary']
+                ) !!}
+          @endif
+        </h1>
+      </header>
+      <p class="body">{{ $mensaje->body }}</p>
 
       <hr/>
 
-      <h3>
-        Autor: 
-        <small>
-          {!! link_to_action(
+      <footer>
+        <address>
+          <h3>
+            <span>
+              {!! link_to_action(
                 'UsersController@show', 
                 $mensaje->autor->first_name.
                 ', '.
                 $mensaje->autor->first_surname, 
                 $mensaje->autor->id
               ) !!}
-        </small>
-      </h3>
+            </span>
+          </h3>
+        </address>
 
-      <p>
-        Ultima Actualizacion
-        {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
-      </p>
+        <p>
+          Ultima Actualizacion
+          {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
+        </p>
+      </footer>
     </article>
   </div>
 @stop

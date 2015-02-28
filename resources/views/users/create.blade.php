@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Crear - Usuario
+@stop
+
 @section('contenido')
   <div class="container">
     <h1>Crea un nuevo Usuario en el sistema</h1>

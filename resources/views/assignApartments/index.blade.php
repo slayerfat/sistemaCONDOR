@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Index - Asignacion
+@stop
+
 @section('contenido')
   <div class="container">
     @unless (!isset($edificios))
@@ -15,12 +19,12 @@
           Encargado: 
           <i>
             {!! link_to_action(
-                  'UsersController@show',
-                  $edificio->encargado->first_name.
-                  ', '.
-                  $edificio->encargado->first_surname,
-                  $edificio->encargado->id
-                ) !!}
+              'UsersController@show',
+              $edificio->encargado->first_name.
+              ', '.
+              $edificio->encargado->first_surname,
+              $edificio->encargado->id
+            ) !!}
             Email: {!! Html::mailto($edificio->encargado->email) !!}
           </i>
         </p>

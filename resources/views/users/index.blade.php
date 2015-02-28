@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Usuarios en el sistema
+@stop
+
 @section('css')
   <link rel="stylesheet" type="text/css" href="{!! asset('vendor/css/bootstrap-table/bootstrap-table.css') !!}">
 @stop

@@ -1,0 +1,33 @@
+#lista-8-4{
+
+  @extend .container;
+
+  .modelo{
+
+    @include make-row();
+
+    .detalles{
+      @include make-sm-column(8);
+    }
+
+    .botones{
+      @include make-sm-column(2);
+      @include make-xs-column(6);
+      padding-top: 20px;
+    }
+  }
+}
+
+#lista-12{
+
+  @extend .container;
+
+  .modelo{
+
+    @include make-row();
+
+    .detalles{
+      @include make-xs-column(12);
+    }
+  }
+}

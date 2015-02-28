@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Actualizar - Items - {{ $item->description }}
+@stop
+
 @section('contenido')
   <div class="container">
     <h1>Actualizar {{ $item->description }}</h1>
