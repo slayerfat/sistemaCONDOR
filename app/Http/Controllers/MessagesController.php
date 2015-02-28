@@ -2,6 +2,7 @@
 
 use App\Http\Requests\MessageRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Otros\Chequeo;
 use App\Message;
 use App\MessageType;
 use Auth;
@@ -11,6 +12,16 @@ use Illuminate\Http\Request;
 class MessagesController extends Controller {
 
   /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('usuario.apartamento');
+  }
+
+  /**
    * Display a listing of the resource.
    *
    * @return Response
@@ -18,8 +29,6 @@ class MessagesController extends Controller {
   public function index()
   {
     $usuario = Auth::user();
-    $usuario->apartamentos;
-    $usuario->mensajes;
     foreach ($usuario->apartamentos()->get() as $apartamento) :
       $edificios[] = $apartamento->edificio;
     endforeach;
