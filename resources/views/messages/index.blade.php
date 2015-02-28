@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Mensajes - {{ $edificio->name }}
+@stop
+
 @section('contenido')
   @include('errors.lista')
   @foreach ($edificios as $edificio)
@@ -9,9 +13,9 @@
         <small>
           Con 
           {!! link_to_action('BuildingsController@show',
-                $edificio->name,
-                $edificio->id
-              ) !!}
+              $edificio->name,
+              $edificio->id
+            ) !!}
         </small>
       </h1>
       <h3>

@@ -1,14 +1,18 @@
 @extends('master')
 
+@section('title')
+  - Mensajes - {{ $edificio->name }}
+@stop
+
 @section('contenido')
   @include('errors.lista')
   <div id="edificio">
     <h1>
       Del Edificio 
       {!! link_to_action('BuildingsController@show',
-            $edificio->name,
-            $edificio->id
-          ) !!}
+        $edificio->name,
+        $edificio->id
+      ) !!}
     </h1>
   </div>
   <div id="lista-12">

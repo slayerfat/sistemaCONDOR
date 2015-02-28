@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Movimientos - {{ $edificio->name }}
+@stop
+
 @section('contenido')
   @include('errors.lista')
   <div id="edificio">

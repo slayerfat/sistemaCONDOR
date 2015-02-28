@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Items - {{ $edificio->name }} - {{ $item->description }}
+@stop
+
 @section('contenido')
   <div id="edificio">
     <h1>

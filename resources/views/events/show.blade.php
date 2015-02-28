@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Eventos - {{ $edificio->name }} - {!! $evento->title !!}
+@stop
+
 @section('contenido')
   <div class="container">
     <article>

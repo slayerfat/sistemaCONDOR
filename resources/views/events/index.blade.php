@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Index - Eventos - {{ $edificio->name }}
+@stop
+
 @section('contenido')
   @include('errors.lista')
   @foreach ($edificios as $edificio)

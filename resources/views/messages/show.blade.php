@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Mensajes - {{ $mensaje->title }}
+@stop
+
 @section('contenido')
   <div class="container">
     <article>

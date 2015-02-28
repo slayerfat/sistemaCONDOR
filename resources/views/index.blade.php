@@ -1,4 +1,9 @@
 @extends('master')
+
+@section('title')
+  - Index - {{ $apartamentos->edificio->name }}
+@stop
+
 @section('contenido')
   @if (isset($apartamentos))  
     <div id="edificio">

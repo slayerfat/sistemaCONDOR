@@ -1,8 +1,12 @@
 @extends('master')
 
+@section('title')
+  - Actualizar - Usuario
+@stop
+
 @section('contenido')
   <div class="container">
-    <h1>Crea un nuevo Usuario en el sistema</h1>
+    <h1>Actualizar Usuario en el Sistema</h1>
     @include('errors.lista')
     <hr/>
 

@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Perfil - Usuario
+@stop
+
 @section('contenido')
   <div class="container">
     <h1>

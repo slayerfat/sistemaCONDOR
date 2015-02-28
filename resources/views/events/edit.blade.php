@@ -1,11 +1,17 @@
 @extends('master')
 
+@section('title')
+  - Actualizar - Eventos - {{ $evento->title }}
+@stop
+
 @section('contenido')
   <div class="container">
     <h1>
       Editar
       <small>{{ $evento->title }}</small>
     </h1>
+
+    @include('errors.lista')
 
     <hr/>
 
@@ -15,7 +21,5 @@
         ]) !!}
       @include('events._form', ['textoBotonSubmit' => 'Editar Evento'])
     {!! Form::close() !!}
-
-    @include('errors.lista')
   </div>
 @stop
