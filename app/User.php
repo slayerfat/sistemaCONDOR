@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
-  use Authenticatable, CanResetPassword, SoftDeletes; 
+  use Authenticatable, CanResetPassword, SoftDeletes;
 
   /**
    * The database table used by the model.
@@ -24,15 +24,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    * @var array
    */
   protected $fillable = [
-    'username', 
-    'email', 
-    'password', 
+    'username',
+    'email',
+    'password',
     'identity_card',
-    'first_name', 
+    'first_name',
     'middle_name',
-    'first_surname', 
+    'first_surname',
     'last_surname',
-    'sex_id', 
+    'sex_id',
     'birth_date',
     'phone',
     'aditional_phone'
@@ -54,7 +54,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
   /**
    * la asociacion entre usuarios y perfiles en la base de datos
-   * en donde los parametros son 
+   * en donde los parametros son
    * ('el modelo', 'el pivote', 'su llave foranea en pivote')
    */
   public function perfil(){
@@ -87,7 +87,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
-   * un usuario tiene muchos mensajes y 
+   * un usuario tiene muchos mensajes y
    * un mensaje pertenece a un usuario
    */
   public function mensajes(){
@@ -95,7 +95,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
-   * un usuario tiene muchos mensajes y 
+   * un usuario tiene muchos mensajes y
    * un mensaje pertenece a un usuario
    */
   public function eventos(){
@@ -103,7 +103,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
-   * un usuario tiene muchos edificios (encargado) y 
+   * un usuario tiene muchos edificios (encargado) y
    * un edificio pertenece a un usuario
    */
   public function edificios(){
@@ -117,7 +117,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
-   * un usuario tiene muchas cuentas (titular) y 
+   * un usuario tiene muchas cuentas (titular) y
    * un cuenta pertenece a un usuario
    */
   public function cuentas(){
@@ -125,7 +125,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
-   * un usuario tiene muchos movimientos (responsable)  
+   * un usuario tiene muchos movimientos (responsable)
    * y un movimiento pertenece a un usuario
    */
   public function movimientos(){
@@ -154,13 +154,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return $mensaje;
   }
 
-  public function esAdministrador(){
-    if ($this->perfil->description === 'Administrador') return true;    
+  public function esAdministrador()
+  {
+    if ($this->perfil->description === 'Administrador') return true;
     return false;
   }
 
-  public function esJuntaCondominio(){
-   if ($this->perfil->description === 'Junta de Condominio') return true;    
+  public function esJuntaCondominio()
+  {
+   if ($this->perfil->description === 'Junta de Condominio') return true;
     return false;
   }
 

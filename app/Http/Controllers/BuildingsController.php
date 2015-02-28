@@ -21,6 +21,10 @@ class BuildingsController extends Controller {
   public function __construct()
   {
     $this->middleware('auth');
+
+    $this->middleware('administrador.evento',
+      ['except' => ['index', 'show', 'floors', 'events', 'gestions']
+    ]);
   }
 
   /**
@@ -141,7 +145,7 @@ class BuildingsController extends Controller {
   }
 
   /**
-   * Muestra los events relacionados con
+   * Muestra los eventos relacionados con
    * algun edificio en el sistema
    */
   public function events($id)
@@ -161,7 +165,7 @@ class BuildingsController extends Controller {
   }
 
   /**
-   * Muestra la gestion multifamiliar relacionada 
+   * Muestra la gestion multifamiliar relacionada
    * con algun edificio en el sistema
    */
   public function gestions($id)
@@ -171,7 +175,7 @@ class BuildingsController extends Controller {
   }
 
   /**
-   * crear gestion multifamiliar relacionada 
+   * crear gestion multifamiliar relacionada
    * con algun edificio en el sistema
    */
   public function gestionsCreate($id)
@@ -182,7 +186,7 @@ class BuildingsController extends Controller {
   }
 
   /**
-   * Muestra la gestion multifamiliar relacionada 
+   * Muestra la gestion multifamiliar relacionada
    * con algun edificio en el sistema
    */
   public function movements($id)
@@ -192,7 +196,7 @@ class BuildingsController extends Controller {
   }
 
   /**
-   * crear gestion multifamiliar relacionada 
+   * crear gestion multifamiliar relacionada
    * con algun edificio en el sistema
    */
   public function movementsCreate($id)
@@ -219,10 +223,10 @@ class BuildingsController extends Controller {
     // la vista con todas las variables
     return view(
       'movements.create', compact(
-        'edificio', 
-        'movimiento', 
-        'cuentas', 
-        'items', 
+        'edificio',
+        'movimiento',
+        'cuentas',
+        'items',
         'tipos'
       ));
   }

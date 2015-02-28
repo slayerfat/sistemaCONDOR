@@ -11,6 +11,16 @@ use Auth;
 class MovementsController extends Controller {
 
   /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('administrador.evento');
+  }
+
+  /**
    * Display a listing of the resource.
    *
    * @return Response
@@ -60,12 +70,12 @@ class MovementsController extends Controller {
         $movimiento->items()->sync([$request->input('item_id')]);
       endif;
     endif;
-    
+
     // el mensaje de exito.
     flash('Movimiento ha sido creado con exito.');
     // redireccion a edificio tal.
     return redirect()->action(
-      'BuildingsController@movements', 
+      'BuildingsController@movements',
       $request->input('building_id'
     ));
   }
@@ -109,12 +119,12 @@ class MovementsController extends Controller {
 
     // la vista con todas las variables
     return view(
-      'movements.edit', 
+      'movements.edit',
       compact(
         'movimiento',
-        'edificio', 
-        'cuentas', 
-        'items', 
+        'edificio',
+        'cuentas',
+        'items',
         'tipos'
       )
     );
@@ -168,7 +178,7 @@ class MovementsController extends Controller {
 
     $movimiento->delete();
 
-    flash()->info('El movimiento fue eliminado con exito');
+    flash()->info('El Movimiento fue eliminado con exito');
     return redirect()->action('BuildingsController@show', $movimiento->building_id);
   }
 

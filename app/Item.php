@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model {
 
+  use SoftDeletes;
+
 	/**
    * The database table used by the model.
    *
@@ -18,8 +20,8 @@ class Item extends Model {
    * @var array
    */
   protected $fillable = [
-    'building_id', 
-    'description', 
+    'building_id',
+    'description',
     'total',
     'created_by',
     'updated_by'
@@ -36,7 +38,9 @@ class Item extends Model {
   {
     $valor = (int)$valor;
 
-    $total = ($valor + $this->original['total'] < 0) ? 0 : $valor + $this->original['total'];
+    $original = isset($this->original['total']) ? $this->original['total'] : 0;
+
+    $total = ($valor + $original < 0) ? 0 : $valor + $original;
     $this->attributes['total'] = $total;
   }
 

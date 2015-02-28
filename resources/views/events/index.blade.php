@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title')
-  - Index - Eventos - {{ $edificio->name }}
+  - Index - Eventos
 @stop
 
 @section('contenido')
@@ -9,9 +9,9 @@
   @foreach ($edificios as $edificio)
     <div class="container">
       <h1>
-        Eventos relacionados 
+        Eventos relacionados
         <small>
-          Con 
+          Con
           {!! link_to_action('BuildingsController@show',
                 $edificio->name,
                 $edificio->id
@@ -23,7 +23,7 @@
       @foreach ($edificio->eventos as $evento)
         <article>
           <h2>
-            {!! link_to_action('EventsController@show', 
+            {!! link_to_action('EventsController@show',
                   $evento->title, $evento->id) !!}
           </h2>
           <body>{{ $evento->body }}</body>

@@ -16,7 +16,9 @@ class EventsController extends Controller {
    */
   public function __construct()
   {
-    $this->middleware('administrador.evento', ['only' => ['edit', 'create', 'store']]);
+    $this->middleware('administrador.evento',
+      ['except' => ['show']]
+    );
   }
 
   /**
@@ -26,12 +28,8 @@ class EventsController extends Controller {
    */
   public function index()
   {
-    $usuario = Auth::user();
-    $usuario->apartamentos;
-    foreach ($usuario->apartamentos()->get() as $apartamento) :
-      $edificios[] = $apartamento->edificio;
-    endforeach;
-    return view('events.index', compact('usuario', 'edificios'));
+    $edificios = Building::all();
+    return view('events.index', compact('edificios'));
   }
 
   /**
@@ -43,7 +41,8 @@ class EventsController extends Controller {
   {
     $types = EventType::lists('description', 'id');
     $evento = new Event;
-    return view('events.create', compact('types', 'evento'));
+    $usuario = Auth::user();
+    return view('events.create', compact('types', 'evento', 'usuario'));
   }
 
   /**
@@ -59,9 +58,8 @@ class EventsController extends Controller {
     $evento->user_id    = Auth::user()->id;
     $evento->created_by = Auth::user()->id;
     $evento->updated_by = Auth::user()->id;
-    
-    $edificio = Auth::user()->edificios->first();
-    $edificio = Building::find($edificio->id);
+
+    $edificio = Building::findOrFail($request->input('building_id'));
     $edificio->eventos()->save($evento);
     // evento de exito
     flash('Su Mensaje ha sido creado con exito.');
@@ -92,7 +90,8 @@ class EventsController extends Controller {
     $evento = Event::findOrFail($id);
     // los tipos de mensajes
     $types   = EventType::lists('description', 'id');
-    return view('events.edit', compact('evento', 'types'));
+    $usuario = Auth::user();
+    return view('events.edit', compact('evento', 'types', 'usuario'));
   }
 
   /**

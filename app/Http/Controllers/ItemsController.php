@@ -9,6 +9,16 @@ use Auth;
 class ItemsController extends Controller {
 
   /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('administrador.evento');
+  }
+
+  /**
    * Display a listing of the resource.
    *
    * @return Response
@@ -97,7 +107,12 @@ class ItemsController extends Controller {
    */
   public function destroy($id)
   {
-    //
+    $item = Item::findOrFail($id);
+
+    $item->delete();
+
+    flash()->info('El Item fue eliminado con exito');
+    return redirect()->action('BuildingsController@show', $item->building_id);
   }
 
 }
