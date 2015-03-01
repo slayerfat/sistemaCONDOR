@@ -9,38 +9,46 @@
 </div>
 
 <div class="form-group">
-  {!! Form::label('user_id', 'Responsable:') !!}
-  <select name="user_id" id="user_id" class="form-control">
-    @foreach ($edificio->miembrosDeGestion as $usuario)
-      @if ($usuario->id === Auth::user()->id)
-        <option value="{{ $usuario->id }}" selected="selected">
-      @else
-        <option value="{{ $usuario->id }}">
-      @endif
-        {{ $usuario->first_name }}
-        {{ $usuario->first_surname }}
-      </option>
-    @endforeach
-  </select>
+  <fieldset>
+    {!! Form::label('user_id', 'Responsable:', ['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-10">
+      <select name="user_id" id="user_id" class="form-control">
+        @foreach ($edificio->miembrosDeGestion as $usuario)
+          @if ($usuario->id === Auth::user()->id)
+            <option value="{{ $usuario->id }}" selected="selected">
+          @else
+            <option value="{{ $usuario->id }}">
+          @endif
+            {{ $usuario->first_name }}
+            {{ $usuario->first_surname }}
+          </option>
+        @endforeach
+      </select>
+    </div>
+  </fieldset>
 </div>
 
 <div class="form-group">
-  {!! Form::label('account_id', 'Numero de cuenta asociada:') !!}
-  <select name="account_id" id="account_id" class="form-control">
-    <option selected="selected" value="0">Sin Cuenta Asociada</option>
-    @foreach ($cuentas as $objeto)
-      @foreach ($objeto as $cuenta)
-        @if ($cuenta->id === $movimiento->account_id)
-          <option value="{{ $cuenta->id }}" selected="selected">
-        @else
-          <option value="{{ $cuenta->id }}">
-        @endif
-          {{ $cuenta->bank_number }} |
-          {{ $cuenta->banco->description }}
-        </option>
-      @endforeach
-    @endforeach
-  </select>
+  <fieldset>
+    {!! Form::label('account_id', 'Numero de cuenta asociada:', ['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-10">
+      <select name="account_id" id="account_id" class="form-control">
+        <option selected="selected" value="0">Sin Cuenta Asociada</option>
+        @foreach ($cuentas as $objeto)
+          @foreach ($objeto as $cuenta)
+            @if ($cuenta->id === $movimiento->account_id)
+              <option value="{{ $cuenta->id }}" selected="selected">
+            @else
+              <option value="{{ $cuenta->id }}">
+            @endif
+              {{ $cuenta->bank_number }} |
+              {{ $cuenta->banco->description }}
+            </option>
+          @endforeach
+        @endforeach
+      </select>
+    </div>
+  </fieldset>
 </div>
 
 <div class="form-group">
@@ -66,7 +74,7 @@
 <div class="form-group">
   {!! Form::label('operation', 'Operacion:') !!}
   {!! Form::input('number', 'operation', null, [
-        'class' => 'form-control', 
+        'class' => 'form-control',
         'max' => '9999999999'
       ]) !!}
 </div>
@@ -118,7 +126,7 @@
 
       // para quitar elementos duplicados que vienen
       // del item y el objeto
-      
+
       // la variable.
       var valores = new Array;
       $('#item_id > option[selected="selected"]').each(function(index){
