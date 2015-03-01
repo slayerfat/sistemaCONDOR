@@ -6,16 +6,22 @@
 
 @section('contenido')
   <div class="container">
-    <h1>Actualizar Usuario en el Sistema</h1>
-    @include('errors.lista')
-    <hr/>
-
-    {!! Form::model($usuario, [
-        'method' => 'PATCH', 
-        'action' => ['UsersController@update', $usuario->id]
-        ]) !!}
-      @include('users._form', ['textoBotonSubmit' => 'Actualizar Usuario'])
-    {!! Form::close() !!}
-
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+        <div class="panel panel-default">
+          <div class="panel-heading">Actualizar Usuario en el sistemaCONDOR</div>
+          <div class="panel-body">
+            @include('errors.lista')
+            {!! Form::model($usuario, [
+                'method' => 'PATCH',
+                'action' => ['UsersController@update', $usuario->id],
+                'class'  => 'form-horizontal'
+                ]) !!}
+              @include('users._form', ['textoBotonSubmit' => 'Actualizar Usuario'])
+            {!! Form::close() !!}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 @stop
