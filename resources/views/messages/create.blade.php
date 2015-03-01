@@ -6,9 +6,6 @@
 
 @section('contenido')
   <div class="container">
-    <h1>Crea un nuevo Mensaje</h1>
-    @include('errors.lista')
-    <hr/>
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1">
         <div class="panel panel-default">
