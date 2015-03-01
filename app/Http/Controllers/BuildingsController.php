@@ -20,8 +20,6 @@ class BuildingsController extends Controller {
    */
   public function __construct()
   {
-    $this->middleware('auth');
-
     $this->middleware('administrador.evento',
       ['except' => ['index', 'show', 'floors', 'events', 'gestions']
     ]);

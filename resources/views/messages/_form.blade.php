@@ -18,11 +18,11 @@
   <select name="building_id" id="building_id" class="form-control">
     @foreach (Auth::user()->apartamentos as $apartamento)
       @if ($mensaje->building_id === $apartamento->building_id)
-        <option value="$apartamento->building_id" selected="selected">
+        <option value="{{ $apartamento->building_id }}" selected="selected">
           Edificio {{ $apartamento->edificio->name }}
         </option>
       @else
-        <option value="$apartamento->building_id">
+        <option value="{{ $apartamento->building_id }}">
           Edificio {{ $apartamento->edificio->name }}
         </option>
       @endif
