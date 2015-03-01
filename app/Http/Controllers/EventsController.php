@@ -2,11 +2,11 @@
 
 use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Otros\EnviarEmail as Email;
 use App\EventType;
 use App\Event;
 use App\Building;
 use Auth;
-use Mail;
 use App\User;
 
 class EventsController extends Controller {
@@ -69,9 +69,15 @@ class EventsController extends Controller {
       'usuario' => Auth::user(),
     ];
 
-    $emails = [];
+    $emails = (array)$edificio->encargado->email +
+              (array)Email::obtenerEmailUsuarios($evento) +
+              (array)Email::obtenerEmailAdministradores($evento);
 
-    $this->enviarEmailAdministradores($data);
+    // $usuariosEmail = $this->obtenerEmailUsuarios($evento);
+
+    // $adminsEmail = $this->obtenerEmailAdministradores($evento);
+
+    dd($emails);
 
     // evento de exito
     flash('Su Mensaje ha sido creado con exito.');
@@ -134,66 +140,4 @@ class EventsController extends Controller {
   {
     //
   }
-
-  /**
-   * Se chequean los administradores especificos relacionados
-   * con el edificio del evento y se les envia
-   * un correo de notificacion.
-   *
-   * @param  array    $data  el array con los datos relacionados
-   * @return boolean
-   */
-  private function enviarEmailAdministradores($data)
-  {
-    // por si acaso...
-    if (!isset($data)) return null;
-
-    // se buscan los administradores
-    $administradores = User::administradores()->get();
-    // de los administradores se busca su edificio
-    // para no mandar email a todos los admins del sistema.
-    foreach ($administradores as $administrador) :
-      foreach ($administrador->apartamentos as $apartamento) :
-        if ($apartamento->building_id === $data['evento']->building_id) :
-          Mail::send(['emails.eventCreated', 'emails.eventCreatedPlain'], $data, function($message) use ($administrador){
-            $message->to($administrador->email)->subject('Nuevo Evento en sistemaCONDOR.');
-          });
-        endif;
-      endforeach;
-    endforeach;
-
-    return true;
-  }
-
-  /**
-   * Se chequean los usuarios especificos relacionados
-   * con el edificio del evento y se les envia
-   * un correo de notificacion.
-   *
-   * @param  array    $data  el array con los datos relacionados
-   * @return boolean
-   */
-  private function enviarEmailUsuarios($data)
-  {
-    // por si acaso...
-    if (!isset($data)) return null;
-
-    // se buscan los usuarios
-    $usuarios = User::all();
-    // los emails
-    $emails = [];
-    // de los usuarios se busca su edificio
-    // para no mandar email a todos los admins del sistema.
-    foreach ($usuarios as $usuario) :
-      $email = $usuario->email;
-      foreach ($usuario->apartamentos as $apartamento) :
-        if ($apartamento->building_id === $data['evento']->building_id) :
-          if ($email){ $emails[] = $email; }
-        endif;
-      endforeach;
-    endforeach;
-
-    return $emails;
-  }
-
 }
