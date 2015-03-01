@@ -69,6 +69,8 @@ class EventsController extends Controller {
       'usuario' => Auth::user(),
     ];
 
+    $emails = [];
+
     $this->enviarEmailAdministradores($data);
 
     // evento de exito
@@ -161,6 +163,37 @@ class EventsController extends Controller {
     endforeach;
 
     return true;
+  }
+
+  /**
+   * Se chequean los usuarios especificos relacionados
+   * con el edificio del evento y se les envia
+   * un correo de notificacion.
+   *
+   * @param  array    $data  el array con los datos relacionados
+   * @return boolean
+   */
+  private function enviarEmailUsuarios($data)
+  {
+    // por si acaso...
+    if (!isset($data)) return null;
+
+    // se buscan los usuarios
+    $usuarios = User::all();
+    // los emails
+    $emails = [];
+    // de los usuarios se busca su edificio
+    // para no mandar email a todos los admins del sistema.
+    foreach ($usuarios as $usuario) :
+      $email = $usuario->email;
+      foreach ($usuario->apartamentos as $apartamento) :
+        if ($apartamento->building_id === $data['evento']->building_id) :
+          if ($email){ $emails[] = $email; }
+        endif;
+      endforeach;
+    endforeach;
+
+    return $emails;
   }
 
 }

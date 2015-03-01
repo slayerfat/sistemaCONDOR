@@ -18,8 +18,7 @@ class AssignApartmentsController extends Controller {
   {
     // hacer resource o algo para validar como en eventscontroller
     $edificios = Building::all();
-    $usuario = Auth::user()->apartamentos;
-    return view('assignApartments.index', compact('edificios', 'usuario'));
+    return view('assignApartments.index', compact('edificios'));
   }
 
   /**
@@ -51,7 +50,7 @@ class AssignApartmentsController extends Controller {
     $edificio = Building::findOrFail($id);
 
     Auth::user()->apartamentos()->attach($request->input('apartment_id'));
-    
+
     return redirect()->action('IndexController@index');
   }
 
