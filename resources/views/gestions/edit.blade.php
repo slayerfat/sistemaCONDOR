@@ -21,7 +21,7 @@
             {!! Form::model($edificio, [
                   'method' => 'PATCH',
                   'action' => ['GestionsController@update', $edificio->id],
-                  'class'  => 'form-horizontal',
+                  'class'  => 'form-horizontal'
                 ]) !!}
               @include('gestions._form', ['textoBotonSubmit' => 'Actualizar nuevo Miembro'])
             {!! Form::close() !!}
