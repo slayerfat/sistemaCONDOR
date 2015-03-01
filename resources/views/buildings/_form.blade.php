@@ -1,11 +1,11 @@
 <div class="form-group">
-  {!! Form::label('name', 'Nombre:') !!}
-  {!! Form::text('name', null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
-  {!! Form::label('user_id', 'Encargado:') !!}
-  <select name="user_id" class="form-control">
+  {!! Form::label('name', 'Nombre:', ['class' => 'col-md-2 control-label']) !!}
+  <div class="col-md-4">
+    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+  </div>
+  {!! Form::label('user_id', 'Encargado:', ['class' => 'col-md-2 control-label']) !!}
+  <div class="col-md-4">
+    <select name="user_id" class="form-control">
     @foreach ($administradores as $administrador)
       @if ($edificio->user_id === $administrador->usuarios->first()->id)
         <option value="{{ $administrador->id }}" selected="selected">
@@ -18,35 +18,45 @@
       </option>
     @endforeach
   </select>
+  </div>
 </div>
 
 <div class="form-group">
-  {!! Form::label('exact_direction', 'Direccion:') !!}
-  {!! Form::text('exact_direction', 
-    $edificio->direccion->exact_direction, 
+  {!! Form::label('exact_direction', 'Direccion:', ['class' => 'col-md-2 control-label']) !!}
+  <div class="col-md-10">
+    {!! Form::text('exact_direction',
+    $edificio->direccion->exact_direction,
     ['class' => 'form-control']) !!}
+  </div>
 </div>
 
 <div class="form-group">
-  {!! Form::label('state_id', 'Estado:') !!}
-  <select name="state_id" id="state_id" class="form-control">
-  </select>
+  {!! Form::label('state_id', 'Estado:', ['class' => 'col-md-2 control-label']) !!}
+  <div class="col-md-10">
+    <select name="state_id" id="state_id" class="form-control">
+    </select>
+  </div>
 </div>
 
 <div class="form-group">
-  {!! Form::label('town_id', 'Municipio:') !!}
-  <select name="town_id" id="town_id" class="form-control">
-  </select>
+  {!! Form::label('town_id', 'Municipio:', ['class' => 'col-md-2 control-label']) !!}
+  <div class="col-md-10">
+    <select name="town_id" id="town_id" class="form-control">
+    </select>
+  </div>
 </div>
 
 <div class="form-group">
-  {!! Form::label('parish_id', 'Parroquia:') !!}
-  <select name="parish_id" id="parish_id" class="form-control">
-    <option value="{!! $edificio->direccion->parish_id !!}"></option>
-  </select>
+  {!! Form::label('parish_id', 'Parroquia:', ['class' => 'col-md-2 control-label']) !!}
+  <div class="col-md-10">
+    <select name="parish_id" id="parish_id" class="form-control">
+      <option value="{!! $edificio->direccion->parish_id !!}"></option>
+    </select>
+  </div>
 </div>
 
 <div class="form-group">
-  {!! Form::submit($textoBotonSubmit, 
-    ['class' => 'form-control btn btn-primary']) !!}
+  <div class="col-md-12">
+    {!! Form::submit($textoBotonSubmit, ['class' => 'form-control btn btn-primary']) !!}
+  </div>
 </div>

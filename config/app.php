@@ -39,7 +39,7 @@ return [
   |
   */
 
-  'timezone' => 'UTC',
+  'timezone' => 'America/Caracas',
 
   /*
   |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
   |
   */
 
-  'key' => env('APP_KEY', 'SomeRandomString'),
+  'key' => env('APP_KEY'),
 
   'cipher' => MCRYPT_RIJNDAEL_128,
 

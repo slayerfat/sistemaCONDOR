@@ -6,20 +6,22 @@
 
 @section('contenido')
   <div class="container">
-    <h1>
-      Editar
-      <small>{{ $evento->title }}</small>
-    </h1>
-
-    @include('errors.lista')
-
-    <hr/>
-
-    {!! Form::model($evento, [
-          'method' => 'PATCH', 
-          'action' => ['EventsController@update', $evento->id]
-        ]) !!}
-      @include('events._form', ['textoBotonSubmit' => 'Editar Evento'])
-    {!! Form::close() !!}
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+        <div class="panel panel-default">
+          <div class="panel-heading">Editar {{ $evento->title }}</div>
+          <div class="panel-body">
+            @include('errors.lista')
+            {!! Form::model($evento, [
+                  'method' => 'PATCH',
+                  'action' => ['EventsController@update', $evento->id],
+                  'class'  => 'form-horizontal'
+                ]) !!}
+              @include('events._form', ['textoBotonSubmit' => 'Editar Evento'])
+            {!! Form::close() !!}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 @stop
