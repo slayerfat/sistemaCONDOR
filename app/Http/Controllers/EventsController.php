@@ -64,20 +64,19 @@ class EventsController extends Controller {
     $edificio = Building::findOrFail($request->input('building_id'));
     $edificio->eventos()->save($evento);
 
+    // datos usados para enviar el email
     $data = [
+      'vista'   => ['emails.eventCreated', 'emails.eventCreatedPlain'],
+      'subject' => 'Nuevo Evento en sistemaCONDOR.',
       'evento'  => $evento,
       'usuario' => Auth::user(),
     ];
-
+    // array de destinatarios
     $emails = (array)$edificio->encargado->email +
               (array)Email::obtenerEmailUsuarios($evento) +
               (array)Email::obtenerEmailAdministradores($evento);
 
-    // $usuariosEmail = $this->obtenerEmailUsuarios($evento);
-
-    // $adminsEmail = $this->obtenerEmailAdministradores($evento);
-
-    dd($emails);
+    Email::enviarEmail($data, $emails);
 
     // evento de exito
     flash('Su Mensaje ha sido creado con exito.');

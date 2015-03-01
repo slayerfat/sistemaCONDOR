@@ -80,10 +80,10 @@ class EnviarEmail {
   static function enviarEmail($data, $emails)
   {
     // por si acaso...
-    if (!isset($data) and !isset($email)) return null;
+    if (!isset($data) and !isset($emails)) return null;
 
-    Mail::send(['emails.eventCreated', 'emails.eventCreatedPlain'], $data, function($message) use ($email){
-      $message->to($administrador->email)->subject('Nuevo Evento en sistemaCONDOR.');
+    Mail::send($data['vista'], $data, function($message) use ($emails, $data){
+      $message->to($emails)->subject($data['subject']);
     });
 
     return true;
