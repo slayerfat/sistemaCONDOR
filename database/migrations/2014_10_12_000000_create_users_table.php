@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration {
       $table->string('email')->unique()->index();
       $table->string('password', 60);
       $table->string('username')->index();
-      $table->string('identity_card', 5)->unique()->index();
+      $table->string('identity_card', 8)->unique()->index();
       $table->string('first_name', 20);
       $table->string('middle_name', 20)->nullable();
       $table->string('first_surname', 20);
