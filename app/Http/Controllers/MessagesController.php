@@ -2,6 +2,7 @@
 
 use App\Http\Requests\MessageRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Otros\EnviarEmail as Email;
 use App\Http\Controllers\Otros\Chequeo;
 use App\Message;
 use App\MessageType;
@@ -63,6 +64,19 @@ class MessagesController extends Controller {
     // se guarda el mensaje por medio del usuario
     // para tener el user_id
     Auth::user()->mensajes()->save($mensaje);
+
+    // datos usados para enviar el email
+    $data = [
+      'vista'   => ['emails.messageCreated', 'emails.messageCreatedPlain'],
+      'subject' => 'Nuevo Mensaje en sistemaCONDOR. Edificio '.$mensaje->edificio->name,
+      'mensaje' => $mensaje,
+      'usuario' => Auth::user(),
+    ];
+    // array de destinatarios
+    $emails = (array)$mensaje->edificio->encargado->email +
+              (array)Email::obtenerEmailAdministradores($mensaje);
+
+    Email::enviarEmail($data, $emails);
     // mensaje de exito
     flash('Su Mensaje ha sido creado con exito.');
     return redirect()->action('IndexController@index');

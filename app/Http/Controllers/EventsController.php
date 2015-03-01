@@ -67,7 +67,7 @@ class EventsController extends Controller {
     // datos usados para enviar el email
     $data = [
       'vista'   => ['emails.eventCreated', 'emails.eventCreatedPlain'],
-      'subject' => 'Nuevo Evento en sistemaCONDOR.',
+      'subject' => 'Nuevo Evento en sistemaCONDOR Edificio '.$edificio->name,
       'evento'  => $evento,
       'usuario' => Auth::user(),
     ];
@@ -79,7 +79,7 @@ class EventsController extends Controller {
     Email::enviarEmail($data, $emails);
 
     // evento de exito
-    flash('Su Mensaje ha sido creado con exito.');
+    flash('El Evento ha sido creado con exito.');
     return redirect()->action('IndexController@index');
   }
 
