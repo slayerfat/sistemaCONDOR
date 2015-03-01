@@ -135,7 +135,9 @@
 </div>
 
 <div class="form-group">
-  {!! Form::submit($textoBotonSubmit, ['class' => 'form-control btn btn-primary']) !!}
+  <div class="col-md-12">
+    {!! Form::submit($textoBotonSubmit, ['class' => 'form-control btn btn-primary']) !!}
+  </div>
 </div>
 
 @section('js')
