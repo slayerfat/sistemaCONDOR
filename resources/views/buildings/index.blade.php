@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+  - Index - Edificios
+@stop
+
 @section('contenido')
   <div class="container">
     @unless (!isset($edificios))

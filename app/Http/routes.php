@@ -11,22 +11,49 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
-Route::resource('usuarios', 'UsersController');
-Route::resource('edificios', 'BuildingsController');
-// para ajax de pisos
-Route::get('edificios/floors/{edificios}', 'BuildingsController@floors');
-Route::resource('apartamentos', 'ApartmentsController');
-Route::resource('mensajes', 'MessagesController');
-Route::resource('eventos',  'EventsController');
+Route::group(['middleware' => 'auth'], function(){
+  Route::get('/', 'IndexController@index');
+  Route::resource('usuarios', 'UsersController');
+  Route::resource('edificios', 'BuildingsController');
+  // items en algun edificio
+  Route::get('edificios/items/{edificios}', 'BuildingsController@items');
+  // eventos en algun edificio
+  Route::get('edificios/eventos/{edificios}', 'BuildingsController@events');
+  // mensajes de algun edificio
+  Route::get('edificios/mensajes/{edificios}', 'BuildingsController@messages');
+  // crear un movimiento relacionado con un edificio
+  Route::get('edificios/movimientos/{edificios}/create', 'BuildingsController@movementsCreate');
+  // movimientos de algun edificio (caja chica)
+  Route::get('edificios/movimientos/{edificios}', 'BuildingsController@movements');
+  // gestiones multifamiliares de algun edificio
+  Route::get('edificios/gestiones/{edificios}', 'BuildingsController@gestions');
+  // crea un miembro de gestion multifamiliar de algun edificio
+  Route::get('edificios/gestiones/{edificios}/create', 'BuildingsController@gestionsCreate');
+  Route::resource('apartamentos', 'ApartmentsController');
+  Route::resource('mensajes', 'MessagesController');
+  Route::resource('eventos', 'EventsController');
+  Route::resource('items', 'ItemsController');
+  Route::resource('movimientos', 'MovementsController');
+  // GESTIONES
+  // guardar nuevo
+  Route::post('gestiones', 'GestionsController@store');
+  // actualizar
+  Route::get('gestiones/{usuarios}/{edificios}', 'GestionsController@edit');
+  // guardar actualizaciones
+  Route::patch('gestiones/{gestiones}', 'GestionsController@update');
+  Route::delete('gestiones/{usuarios}/{edificios}', 'GestionsController@destroy');
+});
 
-Route::group(['prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
+// para asignar un usuario a un apartamento de un edifico
+Route::group(['middleware' => 'auth', 'prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');
   Route::get('/{id}/create', 'AssignApartmentsController@create');
   // esta es la version mamarracha
   Route::post('/{id}', 'AssignApartmentsController@store');
 });
 
+// pisos en algun edificio (para ajax de pisos)
+Route::get('edificios/floors/{edificios}', 'BuildingsController@floors');
 // para ajax de direcciones
 Route::get('/estados', 'DirectionsController@states');
 Route::get('/municipios/{id}', 'DirectionsController@towns');

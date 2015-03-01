@@ -12,6 +12,17 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller {
 
+
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('administrador.evento', ['except' => ['show']]);
+  }
+
   /**
    * Display a listing of the resource.
    *

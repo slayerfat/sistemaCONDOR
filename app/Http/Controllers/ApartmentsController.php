@@ -11,6 +11,18 @@ use Auth;
 class ApartmentsController extends Controller {
 
   /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('administrador.evento',
+      ['except' => ['index', 'show']
+    ]);
+  }
+
+  /**
    * Display a listing of the resource.
    *
    * @return Response

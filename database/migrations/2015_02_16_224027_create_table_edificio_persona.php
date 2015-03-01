@@ -14,7 +14,6 @@ class CreateTableEdificioPersona extends Migration {
   {
     Schema::create('building_user', function(Blueprint $table)
     {
-      $table->increments('id');
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')
             ->references('id')

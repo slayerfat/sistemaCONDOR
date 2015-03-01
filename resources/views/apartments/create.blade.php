@@ -1,15 +1,23 @@
 @extends('master')
 
+@section('title')
+  - Crear - Apartamentos
+@stop
+
 @section('contenido')
   <div class="container">
-    <h1>Crea un nuevo Apartamento en el sistema</h1>
-    @include('errors.lista')
-    
-    <hr/>
-    <a href="show.blade.php"></a>
-
-    {!! Form::open(['action' => 'ApartmentsController@store']) !!}
-      @include('apartments._form', ['textoBotonSubmit' => 'Añadir nuevo Apartamento'])
-    {!! Form::close() !!}
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+        <div class="panel panel-default">
+          <div class="panel-heading">Crear un nuevo Apartamento en el sistemaCONDOR</div>
+          <div class="panel-body">
+            @include('errors.lista')
+            {!! Form::open(['action' => 'ApartmentsController@store', 'class' => 'form-horizontal']) !!}
+              @include('apartments._form', ['textoBotonSubmit' => 'Añadir nuevo Apartamento'])
+            {!! Form::close() !!}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 @stop

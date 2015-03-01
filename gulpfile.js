@@ -52,7 +52,7 @@ gulp.task('release', function() { return inc('major'); })
  */
 
 elixir(function(mix) {
-  mix.sass('app.sass');
+  mix.sass('app.scss');
   // javascripts
   mix.copy('vendor/bower_components/jquery/dist/jquery.min.js', 'public/vendor/js/jquery/jquery.min.js')
      .copy('vendor/bower_components/jquery/dist/jquery.min.map', 'public/vendor/js/jquery/jquery.min.map')

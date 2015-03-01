@@ -1,10 +1,19 @@
 @extends('master')
+
+@section('title')
+  @if (isset($apartamentos))
+    - Index - {{ $apartamentos->edificio->name }}
+  @else
+    - Index - Bienvenido
+  @endif
+@stop
+
 @section('contenido')
-  @if (isset($apartamentos))  
-    <div class="container">
+  @if (isset($apartamentos))
+    <div id="edificio">
       <h1>
         Edificio
-        {!! link_to_action('BuildingsController@show', 
+        {!! link_to_action('BuildingsController@show',
               $apartamentos->edificio->name, $apartamentos->edificio->id) !!}
         </a>
       </h1>
@@ -42,24 +51,40 @@
           <a href="{{ action('MessagesController@create') }}" class="btn btn-primary">
             Crear Nuevo Mensaje
           </a>
-            @foreach ($mensajes as $mensaje)
-              <section>
-                <h4>
-                  {!! link_to_action('MessagesController@show', 
-                        $mensaje->title, $mensaje->id) !!}
-                </h4>
-                <p class="text-justify">
-                  {{ $mensaje->body }}
-                </p>
-              </section>
-            @endforeach
         </div>
       </div>
-      <hr/>
-      <div class="row">
-        <div class="col-xs-12">
-          @if ($apartamentos->edificio)
-            <h3>Eventos en {{ $apartamentos->edificio->name }} 
+    </div>
+    <div id="lista-12">
+      @foreach ($mensajes as $mensaje)
+        <div class="modelo">
+          <div class="detalles">
+            <article>
+              <h1>
+                {!! link_to_action('MessagesController@show',
+                      $mensaje->title, $mensaje->id) !!}
+              </h1>
+              <p class="body">
+                {{ $mensaje->body }}
+              </p>
+              <p>
+                <i>
+                  Ultima actualizacion
+                  {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
+                </i>
+              </p>
+            </article>
+          </div>
+        </div>
+      @endforeach
+    </div>
+
+    <hr/>
+
+    <div id="lista-12">
+      @if ($apartamentos->edificio)
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>Eventos en {{ $apartamentos->edificio->name }}
             <a href="{{ action('EventsController@index') }}"class="btn btn-default">
               Ver todos los Eventos
             </a>
@@ -69,36 +94,41 @@
                 Crear Nuevo evento
               </a>
             @endif
-            @foreach ($apartamentos->edificio->eventos as $evento)
-              <section>
-                <h4>
-                  {!! link_to_action('EventsController@show', 
-                        $evento->title, $evento->id) !!}
-                </h4>
-                <p class="text-justify">
-                  {{ $evento->body }}
-                </p>
-                @if ($usuario->perfil->description === 'Administrador')
-                  {!! link_to_action('EventsController@edit', 
-                    'Editar', $evento->id,
-                    ['class' => 'btn btn-default']) !!}
-                @endif
-                <hr/>
-              </section>
-            @endforeach
-          @endif
+          </div>
         </div>
-      </div>
+        @foreach ($apartamentos->edificio->eventos as $evento)
+          <div class="modelo">
+            <div class="detalles">
+              <article>
+                <header>
+                  <h1>
+                    {!! link_to_action('EventsController@show',
+                          $evento->title, $evento->id) !!}
+                  </h1>
+                </header>
+                <p class="body">{{ $evento->body }}</p>
+                <footer>
+                  <p>
+                    <i>
+                      Ultima actualizacion
+                      {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+                    </i>
+                  </p>
+                </footer>
+              </article>
+            </div>
+          </div>
+        @endforeach
+      @endif
     </div>
   @endif
   @unless (isset($apartamentos))
     <div class="container">
       <h1>Hola!! {{ $usuario->first_name }}, {{ $usuario->first_surname }}</h1>
-      <p>
-        Parece que su perfil no esta relacionado a ningun apartamento, 
+      <p style="font-size:24px;">
+        Parece que su perfil no esta relacionado a ningun apartamento,
         por favor <a href="{!! action('AssignApartmentsController@index') !!}">
-        visite los Edificios disponibles en el sistema.
-        </a>
+        visite los Edificios disponibles en el sistema.</a>
         para empezar el proceso de registro.
       </p>
     </div>

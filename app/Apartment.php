@@ -57,12 +57,13 @@ class Apartment extends Model {
    * se muta a null para mysql
    * @param integer $id
    */
-  public function setUserIdAttribute($id){
-    if (trim($id) === '') {
+  public function setUserIdAttribute($id)
+  {
+    if (trim($id) === '') :
       $this->attributes['user_id'] =  null;
-    }else{
+    else :
       $this->attributes['user_id'] = $id;
-    }
+    endif;
   }
 
 }

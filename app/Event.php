@@ -20,12 +20,12 @@ class Event extends Model {
    * @var array
    */
   protected $fillable = [
-    'user_id', 
-    'building_id', 
-    'event_type_id', 
-    'title', 
-    'body', 
-    'created_by', 
+    'user_id',
+    'building_id',
+    'event_type_id',
+    'title',
+    'body',
+    'created_by',
     'updated_by'
   ];
 
@@ -47,7 +47,7 @@ class Event extends Model {
    * un evento posee solo un tipo de mensaje
    */
   public function tipo(){
-    return $this->belongsTo('App\EventType');
+    return $this->belongsTo('App\EventType', 'event_type_id');
   }
 
   /**

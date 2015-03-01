@@ -19,7 +19,7 @@ class CreateTableCuentas extends Migration {
       $table->foreign('bank_id')->references('id')->on('banks');
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users');
-      $table->integer('bank_number')->unsigned();
+      $table->string('bank_number');
       $table->double('balance', 15, 6);
       $table->timestamps();
       $table->integer('created_by')->unsigned();

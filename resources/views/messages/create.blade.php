@@ -1,15 +1,23 @@
 @extends('master')
 
+@section('title')
+  - Crear - Mensaje
+@stop
+
 @section('contenido')
   <div class="container">
-    <h1>Crea un nuevo Mensaje</h1>
-
-    <hr/>
-
-    {!! Form::open(['action' => 'MessagesController@store']) !!}
-      @include('messages._form', ['textoBotonSubmit' => 'Añadir nuevo Mensaje'])
-    {!! Form::close() !!}
-
-    @include('errors.lista')
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+        <div class="panel panel-default">
+          <div class="panel-heading">Crea un nuevo Mensaje</div>
+          <div class="panel-body">
+            @include('errors.lista')
+            {!! Form::open(['action' => 'MessagesController@store', 'class' => 'form-horizontal']) !!}
+              @include('messages._form', ['textoBotonSubmit' => 'Añadir nuevo Mensaje'])
+            {!! Form::close() !!}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 @stop

@@ -39,7 +39,7 @@ return [
   |
   */
 
-  'timezone' => 'UTC',
+  'timezone' => 'America/Caracas',
 
   /*
   |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
   |
   */
 
-  'locale' => 'en',
+  'locale' => 'es',
 
   /*
   |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
   |
   */
 
-  'key' => env('APP_KEY', 'SomeRandomString'),
+  'key' => env('APP_KEY'),
 
   'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -137,8 +137,9 @@ return [
     'Illuminate\View\ViewServiceProvider',
     'Illuminate\Html\HtmlServiceProvider',
 
-    'Barryvdh\Debugbar\ServiceProvider',
+    // 'Barryvdh\Debugbar\ServiceProvider',
     'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+    'Jenssegers\Date\DateServiceProvider',
 
     /*
      * Application Service Providers...
@@ -201,8 +202,9 @@ return [
     'Form'      => 'Illuminate\Html\FormFacade',
     'Html'      => 'Illuminate\Html\HtmlFacade',
     'Flash'     => 'Laracasts\Flash\Flash',
-    'Debugbar'  => 'Barryvdh\Debugbar\Facade',
-    'Faker'     => 'Faker\Factory'
+    // 'Debugbar'  => 'Barryvdh\Debugbar\Facade',
+    'Faker'     => 'Faker\Factory',
+    'Date'      => 'Jenssegers\Date\Date'
 
   ],
 

@@ -6,10 +6,11 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Profile;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
-  use Authenticatable, CanResetPassword, SoftDeletes; 
+  use Authenticatable, CanResetPassword, SoftDeletes;
 
   /**
    * The database table used by the model.
@@ -24,15 +25,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    * @var array
    */
   protected $fillable = [
-    'username', 
-    'email', 
-    'password', 
+    'username',
+    'email',
+    'password',
     'identity_card',
-    'first_name', 
+    'first_name',
     'middle_name',
-    'first_surname', 
+    'first_surname',
     'last_surname',
-    'sex_id', 
+    'sex_id',
     'birth_date',
     'phone',
     'aditional_phone'
@@ -52,9 +53,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    */
   protected $dates = ['deleted_at'];
 
+  public function scopeAdministradores($query)
+  {
+    $perfil = Profile::where('description', 'Administrador')->first();
+    return $query->where('profile_id', $perfil->id);
+  }
+
   /**
    * la asociacion entre usuarios y perfiles en la base de datos
-   * en donde los parametros son 
+   * en donde los parametros son
    * ('el modelo', 'el pivote', 'su llave foranea en pivote')
    */
   public function perfil(){
@@ -87,7 +94,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
-   * un usuario tiene muchos mensajes y 
+   * un usuario tiene muchos mensajes y
    * un mensaje pertenece a un usuario
    */
   public function mensajes(){
@@ -95,7 +102,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
-   * un usuario tiene muchos mensajes y 
+   * un usuario tiene muchos mensajes y
    * un mensaje pertenece a un usuario
    */
   public function eventos(){
@@ -103,11 +110,33 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
-   * un usuario tiene muchos edificios (encargado) y 
+   * un usuario tiene muchos edificios (encargado) y
    * un edificio pertenece a un usuario
    */
   public function edificios(){
     return $this->hasMany('App\Building', 'user_id');
+  }
+  /**
+   * la relacion de gestion multifamiliar
+   */
+  public function gestiones(){
+    return $this->belongsToMany('App\Building');
+  }
+
+  /**
+   * un usuario tiene muchas cuentas (titular) y
+   * un cuenta pertenece a un usuario
+   */
+  public function cuentas(){
+    return $this->hasMany('App\Account', 'user_id');
+  }
+
+  /**
+   * un usuario tiene muchos movimientos (responsable)
+   * y un movimiento pertenece a un usuario
+   */
+  public function movimientos(){
+    return $this->hasMany('App\Movement', 'user_id');
   }
 
   /**
@@ -117,13 +146,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    */
   public function insertarMensaje($request){
     $mensaje = new \App\Message($request->all());
-    $mensaje->message_types_id = $request->input('types')[0];
+    $mensaje->message_type_id = $request->input('types')[0];
     $mensaje->created_by = $this->id;
     $mensaje->updated_by = $this->id;
     // $types   = $request->input('types');
     // $mensaje = \App\Message::create([
     //   'user_id'         => $this->id,
-    //   'message_types_id' => $types[0],
+    //   'message_type_id' => $types[0],
     //   'title'           => $request->input('title'),
     //   'description'     => $request->input('description'),
     //   'created_by'      => $this->id,
@@ -132,13 +161,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return $mensaje;
   }
 
-  public function esAdministrador(){
-    if ($this->perfil->description === 'Administrador') return true;    
+  public function esAdministrador()
+  {
+    if ($this->perfil->description === 'Administrador') return true;
     return false;
   }
 
-  public function esJuntaCondominio(){
-   if ($this->perfil->description === 'Junta de Condominio') return true;    
+  public function esJuntaCondominio()
+  {
+   if ($this->perfil->description === 'Junta de Condominio') return true;
     return false;
   }
 

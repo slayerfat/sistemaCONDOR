@@ -15,7 +15,7 @@ class ElRestoDeApartamentosTableSeeder extends Seeder {
     $matasiete = App\Building::where(
       'name', '=', 'Residencias Matasiete')->first();
     $j = 1;
-    for ($i=2; $i <= 28; $i++) :
+    for ($i = 2; $i <= 28; $i++) :
       App\Apartment::create([
         'building_id' => $matasiete->id,
         'user_id'     => null,
