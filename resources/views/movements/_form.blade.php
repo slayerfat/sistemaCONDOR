@@ -1,11 +1,13 @@
 <div class="form-group">
-  {{-- BUSCAR UNA SOLUCION MENOS MAMARRACHA!!! --}}
-  <label for="building_id" class="hidden">Perteneciente al Edificio:</label>
-  <select name="building_id" id="building_id" class="form-control hidden">
-    <option value="{{ $edificio->id }}">
-      {{ $edificio->name }}
-    </option>
-  </select>
+  <fieldset>
+    {{-- BUSCAR UNA SOLUCION MENOS MAMARRACHA!!! --}}
+    <label for="building_id" class="hidden">Perteneciente al Edificio:</label>
+    <select name="building_id" id="building_id" class="form-control hidden">
+      <option value="{{ $edificio->id }}">
+        {{ $edificio->name }}
+      </option>
+    </select>
+  </fieldset>
 </div>
 
 <div class="form-group">
@@ -52,63 +54,82 @@
 </div>
 
 <div class="form-group">
-  {!! Form::label('check_number', 'Numero de cheque:') !!}
-  {!! Form::text('check_number', null, ['class' => 'form-control']) !!}
+  <fieldset>
+    {!! Form::label('check_number', 'Numero de cheque:', ['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-10">
+      {!! Form::text('check_number', null, ['class' => 'form-control']) !!}
+    </div>
+  </fieldset>
 </div>
 
 <div class="form-group">
-  {!! Form::label('movement_type_id', 'Tipo de Movimiento:') !!}
-  <select name="movement_type_id" id="movement_type_id" class="form-control">
-    @foreach ($tipos as $tipo)
-      @if ($tipo->id === $movimiento->movement_type_id)
-        <option value="{{ $tipo->id }}" selected="selected">
-      @else
-        <option value="{{ $tipo->id }}">
-      @endif
-        {{ $tipo->description }}
-      </option>
-    @endforeach
-  </select>
+  <fieldset>
+    {!! Form::label('movement_type_id', 'Tipo de Movimiento:', ['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-4">
+      <select name="movement_type_id" id="movement_type_id" class="form-control">
+        @foreach ($tipos as $tipo)
+          @if ($tipo->id === $movimiento->movement_type_id)
+            <option value="{{ $tipo->id }}" selected="selected">
+          @else
+            <option value="{{ $tipo->id }}">
+          @endif
+            {{ $tipo->description }}
+          </option>
+        @endforeach
+      </select>
+    </div>
+    {!! Form::label('operation', 'Operacion:', ['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-4">
+      {!! Form::input('number', 'operation', null, [
+          'class' => 'form-control',
+          'max' => '9999999999'
+        ]) !!}
+    </div>
+  </fieldset>
 </div>
 
 <div class="form-group">
-  {!! Form::label('operation', 'Operacion:') !!}
-  {!! Form::input('number', 'operation', null, [
-        'class' => 'form-control',
-        'max' => '9999999999'
-      ]) !!}
+  <fieldset>
+    {!! Form::label('concept', 'Concepto:', ['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-10">
+      {!! Form::text('concept', null, ['class' => 'form-control']) !!}
+    </div>
+  </fieldset>
 </div>
 
 <div class="form-group">
-  {!! Form::label('concept', 'Concepto:') !!}
-  {!! Form::text('concept', null, ['class' => 'form-control']) !!}
+  <fieldset>
+    {!! Form::label('item_id', 'Rubro relacionado:', ['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-10">
+      <select name="item_id" id="item_id" class="form-control">
+        <option value="0">Seleccionar</option>
+        @foreach ($movimiento->items as $item)
+          <option value="{{ $item->id }}" selected="selected">
+            {{ $item->description }} |
+            {{ $item->total }} Unidades
+          </option>
+        @endforeach
+        @foreach ($items as $item)
+          <option value="{{ $item->id }}">
+            {{ $item->description }} |
+            {{ $item->total }} Unidades
+          </option>
+        @endforeach
+      </select>
+    </div>
+  </fieldset>
 </div>
 
 <div class="form-group">
-  {!! Form::label('item_id', 'Rubro relacionado:') !!}
-  <select name="item_id" id="item_id" class="form-control">
-    <option value="0">Seleccionar</option>
-    @foreach ($movimiento->items as $item)
-      <option value="{{ $item->id }}" selected="selected">
-        {{ $item->description }} |
-        {{ $item->total }} Unidades
-      </option>
-    @endforeach
-    @foreach ($items as $item)
-      <option value="{{ $item->id }}">
-        {{ $item->description }} |
-        {{ $item->total }} Unidades
-      </option>
-    @endforeach
-  </select>
-</div>
-
-<div class="form-group">
-  {!! Form::label('total', 'Cantidad a añadir o retirar:') !!}
-  {!! Form::text('total', null, [
-        'class' => 'form-control',
-        'placeholder' => 'Utilice valores negativos para retirar cantidades EJ: -5'
-      ]) !!}
+  <fieldset>
+    {!! Form::label('total', 'Cantidad a añadir o retirar:', ['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-10">
+      {!! Form::text('total', null, [
+          'class' => 'form-control',
+          'placeholder' => 'Utilice valores negativos para retirar cantidades EJ: -5'
+        ]) !!}
+    </div>
+  </fieldset>
 </div>
 
 <div class="form-group">
