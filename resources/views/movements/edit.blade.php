@@ -12,7 +12,11 @@
           <div class="panel-heading">Editar Movimiento</div>
           <div class="panel-body">
             @include('errors.lista')
-            {!! Form::model($movimiento, ['method' => 'PATCH', 'action' => ['MovementsController@update', $movimiento->id]]) !!}
+            {!! Form::model($movimiento, [
+                'method' => 'PATCH',
+                'action' => ['MovementsController@update', $movimiento->id],
+                'class'  => 'form-horizontal'
+              ]) !!}
               @include('movements._form', ['textoBotonSubmit' => 'Actualizar Movimiento'])
             {!! Form::close() !!}
           </div>

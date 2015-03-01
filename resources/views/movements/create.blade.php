@@ -18,7 +18,8 @@
           </div>
           <div class="panel-body">
             @include('errors.lista')
-            {!! Form::model($edificio, ['action' => 'MovementsController@store']) !!}
+            {!! Form::model($edificio,
+                ['action' => 'MovementsController@store', 'class' => 'form-horizontal']) !!}
               @include('movements._form', ['textoBotonSubmit' => 'Añadir nuevo Movimiento'])
             {!! Form::close() !!}
           </div>

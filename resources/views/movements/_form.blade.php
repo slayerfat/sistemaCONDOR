@@ -1,12 +1,14 @@
 <div class="form-group">
   <fieldset>
     {{-- BUSCAR UNA SOLUCION MENOS MAMARRACHA!!! --}}
-    <label for="building_id" class="hidden">Perteneciente al Edificio:</label>
-    <select name="building_id" id="building_id" class="form-control hidden">
-      <option value="{{ $edificio->id }}">
-        {{ $edificio->name }}
-      </option>
-    </select>
+    <label for="building_id" class="hidden col-md-2 control-label">Perteneciente al Edificio:</label>
+    <div class="col-md-10">
+      <select name="building_id" id="building_id" class="form-control hidden">
+        <option value="{{ $edificio->id }}">
+          {{ $edificio->name }}
+        </option>
+      </select>
+    </div>
   </fieldset>
 </div>
 
