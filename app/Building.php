@@ -27,6 +27,15 @@ class Building extends Model {
   }
 
   /**
+   * regresa los eventos paginados
+   * @return object LengthAwarePaginator
+   */
+  public function getMensajesPaginadosAttribute()
+  {
+    return $this->mensajes()->paginate(5);
+  }
+
+  /**
    * relacion 1aN
    */
   public function encargado(){

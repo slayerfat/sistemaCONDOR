@@ -76,6 +76,7 @@
           </div>
         </div>
       @endforeach
+      {!! $mensajes->render() !!}
     </div>
 
     <hr/>
@@ -96,7 +97,8 @@
             @endif
           </div>
         </div>
-        @foreach ($apartamentos->edificio->eventos as $evento)
+        <?php $eventos = $apartamentos->edificio->eventos_paginados ?>
+        @foreach ($eventos as $evento)
           <div class="modelo">
             <div class="detalles">
               <article>
@@ -119,6 +121,7 @@
             </div>
           </div>
         @endforeach
+        {!! $eventos->render() !!}
       @endif
     </div>
   @endif

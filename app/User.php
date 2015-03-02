@@ -61,6 +61,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * regresa los eventos paginados
+   * @return object LengthAwarePaginator
+   */
+  public function getEventosPaginadosAttribute()
+  {
+    return $this->eventos()->paginate(5);
+  }
+
+  /**
+   * regresa los eventos paginados
+   * @return object LengthAwarePaginator
+   */
+  public function getMensajesPaginadosAttribute()
+  {
+    return $this->mensajes()->paginate(5);
+  }
+
+  /**
    * la asociacion entre usuarios y perfiles en la base de datos
    * en donde los parametros son
    * ('el modelo', 'el pivote', 'su llave foranea en pivote')
@@ -150,15 +168,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     $mensaje->message_type_id = $request->input('types')[0];
     $mensaje->created_by = $this->id;
     $mensaje->updated_by = $this->id;
-    // $types   = $request->input('types');
-    // $mensaje = \App\Message::create([
-    //   'user_id'         => $this->id,
-    //   'message_type_id' => $types[0],
-    //   'title'           => $request->input('title'),
-    //   'description'     => $request->input('description'),
-    //   'created_by'      => $this->id,
-    //   'updated_by'      => $this->id
-    // ]);
     return $mensaje;
   }
 
