@@ -4545,6 +4545,51 @@ article .body {
   font-size: 24px;
   text-align: justify; }
 
+#cunaguaro {
+  background-color: gray;
+  background-size: 140%;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  transition: background-size 40s linear; }
+
+div.404 {
+  margin-left: -15px;
+  margin-right: -15px; }
+  div.404:before, div.404:after {
+    content: " ";
+    display: table; }
+  div.404:after {
+    clear: both; }
+
+.full {
+  min-height: 100%; }
+
+div.status {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 25px;
+  color: #333;
+  padding: 0 10px 10px 10px; }
+  @media (min-width: 992px) {
+    div.status {
+      float: left;
+      width: 33.33333%; } }
+  @media (min-width: 992px) {
+    div.status {
+      margin-left: 33.33333%; } }
+  div.status h1 {
+    font-weight: 100;
+    font-size: 72px;
+    margin-bottom: 40px; }
+  div.status h2 {
+    font-size: 20px; }
+  div.status p {
+    font-size: 18px; }
+
 #error-message {
   font-size: 18px;
   margin-bottom: 5px; }
