@@ -16,7 +16,8 @@ class PerfilesTableSeeder extends Seeder {
       'Usuario',
       'Ayudante',
       'Junta de condominio',
-      'Consejo Comunal'
+      'Consejo Comunal',
+      'Desactivado'
     ];
 
     foreach($tipos as $perfil):
