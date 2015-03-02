@@ -12,6 +12,16 @@ use Illuminate\Http\Request;
 class IndexController extends Controller {
 
   /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('auth', ['only' => ['porVerificar']]);
+  }
+
+  /**
    * Display a listing of the resource.
    *
    * @return Response
@@ -29,5 +39,10 @@ class IndexController extends Controller {
     $eventos  = Auth::user()->eventos;
     $usuario  = Auth::user();
     return view('index', compact('apartamentos', 'mensajes', 'eventos', 'usuario'));
+  }
+
+  public function porVerificar()
+  {
+    return view('auth.verification');
   }
 }

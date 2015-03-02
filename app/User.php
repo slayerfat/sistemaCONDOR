@@ -34,6 +34,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     'first_surname',
     'last_surname',
     'sex_id',
+    'profile_id',
     'birth_date',
     'phone',
     'aditional_phone'
@@ -170,6 +171,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   public function esJuntaCondominio()
   {
    if ($this->perfil->description === 'Junta de Condominio') return true;
+    return false;
+  }
+
+  public function porVerificar()
+  {
+   if ($this->perfil->description === 'Por Verificar') return true;
     return false;
   }
 
