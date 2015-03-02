@@ -174,4 +174,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return false;
   }
 
+  public function porVerificar()
+  {
+   if ($this->perfil->description === 'Por Verificar') return true;
+    return false;
+  }
+
 }

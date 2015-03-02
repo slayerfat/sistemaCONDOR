@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => ['auth', 'usuario.verificar']], function(){
   Route::get('/', 'IndexController@index');
   Route::resource('usuarios', 'UsersController');
   Route::resource('edificios', 'BuildingsController');
@@ -43,6 +43,9 @@ Route::group(['middleware' => 'auth'], function(){
   Route::patch('gestiones/{gestiones}', 'GestionsController@update');
   Route::delete('gestiones/{usuarios}/{edificios}', 'GestionsController@destroy');
 });
+
+// usuario por verificar
+Route::get('/por-verificar', 'IndexController@porVerificar');
 
 // para asignar un usuario a un apartamento de un edifico
 Route::group(['middleware' => 'auth', 'prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
