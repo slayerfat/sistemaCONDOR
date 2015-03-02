@@ -42,7 +42,7 @@
         <div class="col-xs-12">
           @if ($usuario->mensajes->count())
             <h3>
-              Mensajes hechos por Ud.
+              Ultimos Mensajes
               <a href="{{ action('MessagesController@index') }}"class="btn btn-default">
                 Ver todos los Mensajes
               </a>
@@ -76,7 +76,6 @@
           </div>
         </div>
       @endforeach
-      {!! $mensajes->render() !!}
     </div>
 
     <hr/>

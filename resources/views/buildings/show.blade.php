@@ -84,7 +84,7 @@
           <h2>
             Ultimos Movimientos
           </h2>
-          @foreach ($edificio->movimientos as $movimiento)
+          @foreach ($edificio->ultimos_movimientos as $movimiento)
             <article>
               <header>
                 <h3>
@@ -160,7 +160,7 @@
           <h2>
             Ultimos Eventos del Edificio
           </h2>
-          @foreach ($edificio->eventos as $evento)
+          @foreach ($edificio->ultimos_eventos as $evento)
             <article>
               <header>
                 <h3>

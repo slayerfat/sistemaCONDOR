@@ -79,6 +79,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * regresa los ultimos 3 mensajes relacionados con el edificio
+   */
+  public function getUltimosMensajesAttribute()
+  {
+    return $this->mensajes()->orderBy('updated_at', 'desc')->take(3)->get();
+  }
+
+  /**
    * la asociacion entre usuarios y perfiles en la base de datos
    * en donde los parametros son
    * ('el modelo', 'el pivote', 'su llave foranea en pivote')

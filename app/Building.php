@@ -36,6 +36,22 @@ class Building extends Model {
   }
 
   /**
+   * regresa los ultimos 3 eventos relacionados con el edificio
+   */
+  public function getUltimosEventosAttribute()
+  {
+    return $this->eventos()->orderBy('updated_at', 'desc')->take(3)->get();
+  }
+
+  /**
+   * regresa los ultimos 3 movimientos relacionados con el edificio
+   */
+  public function getUltimosMovimientosAttribute()
+  {
+    return $this->movimientos()->orderBy('updated_at', 'desc')->take(3)->get();
+  }
+
+  /**
    * relacion 1aN
    */
   public function encargado(){
