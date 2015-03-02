@@ -10,12 +10,21 @@ class Building extends Model {
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
-    'user_id', 
+    'user_id',
     'direction_id',
     'name',
     'created_by',
     'updated_by'
   ];
+
+  /**
+   * regresa los eventos paginados
+   * @return object LengthAwarePaginator
+   */
+  public function getEventosPaginadosAttribute()
+  {
+    return $this->eventos()->paginate(5);
+  }
 
   /**
    * relacion 1aN

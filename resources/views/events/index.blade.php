@@ -19,8 +19,8 @@
         </small>
       </h1>
       <hr/>
-
-      @foreach ($edificio->eventos as $evento)
+      <?php $eventos = $edificio->eventos_paginados ?>
+      @foreach ($eventos as $evento)
         <article>
           <h2>
             {!! link_to_action('EventsController@show',
@@ -29,6 +29,7 @@
           <body>{{ $evento->body }}</body>
         </article>
       @endforeach
+      {!! $eventos->render(); !!}
     </div>
   @endforeach
 @stop
