@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder {
   public function run()
   {
     Model::unguard();
-    
+
     $this->call('SexosTableSeeder');
     $this->call('PerfilesTableSeeder');
     $this->call('NeoTableSeeder');
@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder {
     $this->call('BancosTableSeeder');
     $this->call('CuentasTableSeeder');
     $this->call('GestionFamiliearTableSeeder');
+    $this->call('MegaTableSeeder');
   }
 
 }
