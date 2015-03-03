@@ -35,6 +35,9 @@
                 <i>
                   Ultima actualizacion
                   {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
+                  {{-- hacer enlace a mensaje por autor --}}
+                  {!! $mensaje->autor->first_name !!}
+                  {!! $mensaje->autor->first_surname !!}
                 </i>
               </p>
             </footer>

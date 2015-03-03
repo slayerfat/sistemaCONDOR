@@ -9,19 +9,15 @@
   @foreach ($edificios as $edificio)
     <div class="container">
       <h1>
-        Eventos relacionados
-        <small>
-          Con
-          {!! link_to_action('BuildingsController@show',
-                $edificio->name,
-                $edificio->id
-              ) !!}
-        </small>
+        Ultimos Eventos relacionados con
+        {!! link_to_action('BuildingsController@show',
+              $edificio->name,
+              $edificio->id
+            ) !!}
       </h1>
     </div>
     <div id="lista-12">
-      <?php $eventos = $edificio->eventos_paginados ?>
-      @foreach ($eventos as $evento)
+      @foreach ($edificio->ultimos_eventos as $evento)
         <div class="modelo">
           <div class="detalles">
             <article>
@@ -46,7 +42,7 @@
           </div>
         </div>
       @endforeach
-      {!! $eventos->render(); !!}
     </div>
+    <hr>
   @endforeach
 @stop

@@ -66,7 +66,7 @@
         'Crear Nuevo', null,
         ['class' => 'btn btn-primary']) !!}
     </h3>
-    @foreach ($usuario->mensajes as $mensaje)
+    @foreach ($usuario->ultimos_mensajes as $mensaje)
       <div class="modelo">
         <div class="detalles">
           <article>
