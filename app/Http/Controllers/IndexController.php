@@ -34,11 +34,10 @@ class IndexController extends Controller {
     // si no es propietario entonces se busca
     // como habitante
     if (!$apartamentos) $apartamentos = Chequeo::obtenerApartamentos();
-    // esto puede ser limpiado
-    $mensajes = Auth::user()->mensajes;
-    $eventos  = Auth::user()->eventos;
+
     $usuario  = Auth::user();
-    return view('index', compact('apartamentos', 'mensajes', 'eventos', 'usuario'));
+    $mensajes = $usuario->ultimos_mensajes;
+    return view('index', compact('apartamentos', 'mensajes', 'usuario'));
   }
 
   public function porVerificar()

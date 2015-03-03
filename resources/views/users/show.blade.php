@@ -16,8 +16,8 @@
       </small>
       @if (Auth::user()->id === $usuario->id)
         {!!link_to_action(
-            'UsersController@edit', 
-            'Editar', 
+            'UsersController@edit',
+            'Editar',
             $usuario->id,
             ['class' => 'btn btn-primary']) !!}
       @endif
@@ -38,8 +38,8 @@
       @foreach ($usuario->apartamentos as $apartamento)
         <h4>
           {!!link_to_action(
-              'BuildingsController@show', 
-              $apartamento->edificio->name, 
+              'BuildingsController@show',
+              $apartamento->edificio->name,
               $apartamento->edificio->id) !!}
           <small>
             Piso
@@ -57,16 +57,16 @@
           {{ $usuario->perfil->description }}
         </h4>
     </section>
-  </div>  
+  </div>
   <div id="lista-12">
     <h3>
       Ultimos mensajes
       {!!link_to_action(
-        'MessagesController@create', 
+        'MessagesController@create',
         'Crear Nuevo', null,
         ['class' => 'btn btn-primary']) !!}
     </h3>
-    @foreach ($usuario->mensajes as $mensaje)
+    @foreach ($usuario->ultimos_mensajes as $mensaje)
       <div class="modelo">
         <div class="detalles">
           <article>
@@ -79,7 +79,7 @@
                     $mensaje->id) !!}
                 @else
                   {!!link_to_action(
-                    'MessagesController@show', 
+                    'MessagesController@show',
                     $mensaje->title,
                     $mensaje->id) !!}
                 @endif

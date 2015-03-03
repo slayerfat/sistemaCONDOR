@@ -37,12 +37,58 @@
         @endif
       </p>
     </div>
+    <div id="lista-12">
+      @if ($apartamentos->edificio)
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>Eventos en {{ $apartamentos->edificio->name }}
+            <a href="{{ action('EventsController@index') }}"class="btn btn-default">
+              Ver todos los Eventos
+            </a>
+            </h3>
+            @if ($usuario->perfil->description === 'Administrador')
+              <a href="{{ action('EventsController@create') }}" class="btn btn-primary">
+                Crear Nuevo evento
+              </a>
+            @endif
+          </div>
+        </div>
+        <?php $eventos = $apartamentos->edificio->eventos_paginados ?>
+        @foreach ($eventos as $evento)
+          <div class="modelo">
+            <div class="detalles">
+              <article>
+                <header>
+                  <h1>
+                    {!! link_to_action('EventsController@show',
+                          $evento->title, $evento->id) !!}
+                  </h1>
+                </header>
+                <p class="body">{{ $evento->body }}</p>
+                <footer>
+                  <p>
+                    <i>
+                      Ultima actualizacion
+                      {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+                    </i>
+                  </p>
+                </footer>
+              </article>
+            </div>
+          </div>
+        @endforeach
+        {!! $eventos->render() !!}
+      @endif
+    </div>
+
+    <hr/>
+
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
           @if ($usuario->mensajes->count())
             <h3>
-              Mensajes hechos por Ud.
+              Ultimos Mensajes
               <a href="{{ action('MessagesController@index') }}"class="btn btn-default">
                 Ver todos los Mensajes
               </a>
@@ -76,50 +122,6 @@
           </div>
         </div>
       @endforeach
-    </div>
-
-    <hr/>
-
-    <div id="lista-12">
-      @if ($apartamentos->edificio)
-        <div class="row">
-          <div class="col-xs-12">
-            <h3>Eventos en {{ $apartamentos->edificio->name }}
-            <a href="{{ action('EventsController@index') }}"class="btn btn-default">
-              Ver todos los Eventos
-            </a>
-            </h3>
-            @if ($usuario->perfil->description === 'Administrador')
-              <a href="{{ action('EventsController@create') }}" class="btn btn-primary">
-                Crear Nuevo evento
-              </a>
-            @endif
-          </div>
-        </div>
-        @foreach ($apartamentos->edificio->eventos as $evento)
-          <div class="modelo">
-            <div class="detalles">
-              <article>
-                <header>
-                  <h1>
-                    {!! link_to_action('EventsController@show',
-                          $evento->title, $evento->id) !!}
-                  </h1>
-                </header>
-                <p class="body">{{ $evento->body }}</p>
-                <footer>
-                  <p>
-                    <i>
-                      Ultima actualizacion
-                      {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
-                    </i>
-                  </p>
-                </footer>
-              </article>
-            </div>
-          </div>
-        @endforeach
-      @endif
     </div>
   @endif
   @unless (isset($apartamentos))

@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title')
-  - Items - {{ $edificio->name }} - {{ $item->description }}
+  - Items - {{ $item->edificio->name }} - {{ $item->description }}
 @stop
 
 @section('contenido')
@@ -16,7 +16,7 @@
       {!! link_to_action(
         'ItemsController@index',
         'Ver Todos los Items',
-        null, 
+        null,
         ['class' => 'btn btn-default']
       ) !!}
     </h1>
@@ -45,6 +45,6 @@
           ) !!}
         @endif
       </footer>
-    </article>    
+    </article>
   </div>
 @stop

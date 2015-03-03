@@ -82,9 +82,12 @@
       <div class="col-sm-6">
         <div class="row">
           <h2>
-            Ultimos Movimientos
+            {!! link_to_action('BuildingsController@movements',
+              'Ultimos Movimientos',
+              $edificio->id
+            ) !!}
           </h2>
-          @foreach ($edificio->movimientos as $movimiento)
+          @foreach ($edificio->ultimos_movimientos as $movimiento)
             <article>
               <header>
                 <h3>
@@ -158,9 +161,12 @@
         <hr/>
         <div class="row">
           <h2>
-            Ultimos Eventos del Edificio
+            {!! link_to_action('BuildingsController@events',
+              'Ultimos Eventos',
+              $edificio->id
+            ) !!}
           </h2>
-          @foreach ($edificio->eventos as $evento)
+          @foreach ($edificio->ultimos_eventos as $evento)
             <article>
               <header>
                 <h3>

@@ -10,12 +10,46 @@ class Building extends Model {
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
-    'user_id', 
+    'user_id',
     'direction_id',
     'name',
     'created_by',
     'updated_by'
   ];
+
+  /**
+   * regresa los eventos paginados
+   * @return object LengthAwarePaginator
+   */
+  public function getEventosPaginadosAttribute()
+  {
+    return $this->eventos()->paginate(5);
+  }
+
+  /**
+   * regresa los eventos paginados
+   * @return object LengthAwarePaginator
+   */
+  public function getMensajesPaginadosAttribute()
+  {
+    return $this->mensajes()->paginate(5);
+  }
+
+  /**
+   * regresa los ultimos 3 eventos relacionados con el edificio
+   */
+  public function getUltimosEventosAttribute()
+  {
+    return $this->eventos()->orderBy('updated_at', 'desc')->take(3)->get();
+  }
+
+  /**
+   * regresa los ultimos 3 movimientos relacionados con el edificio
+   */
+  public function getUltimosMovimientosAttribute()
+  {
+    return $this->movimientos()->orderBy('updated_at', 'desc')->take(3)->get();
+  }
 
   /**
    * relacion 1aN
