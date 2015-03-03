@@ -37,49 +37,6 @@
         @endif
       </p>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          @if ($usuario->mensajes->count())
-            <h3>
-              Ultimos Mensajes
-              <a href="{{ action('MessagesController@index') }}"class="btn btn-default">
-                Ver todos los Mensajes
-              </a>
-            </h3>
-          @endif
-          <a href="{{ action('MessagesController@create') }}" class="btn btn-primary">
-            Crear Nuevo Mensaje
-          </a>
-        </div>
-      </div>
-    </div>
-    <div id="lista-12">
-      @foreach ($mensajes as $mensaje)
-        <div class="modelo">
-          <div class="detalles">
-            <article>
-              <h1>
-                {!! link_to_action('MessagesController@show',
-                      $mensaje->title, $mensaje->id) !!}
-              </h1>
-              <p class="body">
-                {{ $mensaje->body }}
-              </p>
-              <p>
-                <i>
-                  Ultima actualizacion
-                  {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
-                </i>
-              </p>
-            </article>
-          </div>
-        </div>
-      @endforeach
-    </div>
-
-    <hr/>
-
     <div id="lista-12">
       @if ($apartamentos->edificio)
         <div class="row">
@@ -122,6 +79,49 @@
         @endforeach
         {!! $eventos->render() !!}
       @endif
+    </div>
+
+    <hr/>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          @if ($usuario->mensajes->count())
+            <h3>
+              Ultimos Mensajes
+              <a href="{{ action('MessagesController@index') }}"class="btn btn-default">
+                Ver todos los Mensajes
+              </a>
+            </h3>
+          @endif
+          <a href="{{ action('MessagesController@create') }}" class="btn btn-primary">
+            Crear Nuevo Mensaje
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="lista-12">
+      @foreach ($mensajes as $mensaje)
+        <div class="modelo">
+          <div class="detalles">
+            <article>
+              <h1>
+                {!! link_to_action('MessagesController@show',
+                      $mensaje->title, $mensaje->id) !!}
+              </h1>
+              <p class="body">
+                {{ $mensaje->body }}
+              </p>
+              <p>
+                <i>
+                  Ultima actualizacion
+                  {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
+                </i>
+              </p>
+            </article>
+          </div>
+        </div>
+      @endforeach
     </div>
   @endif
   @unless (isset($apartamentos))
