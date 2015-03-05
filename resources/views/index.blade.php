@@ -67,6 +67,9 @@
                 <p class="body">{{ $evento->body }}</p>
                 <footer>
                   <p>
+                    <strong>
+                      {!! $evento->tipo->description !!}.
+                    </strong>
                     <i>
                       Ultima actualizacion
                       {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
@@ -113,6 +116,9 @@
                 {{ $mensaje->body }}
               </p>
               <p>
+                <strong>
+                  {!! $mensaje->tipo->description !!}.
+                </strong>
                 <i>
                   Ultima actualizacion
                   {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.

@@ -182,6 +182,9 @@
               </p>
               <footer>
                 <p>
+                  <strong>
+                    {!! $evento->tipo->description !!}.
+                  </strong>
                   <i>
                     Ultima actualizacion
                     {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.

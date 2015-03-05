@@ -32,6 +32,9 @@
             </p>
             <footer>
               <p>
+                <strong>
+                  {!! $mensaje->tipo->description !!}.
+                </strong>
                 <i>
                   Ultima actualizacion
                   {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.

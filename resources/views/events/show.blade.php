@@ -36,6 +36,9 @@
           </h3>
         </address>
         <p>
+          <strong>
+            {!! $evento->tipo->description !!}.
+          </strong>
           <i>
             Ultima Actualizacion
             {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.

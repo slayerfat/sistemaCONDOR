@@ -47,7 +47,7 @@
         <h3>
           Habitantes
         </h3>
-        <table 
+        <table
           id="tabla"
           data-toggle="table"
           data-search="true"
