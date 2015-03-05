@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Requests\ApartmentsRequest;
+use App\Http\Requests\MultipleApartmentsRequest;
 use App\Http\Controllers\Controller;
 use App\Apartment;
 use App\Building;
@@ -71,6 +72,20 @@ class ApartmentsController extends Controller {
 
     flash('El Apartamento ha sido creado con exito.');
     return redirect()->action('BuildingsController@index');
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @return Response
+   */
+  public function storeMultiple($id, MultipleApartmentsRequest $request)
+  {
+    $edificio = Building::findOrFail($id);
+    if ($request->input('first_floor') === 'on'):
+      $n = 0;
+    endif;
+    return $request->all();
   }
 
   /**

@@ -107,8 +107,8 @@ class MegaTableSeeder extends Seeder {
     $edificios = \App\Building::where('name', '!=', 'Residencias Matasiete')->get();
     foreach ($edificios as $edificio):
       $this->command->info("MEGA: Edificio $edificio->name.");
-      $n = rand(10, 30);
-      $p = rand(2,4);
+      $n = rand(10, 30); // Apartamentos
+      $p = rand(2,4); // pisos
       for ($i = 1; $i <= $n; $i++) :
         $this->command->info("MEGA: Apartamento $i piso $j.");
         App\Apartment::create([
