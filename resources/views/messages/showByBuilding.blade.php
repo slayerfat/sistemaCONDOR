@@ -8,7 +8,7 @@
   @include('errors.lista')
   <div id="edificio">
     <h1>
-      Del Edificio
+      Mensajes del Edificio
       {!! link_to_action('BuildingsController@show',
         $edificio->name,
         $edificio->id
@@ -40,7 +40,7 @@
                       $mensaje->autor->first_name.', '.
                       $mensaje->autor->first_surname,
                       $mensaje->autor->id)
-                    !!}
+                    !!}.
                 </i>
               </p>
             </footer>
