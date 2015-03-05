@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth', 'usuario.verificar']], function(){
   // crea un miembro de gestion multifamiliar de algun edificio
   Route::get('edificios/gestiones/{edificios}/create', 'BuildingsController@gestionsCreate');
   Route::resource('apartamentos', 'ApartmentsController');
+  Route::get('apartamentos/createMultiple/{edificios}', 'ApartmentsController@createMultiple');
   Route::resource('mensajes', 'MessagesController');
   Route::resource('eventos', 'EventsController');
   Route::resource('items', 'ItemsController');

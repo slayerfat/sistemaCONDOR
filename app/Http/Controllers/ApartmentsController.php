@@ -47,6 +47,17 @@ class ApartmentsController extends Controller {
   }
 
   /**
+   * Show the form for creating a new resource.
+   *
+   * @returnulln Response
+   */
+  public function createMultiple($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return view('apartments.createMultiple', compact('edificio'));
+  }
+
+  /**
    * Store a newly created resource in storage.
    *
    * @return Response

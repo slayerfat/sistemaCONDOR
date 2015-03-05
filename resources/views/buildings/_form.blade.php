@@ -22,6 +22,13 @@
 </div>
 
 <div class="form-group">
+  {!! Form::label('total_floors', 'Pisos:', ['class' => 'col-md-2 control-label']) !!}
+  <div class="col-md-10">
+    {!! Form::input('number', 'total_floors', $edificio->total_floors, ['class' => 'form-control', 'min' => '0', 'max' => '200']) !!}
+  </div>
+</div>
+
+<div class="form-group">
   {!! Form::label('exact_direction', 'Direccion:', ['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-10">
     {!! Form::text('exact_direction',

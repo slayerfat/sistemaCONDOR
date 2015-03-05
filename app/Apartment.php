@@ -7,9 +7,9 @@ class Apartment extends Model {
   protected $table = 'apartments';
 
   protected $dates = ['deleted_at'];
-  
+
   protected $fillable = [
-    'building_id', 
+    'building_id',
     'user_id',
     'floor',
     'number',
