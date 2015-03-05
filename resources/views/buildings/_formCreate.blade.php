@@ -7,11 +7,7 @@
   <div class="col-md-4">
     <select name="user_id" class="form-control">
     @foreach ($administradores as $administrador)
-      @if ($edificio->user_id === $administrador->usuarios->first()->id)
-        <option value="{{ $administrador->id }}" selected="selected">
-      @else
-        <option value="{{ $administrador->id }}">
-      @endif
+      <option value="{{ $administrador->id }}">
         {{$administrador->usuarios->first()->first_name}}
         {{$administrador->usuarios->first()->first_surname}}
         {{$administrador->usuarios->first()->email}}
@@ -24,16 +20,14 @@
 <div class="form-group">
   {!! Form::label('total_floors', 'Pisos:', ['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-10">
-    {!! Form::input('number', 'total_floors', $edificio->total_floors, ['class' => 'form-control', 'min' => '0', 'max' => '200']) !!}
+    {!! Form::input('number', 'total_floors', null, ['class' => 'form-control', 'min' => '0', 'max' => '200']) !!}
   </div>
 </div>
 
 <div class="form-group">
   {!! Form::label('exact_direction', 'Direccion:', ['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-10">
-    {!! Form::text('exact_direction',
-    $edificio->direccion->exact_direction,
-    ['class' => 'form-control']) !!}
+    {!! Form::text('exact_direction', null, ['class' => 'form-control']) !!}
   </div>
 </div>
 
@@ -57,7 +51,6 @@
   {!! Form::label('parish_id', 'Parroquia:', ['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-10">
     <select name="parish_id" id="parish_id" class="form-control">
-      <option value="{!! $edificio->direccion->parish_id !!}"></option>
     </select>
   </div>
 </div>

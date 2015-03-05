@@ -13,6 +13,7 @@ class Building extends Model {
     'user_id',
     'direction_id',
     'name',
+    'total_floors',
     'created_by',
     'updated_by'
   ];

@@ -50,6 +50,10 @@
         <h2>
           Apartamentos existentes
         </h2>
+        @if ($edificio->apartamentos->isEmpty())
+          {!! link_to_action('ApartmentsController@create', 'Crear Nuevo Apartamento', null, ['class' => 'btn btn-primary']) !!}
+          {!! link_to_action('ApartmentsController@createMultiple', 'Crear varios Apartamentos', $edificio->id, ['class' => 'btn btn-info']) !!}
+        @endif
         @foreach ($edificio->apartamentos as $apartamento)
           <section>
             <p>
