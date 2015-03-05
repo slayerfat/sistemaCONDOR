@@ -22,7 +22,7 @@ class MultipleApartmentsRequest extends Request {
   public function rules()
   {
     return [
-      'aprt_by_floor'        => 'required|integer|between :0,200',
+      'apartments'           => 'required|integer|between :0,200',
       'first_floor'          => 'required',
       'last_floor'           => 'required',
       'first_floor_quantity' => 'integer',

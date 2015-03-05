@@ -103,7 +103,7 @@ class MegaTableSeeder extends Seeder {
     $this->command->info('MEGA: inicio, Apartamentos.');
     $this->command->info('------------------------------------');
     $this->command->info('------------------------------------');
-    $j = 1;
+    $j = 1; // control de pisos
     $edificios = \App\Building::where('name', '!=', 'Residencias Matasiete')->get();
     foreach ($edificios as $edificio):
       $this->command->info("MEGA: Edificio $edificio->name.");

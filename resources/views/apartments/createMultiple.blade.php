@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title')
-  - Crear - Apartamentos
+  - Crear Multiples - Apartamentos
 @stop
 
 @section('contenido')
@@ -9,24 +9,39 @@
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1">
         <div class="panel panel-default">
-          <div class="panel-heading">Crear un nuevo Apartamento en el sistemaCONDOR</div>
+          <div class="panel-heading">Crear Apartamentos en el Edificio {!! link_to_action('BuildingsController@show', $edificio->name, $edificio->id) !!}</div>
           <div class="panel-body">
             @include('errors.lista')
             {!! Form::model($edificio, ['action' => ['ApartmentsController@storeMultiple', $edificio->id], 'class' => 'form-horizontal']) !!}
               <div class="form-group">
-                {!! Form::label('aprt_by_floor', 'Apartamentos por piso:', ['class' => 'col-md-3 control-label']) !!}
+                <div class="col-md-12">
+                  <center>
+                    <label>
+                      El Edificio
+                      {{$edificio->name}}
+                      posee {{$edificio->total_floors}} pisos.
+                    </label>
+                  </center>
+                </div>
+              </div>
+              <div class="form-group">
+                {!! Form::label('apartments', 'Apartamentos por piso:', ['class' => 'col-md-3 control-label']) !!}
                 <div class="col-md-9">
-                  {!! Form::input('number', 'aprt_by_floor', null, ['class' => 'form-control', 'min' => '1', 'max' => '7']) !!}
+                  {!! Form::input('number', 'apartments', null, ['class' => 'form-control', 'min' => '1', 'max' => '7']) !!}
                 </div>
               </div>
               <div class="form-group">
                 {!! Form::label('first_floor', '¿esto incluye el primer piso?', ['class' => 'col-md-3 control-label']) !!}
                 <div class="radio col-md-9">
-                  <label>{!! Form::input('radio', 'first_floor', null, ['checked']) !!}Si</label>
-                  <label>{!! Form::input('radio', 'first_floor', null) !!}No</label>
+                  <label>
+                    <input checked="checked" name="first_floor" type="radio" id="first_floor" value="si">Si
+                  </label>
+                  <label>
+                    <input name="first_floor" type="radio" id="first_floor" value="no">no
+                  </label>
                 </div>
               </div>
-              <div class="form-group" id="first">
+              <div class="form-group" id="first" style="display:none;">
                 {!! Form::label('first_floor_quantity', '¿Cuantos Apartamentos hay en el primer piso?', ['class' => 'col-md-3 control-label']) !!}
                 <div class="col-md-9">
                   {!! Form::input('number', 'first_floor_quantity', null, ['class' => 'form-control']) !!}
@@ -35,11 +50,15 @@
               <div class="form-group">
                 {!! Form::label('last_floor', '¿esto incluye el ultimo piso?', ['class' => 'col-md-3 control-label']) !!}
                 <div class="radio col-md-9">
-                  <label>{!! Form::input('radio', 'last_floor', null, ['checked']) !!}Si</label>
-                  <label>{!! Form::input('radio', 'last_floor', null) !!}No</label>
+                  <label>
+                    <input checked="checked" name="last_floor" type="radio" id="last_floor" value="si">Si
+                  </label>
+                  <label>
+                    <input name="last_floor" type="radio" id="last_floor" value="no">No
+                  </label>
                 </div>
               </div>
-              <div class="form-group" id="second">
+              <div class="form-group" id="last" style="display:none;">
                 {!! Form::label('last_floor_quantity', '¿Cuantos Apartamentos hay en el ultimo piso?', ['class' => 'col-md-3 control-label']) !!}
                 <div class="col-md-9">
                   {!! Form::input('number', 'last_floor_quantity', null, ['class' => 'form-control']) !!}
@@ -61,7 +80,14 @@
 @section('js')
   <script charset="utf-8">
     $(function(){
-      console.log('test');
+      $('[name="first_floor"]').click(function(){
+        $('[name="first_floor_quantity"]').val('');
+        $('#first').toggle(300);
+      });
+      $('[name="last_floor"]').click(function(){
+        $('[name="last_floor_quantity"]').val('');
+        $('#last').toggle(300);
+      });
     });
   </script>
 @stop
