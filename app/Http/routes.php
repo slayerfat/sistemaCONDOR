@@ -14,6 +14,8 @@
 Route::group(['middleware' => ['auth', 'usuario.verificar']], function(){
   Route::get('/', 'IndexController@index');
   Route::resource('usuarios', 'UsersController');
+  // mensajes de algun usuario
+  Route::get('usuarios/mensajes/{id}', 'MessagesByUserController@show');
   Route::resource('edificios', 'BuildingsController');
   // items en algun edificio
   Route::get('edificios/items/{edificios}', 'BuildingsController@items');

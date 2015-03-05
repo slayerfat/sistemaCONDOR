@@ -15,7 +15,7 @@
     <hr/>
     <div class="row">
       <div class="col-sm-12">
-        <table 
+        <table
           id="tabla"
           data-toggle="table"
           data-search="true"
