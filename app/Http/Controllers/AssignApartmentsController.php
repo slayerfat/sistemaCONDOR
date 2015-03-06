@@ -86,6 +86,14 @@ class AssignApartmentsController extends Controller {
     return redirect()->action('UsersController@show', $usuario->id);
   }
 
+  public function storeFromIdentity($cedula, $apartment_id)
+  {
+    $usuario = User::where('identity_card', $cedula);
+    $apartamento = Apartment::findOrFail($apartment_id);
+
+    return 'true';
+  }
+
   /**
    * Display the specified resource.
    *

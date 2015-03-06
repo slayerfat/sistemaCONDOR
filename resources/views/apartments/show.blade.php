@@ -11,7 +11,8 @@
 @section('contenido')
   <div class="container">
     <h1>
-      Apartamento N° {{ $apartamento->number }}
+      Apartamento N°
+      <span id="numero_apartamento">{{ $apartamento->number }}</span>
       <small>
         Piso {{ $apartamento->floor }}
       </small>

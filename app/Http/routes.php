@@ -75,6 +75,9 @@ Route::get('/municipios/{id}', 'DirectionsController@towns');
 Route::get('/municipio/{id}', 'DirectionsController@town');
 Route::get('/parroquias/{id}', 'DirectionsController@parishes');
 Route::get('/parroquia/{id}', 'DirectionsController@parish');
+// para asignar habitante por medio de ajax
+Route::get('/habitantes/{usuarios}/{apartamentos}',
+  'AssignApartmentsController@storeFromIdentity');
 
 Route::controllers([
   'auth' => 'Auth\AuthController',
