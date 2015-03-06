@@ -1,16 +1,16 @@
-#lista-8-4{
+#lista-8-4 {
 
   @extend .container;
 
-  .modelo{
+  .modelo {
 
     @include make-row();
 
-    .detalles{
+    .detalles {
       @include make-sm-column(8);
     }
 
-    .botones{
+    .botones {
       @include make-sm-column(2);
       @include make-xs-column(6);
       padding-top: 20px;

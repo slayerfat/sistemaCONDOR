@@ -88,8 +88,20 @@ class AssignApartmentsController extends Controller {
 
   public function storeFromIdentity($cedula, $apartment_id)
   {
-    $usuario = User::where('identity_card', $cedula);
+    $usuario = User::where('identity_card', $cedula)->first();
     $apartamento = Apartment::findOrFail($apartment_id);
+
+    $apartamento->habitantes()->attach([$usuario->id]);
+
+    return 'true';
+  }
+
+  public function removeFromIdentity($cedula, $apartment_id)
+  {
+    $usuario = User::where('identity_card', $cedula)->first();
+    $apartamento = Apartment::findOrFail($apartment_id);
+
+    $apartamento->habitantes()->detach([$usuario->id]);
 
     return 'true';
   }

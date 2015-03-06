@@ -4547,9 +4547,9 @@ article .body {
 
 #cunaguaro {
   background-color: gray;
-  background-size: 140%;
   background-position: 50%;
   background-repeat: no-repeat;
+  background-size: 140%;
   transition: background-size 40s linear; }
 
 div.404 {
@@ -4564,31 +4564,40 @@ div.404 {
 .full {
   min-height: 100%; }
 
-div.status {
+.status {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  text-align: center;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 25px;
   color: #333;
-  padding: 0 10px 10px 10px; }
+  padding: 0 10px 10px;
+  text-align: center; }
   @media (min-width: 992px) {
-    div.status {
+    .status {
       float: left;
       width: 33.33333%; } }
   @media (min-width: 992px) {
-    div.status {
+    .status {
       margin-left: 33.33333%; } }
-  div.status h1 {
-    font-weight: 100;
+  .status h1 {
     font-size: 72px;
+    font-weight: 100;
     margin-bottom: 40px; }
-  div.status h2 {
+  .status h2 {
     font-size: 20px; }
-  div.status p {
+  .status p {
     font-size: 18px; }
+
+.ml10 {
+  margin-left: 10px; }
+
+.habitante {
+  color: #5cb85c; }
+
+.eliminar {
+  color: #d9534f; }
 
 #error-message {
   font-size: 18px;

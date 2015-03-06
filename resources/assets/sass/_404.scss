@@ -1,35 +1,38 @@
-#cunaguaro{
+#cunaguaro {
   background-color: gray;
-  background-size: 140%;
   background-position: 50%;
   background-repeat: no-repeat;
+  background-size: 140%;
   transition: background-size 40s linear;
 }
 div.404 {
   @include make-row();
 }
 
-.full{
+.full {
   min-height: 100%;
 }
 
-div.status{
+.status {
   @include make-md-column(4);
   @include make-md-column-offset(4);
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.50);
+  background-color: rgba(255, 255, 255, .50);
   border-radius: 25px;
   color: #333;
-  padding: 0 10px 10px 10px;
-  h1{
-    font-weight: 100;
+  padding: 0 10px 10px;
+  text-align: center;
+
+  h1 {
     font-size: 72px;
+    font-weight: 100;
     margin-bottom: 40px;
   }
-  h2{
+
+  h2 {
     font-size: 20px;
   }
-  p{
+
+  p {
     font-size: 18px;
   }
 }

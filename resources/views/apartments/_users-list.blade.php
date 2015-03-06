@@ -26,7 +26,11 @@
     <th data-field="phone" data-sortable="true" data-switchable="true">
       Telefono
     </th>
-    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Action</th>
+    @if ($habitantes)
+    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Acciones</th>
+    @else
+      <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Acciones</th>
+    @endif
   </thead>
   <tbody>
     @foreach ($usuarios as $usuario)

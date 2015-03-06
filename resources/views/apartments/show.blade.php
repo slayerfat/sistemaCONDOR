@@ -49,13 +49,13 @@
           <h3>
             Habitantes
           </h3>
-          @include('apartments._users-list', ['usuarios' => $apartamento->habitantes])
+          @include('apartments._users-list', ['usuarios' => $apartamento->habitantes, 'habitantes' => true])
         @else
         <h3>
           Este Apartamento no posee habitantes, puede crear un habitante nuevo
           o puede buscar y seleccionar de la lista.
         </h3>
-          @include('apartments._users-list', ['usuarios' => $usuarios])
+          @include('apartments._users-list', ['usuarios' => $usuarios, 'habitantes' => false])
         @endunless
       </div>
     </div>

@@ -78,6 +78,8 @@ Route::get('/parroquia/{id}', 'DirectionsController@parish');
 // para asignar habitante por medio de ajax
 Route::get('/habitantes/{usuarios}/{apartamentos}',
   'AssignApartmentsController@storeFromIdentity');
+Route::get('/habitantes-remover/{usuarios}/{apartamentos}',
+  'AssignApartmentsController@removeFromIdentity');
 
 Route::controllers([
   'auth' => 'Auth\AuthController',

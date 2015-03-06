@@ -1,46 +1,64 @@
 // http://bootstrap-table.wenzhixin.net.cn/examples/#select
 function actionFormatter(value, row, index) {
   return [
-    '<a class="like" href="javascript:void(0)" title="Like">',
-    '<i class="glyphicon glyphicon-heart"></i>',
+    '<a class="habitante" href="javascript:void(0)" title="Incluir como habitante">',
+    '<i class="glyphicon glyphicon-ok"></i>',
     '</a>',
-    '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
-    '<i class="glyphicon glyphicon-edit"></i>',
-    '</a>',
-    '<a class="remove ml10" href="javascript:void(0)" title="Remove">',
+    '<a class="eliminar ml10" href="javascript:void(0)" title="Remover como habitante">',
     '<i class="glyphicon glyphicon-remove"></i>',
     '</a>'
   ].join('');
 }
 
 window.actionEvents = {
-  'click .like': function (e, value, row, index) {
-    if (confirm('Por favor confirme.')) {
-      habitanteAjax(row.cedula);
+  'click .habitante': function (e, value, row, index) {
+    if (confirm('Por favor confirme adicion de habitante.')) {
+      insertarHabitante(index, row.cedula);
     }
   },
-  'click .edit': function (e, value, row, index) {
+  'click .eliminar': function (e, value, row, index) {
     if (confirm('Por favor confirme.')) {
-      console.log(row.cedula);
-    }
-  },
-  'click .remove': function (e, value, row, index) {
-    if (confirm('Por favor confirme.')) {
-      console.log(index);
+      eliminarHabitante(index, row.cedula);
     }
   }
 };
 
-function habitanteAjax(cedula){
+function insertarHabitante(index, cedula){
   var apartamento = parseInt($('#numero_apartamento').html());
-  console.log(apartamento);
   $.ajax({
     url: '/habitantes/'+cedula+'/'+apartamento,
     type: 'GET',
   })
+  .fail(function() {
+    $('tr[data-index="'+index+'"]').css(
+      {'background-color': 'rgb(255, 255, 100)'}
+    );
+  })
   .done(function(data) {
-    if (data) {
-      console.log(data);
+    if (data === 'true') {
+      $('tr[data-index="'+index+'"]').css(
+        {'background-color': 'rgb(212, 255, 212)'}
+      );
+    }
+  });
+}
+
+function eliminarHabitante(index, cedula){
+  var apartamento = parseInt($('#numero_apartamento').html());
+  $.ajax({
+    url: '/habitantes-remover/'+cedula+'/'+apartamento,
+    type: 'GET',
+  })
+  .fail(function() {
+    $('tr[data-index="'+index+'"]').css(
+      {'background-color': 'rgb(255, 255, 100)'}
+    );
+  })
+  .done(function(data) {
+    if (data === 'true') {
+      $('tr[data-index="'+index+'"]').css(
+        {'background-color': 'rgb(255, 212, 212)'}
+      );
     }
   });
 }
