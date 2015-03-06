@@ -199,3 +199,8 @@
     </div>
   </div>
 @stop
+
+@section('js')
+  <script src="{!! asset('vendor/js/formatter/jquery.formatter.js') !!}"></script>
+  <script src="{!! asset('js/movimientos/operacion.js') !!}"></script>
+@stop
