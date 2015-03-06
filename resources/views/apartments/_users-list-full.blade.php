@@ -1,5 +1,5 @@
 <table
-  id="tabla"
+  id="usuarios-full"
   data-toggle="table"
   data-search="true"
   data-height="400"

@@ -46,10 +46,22 @@
     <div class="row">
       <div class="col-sm-12">
         @unless ($apartamento->habitantes()->get()->isEmpty())
-          <h3>
-            Habitantes
-          </h3>
-          @include('apartments._users-list', ['usuarios' => $apartamento->habitantes, 'habitantes' => true])
+          <div id="habitantes">
+            <h3>
+              Habitantes
+              <button name="mas-usuarios" class="btn btn-primary">
+                Añadir mas Habitantes
+              </button>
+            </h3>
+            @include('apartments._users-list', ['usuarios' => $apartamento->habitantes, 'habitantes' => true])
+          </div>
+          <div id="usuarios" style="display:none;">
+            <h3>
+              Habitantes
+              <button name="mas-usuarios" class="btn btn-primary">Volver</button>
+            </h3>
+            @include('apartments._users-list-full', ['usuarios' => $usuarios, 'habitantes' => false])
+          </div>
         @else
         <h3>
           Este Apartamento no posee habitantes, puede crear un habitante nuevo
@@ -66,4 +78,17 @@
   <script src="{!! asset('vendor/js/bootstrap-table/bootstrap-table.js') !!}"></script>
   <script src="{!! asset('vendor/js/bootstrap-table/bootstrap-table-es-CR.js') !!}"></script>
   <script src="{!! asset('js/tables/asignar-habitante.js') !!}"></script>
+  <script charset="utf-8">
+    $(function(){
+      $('.eliminar').toggle();
+    });
+    $('button[name="mas-usuarios"]').click(function(){
+      $('#habitantes').toggle(300, function(){
+        $('.eliminar').toggle();
+      });
+      $('#usuarios').toggle(300, function(){
+        $('#usuarios-full').bootstrapTable('resetView');
+      });
+    });
+  </script>
 @stop

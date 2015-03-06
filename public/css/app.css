@@ -4597,7 +4597,8 @@ div.404 {
   color: #5cb85c; }
 
 .eliminar {
-  color: #d9534f; }
+  color: #d9534f;
+  display: none; }
 
 #error-message {
   font-size: 18px;
