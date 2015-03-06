@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Building;
 use App\Apartment;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -52,6 +53,22 @@ class AssignApartmentsController extends Controller {
     Auth::user()->apartamentos()->attach($request->input('apartment_id'));
 
     return redirect()->action('IndexController@index');
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return Response
+   */
+  public function createFromUserId($id)
+  {
+    $edificios = Building::lists('name', 'id');
+    $usuario  = User::findOrFail($id);
+    $apartamentos = Apartment::lists('number', 'id');
+
+    $apartamentos = Apartment::listaHumana($apartamentos);
+
+    return view('assignApartments.createFromUserId', compact('edificios', 'apartamentos', 'usuario'));
   }
 
   /**

@@ -1,5 +1,5 @@
 $(function() {
-  if ($('#building_id').val() != 0) {
+  if ($('#building_id').val() !== 0) {
     var floor = $('#floor').val();
     $.ajax({
       url: '/edificios/floors/'+$('#building_id').val(),
@@ -15,18 +15,18 @@ $(function() {
           } else{
             $('#floor').append(
               '<option value="'+i+'"> Piso '+i+'</option>');
-          };
+          }
         }
       }
     });
-    
+
   }
 
   $('#building_id').on('change', function() {
     $('#floor').empty();
     $('#floor').append(
       '<option value="">Seleccionar</option>');
-    if ($('#building_id').val() != 0) {
+    if ($('#building_id').val() !== 0) {
       $.ajax({
         url: '/edificios/floors/'+$(this).val(),
         type: 'GET',

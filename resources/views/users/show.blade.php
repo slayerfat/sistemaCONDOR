@@ -34,21 +34,27 @@
     </p>
     <hr/>
     <section>
-      Perteneciente a
-      @foreach ($usuario->apartamentos as $apartamento)
-        <h4>
-          {!!link_to_action(
-              'BuildingsController@show',
-              $apartamento->edificio->name,
-              $apartamento->edificio->id) !!}
-          <small>
-            Piso
-            {{ $apartamento->floor }}
-            Apartamento
-            {{ $apartamento->number }}
-          </small>
-        </h4>
-      @endforeach
+      @unless ($usuario->apartamentos()->get()->isEmpty())
+        Perteneciente a
+        @foreach ($usuario->apartamentos as $apartamento)
+          <h4>
+            {!!link_to_action(
+                'BuildingsController@show',
+                $apartamento->edificio->name,
+                $apartamento->edificio->id) !!}
+            <small>
+              Piso
+              {{ $apartamento->floor }}
+              Apartamento
+              {{ $apartamento->number }}
+            </small>
+          </h4>
+        @endforeach
+      @else
+        @if (Auth::user()->perfil->description === 'Administrador' or Auth::user()->id === $usuario->id)
+          {!! link_to_action('AssignApartmentsController@createFromUserId', 'Asignar Apartamento', $usuario->id, ['class' => 'btn btn-primary']) !!}
+        @endif
+      @endunless
     </section>
     <hr/>
     <section>

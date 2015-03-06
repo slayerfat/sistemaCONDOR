@@ -56,6 +56,7 @@ Route::get('/por-verificar', 'IndexController@porVerificar');
 Route::group(['middleware' => 'auth', 'prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');
   Route::get('/{id}/create', 'AssignApartmentsController@create');
+  Route::get('/{id}/create-habitante', 'AssignApartmentsController@createFromUserId');
   // esta es la version mamarracha
   Route::post('/{id}', 'AssignApartmentsController@store');
 });
