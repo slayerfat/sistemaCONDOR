@@ -74,10 +74,11 @@
                   <strong>
                     Telf: {{ $apartamento->propietario->phone }}
                   </strong> -
-                  Email: {!! Html::mailto($apartamento->propietario->email) !!}
+                  Email: {!! Html::mailto($apartamento->propietario->email) !!}.
                 @else
-                  <i>Sin Propietario</i>
+                  <i>Sin Propietario.</i>
                 @endunless
+                <span>Habitantes: {{ $apartamento->habitantes->count() }}</span>
               </small>
             </p>
           </section>

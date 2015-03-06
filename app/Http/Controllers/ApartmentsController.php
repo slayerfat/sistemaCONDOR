@@ -123,10 +123,9 @@ class ApartmentsController extends Controller {
   public function edit($id)
   {
     $apartamento = Apartment::findOrFail($id);
-    $usuarios = User::all();
     $edificios = Building::all();
 
-    return view('apartments.edit', compact('apartamento', 'edificios', 'usuarios'));
+    return view('apartments.edit', compact('apartamento', 'edificios'));
   }
 
   /**

@@ -1,6 +1,9 @@
 // http://bootstrap-table.wenzhixin.net.cn/examples/#select
 function habitantesFormatter(value, row, index) {
   return [
+    '<a class="usuario ml10" href="javascript:void(0)" title="Ver perfil de Usuario">',
+    '<i class="glyphicon glyphicon-user"></i>',
+    '</a>',
     '<a class="eliminar ml10" href="javascript:void(0)" title="Remover como habitante">',
     '<i class="glyphicon glyphicon-remove"></i>',
     '</a>'
@@ -13,6 +16,9 @@ window.habitantesEvents = {
       eliminarHabitante(index, row.cedula);
       $(e.currentTarget).hide(300);
     }
+  },
+  'click .usuario': function (e, value, row, index) {
+    goTo(row.id);
   }
 };
 

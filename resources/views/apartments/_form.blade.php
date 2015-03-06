@@ -19,8 +19,12 @@
   {!! Form::label('user_id', 'Propietario:', ['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
     <select name="user_id" id="user_id" class="form-control">
-      <option value="">Seleccionar</option>
-      @foreach ($usuarios as $usuario)
+      @if ($apartamento->habitantes->count() < 1)
+      <option value="">Por favor asigne Habitantes primero</option>
+      @else
+        <option value="">Seleccionar</option>
+      @endif
+      @foreach ($apartamento->habitantes as $usuario)
         @if ($apartamento->user_id === $usuario->id)
           <option value="{!! $usuario->id !!}" selected="selected">
             {!! $usuario->first_name !!}

@@ -63,11 +63,17 @@
             @include('apartments._users-list-full', ['usuarios' => $usuarios, 'habitantes' => false])
           </div>
         @else
-        <h3>
-          Este Apartamento no posee habitantes, puede crear un habitante nuevo
-          o puede buscar y seleccionar de la lista.
-        </h3>
-          @include('apartments._users-list', ['usuarios' => $usuarios, 'habitantes' => false])
+          <div id="habitantes">
+            <h3>
+              Este Apartamento no posee habitantes.
+              <button name="mas-usuarios" class="btn btn-primary">
+                Añadir mas Habitantes
+              </button>
+            </h3>
+          </div>
+          <div id="usuarios" style="display:none;">
+            @include('apartments._users-list', ['usuarios' => $usuarios, 'habitantes' => false])
+          </div>
         @endunless
       </div>
     </div>
@@ -90,5 +96,8 @@
         $('#usuarios-full').bootstrapTable('resetView');
       });
     });
+    function goTo(id){
+      window.location.href = "{!! url('usuarios/') !!}/"+id
+    }
   </script>
 @stop

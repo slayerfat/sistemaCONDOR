@@ -11,6 +11,9 @@
   data-sort-name="first_name"
   >
   <thead>
+    <th data-field="id" data-sortable="false" data-switchable="false" data-visible="false">
+      id
+    </th>
     <th data-field="first_name" data-sortable="true" data-switchable="false">
       Primer Nombre
     </th>
@@ -35,6 +38,7 @@
   <tbody>
     @foreach ($usuarios as $usuario)
       <tr>
+        <td>{{ $usuario->id }}</td>
         <td>{{ $usuario->first_name }}</td>
         <td>{{ $usuario->first_surname }}</td>
         <td>{{ $usuario->identity_card }}</td>
