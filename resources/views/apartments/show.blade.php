@@ -16,6 +16,13 @@
       <small>
         Piso {{ $apartamento->floor }}
       </small>
+      @if (Auth::user()->perfil->description === 'Administrador')
+        {!! link_to_action('ApartmentsController@edit',
+              'Editar Apartamento',
+              $apartamento->id,
+              ['class' => 'btn btn-default']
+            ) !!}
+      @endif
     </h1>
 
     <h3>

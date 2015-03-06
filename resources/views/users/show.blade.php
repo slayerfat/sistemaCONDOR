@@ -12,7 +12,7 @@
       {{ $usuario->first_surname }}
       {{ $usuario->last_surname }}
       <small>
-        {{$usuario->username}}
+        ({{$usuario->username}})
       </small>
       @if (Auth::user()->id === $usuario->id)
         {!!link_to_action(
