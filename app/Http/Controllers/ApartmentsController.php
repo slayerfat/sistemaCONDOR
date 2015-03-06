@@ -59,6 +59,17 @@ class ApartmentsController extends Controller {
   }
 
   /**
+   * Show the form for creating a new resource.
+   *
+   * @returnulln Response
+   */
+  public function storePropietario($apartment_id, $user_id)
+  {
+    $apartamento = Apartment::findOrFail($apartment_id);
+    return view('apartments.createMultiple', compact('apartamento'));
+  }
+
+  /**
    * Store a newly created resource in storage.
    *
    * @return Response
@@ -98,8 +109,9 @@ class ApartmentsController extends Controller {
   public function show($id)
   {
     $apartamento = Apartment::findOrFail($id);
+    $usuarios    = User::all();
 
-    return view('apartments.show', compact('apartamento'));
+    return view('apartments.show', compact('apartamento', 'usuarios'));
   }
 
   /**

@@ -33,8 +33,10 @@ Route::group(['middleware' => ['auth', 'usuario.verificar']], function(){
   Route::get('edificios/gestiones/{edificios}/create', 'BuildingsController@gestionsCreate');
   Route::resource('apartamentos', 'ApartmentsController');
   // para crear multiples apartamentos al mismo tiempo.
-  Route::get('apartamentos/createMultiple/{edificios}', 'ApartmentsController@createMultiple');
+  Route::get('apartamentos/crear-multiples/{edificios}', 'ApartmentsController@createMultiple');
   Route::post('apartamentos/storeMultiple/{edificios}', 'ApartmentsController@storeMultiple');
+  // asignar propietario de algun apartamento
+  Route::post('apartamentos/asignar-propietario/{apartamentos}/{usuarios}', 'ApartmentsController@storeMultiple');
   Route::resource('mensajes', 'MessagesController');
   Route::resource('eventos', 'EventsController');
   Route::resource('items', 'ItemsController');
@@ -56,6 +58,7 @@ Route::get('/por-verificar', 'IndexController@porVerificar');
 Route::group(['middleware' => 'auth', 'prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');
   Route::get('/{id}/create', 'AssignApartmentsController@create');
+  // asignar apartamentos a un usuario existente
   Route::get('/{id}/create-habitante', 'AssignApartmentsController@createFromUserId');
   Route::post('/{id}/create-habitante', 'AssignApartmentsController@storeFromUserId');
   // esta es la version mamarracha
