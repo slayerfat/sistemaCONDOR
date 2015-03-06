@@ -57,12 +57,15 @@ Route::group(['middleware' => 'auth', 'prefix' => 'asignar-edificio', 'as' => 'a
   Route::get('/', 'AssignApartmentsController@index');
   Route::get('/{id}/create', 'AssignApartmentsController@create');
   Route::get('/{id}/create-habitante', 'AssignApartmentsController@createFromUserId');
+  Route::post('/{id}/create-habitante', 'AssignApartmentsController@storeFromUserId');
   // esta es la version mamarracha
   Route::post('/{id}', 'AssignApartmentsController@store');
 });
 
 // pisos en algun edificio (para ajax de pisos)
 Route::get('edificios/floors/{edificios}', 'BuildingsController@floors');
+// apartamentos en algun edificio (para ajax)
+Route::get('edificios/apartments/{edificios}', 'BuildingsController@apartments');
 // para ajax de direcciones
 Route::get('/estados', 'DirectionsController@states');
 Route::get('/municipios/{id}', 'DirectionsController@towns');

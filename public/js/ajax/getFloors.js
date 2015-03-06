@@ -11,10 +11,10 @@ $(function() {
         for (var i = 1; i <= data; i++) {
           if (i == floor) {
             $('#floor').append(
-              '<option value="'+i+'" selected="selected"> Piso '+i+'</option>');
+              '<option value="'+i+'" selected="selected">Piso '+i+'</option>');
           } else{
             $('#floor').append(
-              '<option value="'+i+'"> Piso '+i+'</option>');
+              '<option value="'+i+'">Piso '+i+'</option>');
           }
         }
       }
@@ -35,7 +35,7 @@ $(function() {
         if (data) {
           for (var i = 1; i <= data; i++) {
             $('#floor').append(
-              '<option value="'+i+'"> Piso '+i+'</option>');
+              '<option value="'+i+'">Piso '+i+'</option>');
           }
         }
       });

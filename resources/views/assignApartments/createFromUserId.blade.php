@@ -14,7 +14,7 @@
             @include('errors.lista')
             {!! Form::model($usuario, [
                   'method' => 'POST',
-                  'action' => ['AssignApartmentsController@store', $usuario->id],
+                  'action' => ['AssignApartmentsController@storeFromUserId', $usuario->id],
                   'class'  => 'form-horizontal'
                 ]) !!}
               <div class="form-group">
@@ -27,7 +27,9 @@
               <div class="form-group">
                 {!! Form::label('apartment_id', 'Apartamentos: ', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-8">
-                  {!! Form::select('apartment_id', $apartamentos, null, ['class' => 'form-control']) !!}
+                  <select class="form-control" name="apartment_id" id="apartment_id">
+                    <option></option>
+                  </select>
                 </div>
               </div>
 
@@ -45,5 +47,5 @@
 @stop
 
 @section('js')
-  <script src="{!! asset('js/ajax/getFloors.js') !!}"></script>
+  <script src="{!! asset('js/ajax/getApartments.js') !!}"></script>
 @stop

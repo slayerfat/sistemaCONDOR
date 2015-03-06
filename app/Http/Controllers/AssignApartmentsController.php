@@ -64,11 +64,26 @@ class AssignApartmentsController extends Controller {
   {
     $edificios = Building::lists('name', 'id');
     $usuario  = User::findOrFail($id);
-    $apartamentos = Apartment::lists('number', 'id');
 
-    $apartamentos = Apartment::listaHumana($apartamentos);
+    return view('assignApartments.createFromUserId', compact('edificios', 'usuario'));
+  }
 
-    return view('assignApartments.createFromUserId', compact('edificios', 'apartamentos', 'usuario'));
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @return Response
+   */
+  public function storeFromUserId($id, Request $request)
+  {
+    // validacion de campos
+    $this->validate($request, [
+      'apartment_id' => 'required|integer'
+    ]);
+    $usuario = User::findOrFail($id);
+
+    $usuario->apartamentos()->attach($request->input('apartment_id'));
+    flash('Usuario asignado correctamente al apartamento.');
+    return redirect()->action('UsersController@show', $usuario->id);
   }
 
   /**
