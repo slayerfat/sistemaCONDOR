@@ -1,4 +1,4 @@
-var elixir      = require('laravel-elixir');
+var elixir      = require('laravel-elixir'),
     gulp        = require('gulp'),
     git         = require('gulp-git'),
     bump        = require('gulp-bump'),
@@ -62,5 +62,6 @@ elixir(function(mix) {
      .copy('vendor/bower_components/bootstrap-datepicker/css/datepicker.css', 'public/vendor/css/bootstrap-datepicker/datepicker.css')
      .copy('vendor/bower_components/bootstrap-table/src/bootstrap-table.css', 'public/vendor/css/bootstrap-table/bootstrap-table.css')
      .copy('vendor/bower_components/bootstrap-table/src/bootstrap-table.js', 'public/vendor/js/bootstrap-table/bootstrap-table.js')
-     .copy('vendor/bower_components/bootstrap-table/src/locale/bootstrap-table-es-CR.js', 'public/vendor/js/bootstrap-table/bootstrap-table-es-CR.js');
+     .copy('vendor/bower_components/bootstrap-table/src/locale/bootstrap-table-es-CR.js', 'public/vendor/js/bootstrap-table/bootstrap-table-es-CR.js')
+     .copy('vendor/bower_components/formatter/dist/jquery.formatter.min.js', 'public/vendor/js/formatter/jquery.formatter.min.js');
 });

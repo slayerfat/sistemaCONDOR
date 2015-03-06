@@ -28,7 +28,7 @@
 
     <h3>Informacion de contacto</h3>
     <p>
-      {{ $usuario->email }}
+      {!! Html::mailto($usuario->email) !!}
       {{ $usuario->phone }}
       {{ $usuario->aditional_phone }}
     </p>
@@ -45,8 +45,7 @@
             <small>
               Piso
               {{ $apartamento->floor }}
-              Apartamento
-              {{ $apartamento->number }}
+              {!! link_to_action('ApartmentsController@show', 'Apartamento '.$apartamento->number, $apartamento->id) !!}
             </small>
           </h4>
         @endforeach
