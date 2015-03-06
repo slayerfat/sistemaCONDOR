@@ -64,4 +64,5 @@
 @section('js')
   <script src="{!! asset('vendor/js/bootstrap-table/bootstrap-table.js') !!}"></script>
   <script src="{!! asset('vendor/js/bootstrap-table/bootstrap-table-es-CR.js') !!}"></script>
+  <script src="{!! asset('js/tables/asignar-habitante.js') !!}"></script>
 @stop

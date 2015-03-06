@@ -56,6 +56,7 @@ elixir(function(mix) {
   // javascripts
   mix.copy('vendor/bower_components/jquery/dist/jquery.min.js', 'public/vendor/js/jquery/jquery.min.js')
      .copy('vendor/bower_components/jquery/dist/jquery.min.map', 'public/vendor/js/jquery/jquery.min.map')
+     .copy('vendor/bower_components/bootstrap-sass/assets/fonts/bootstrap', 'public/fonts/bootstrap')
      .copy('vendor/bower_components/bootstrap/dist/js/bootstrap.min.js', 'public/vendor/js/bootstrap/bootstrap.min.js')
      .copy('vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js', 'public/vendor/js/bootstrap-datepicker/bootstrap-datepicker.js')
      .copy('vendor/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js', 'public/vendor/js/bootstrap-datepicker/bootstrap-datepicker.es.js')
