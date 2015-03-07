@@ -64,5 +64,7 @@ elixir(function(mix) {
      .copy('vendor/bower_components/bootstrap-table/src/bootstrap-table.css', 'public/vendor/css/bootstrap-table/bootstrap-table.css')
      .copy('vendor/bower_components/bootstrap-table/src/bootstrap-table.js', 'public/vendor/js/bootstrap-table/bootstrap-table.js')
      .copy('vendor/bower_components/bootstrap-table/src/locale/bootstrap-table-es-CR.js', 'public/vendor/js/bootstrap-table/bootstrap-table-es-CR.js')
-     .copy('vendor/bower_components/formatter/dist/jquery.formatter.js', 'public/vendor/js/formatter/jquery.formatter.js');
+     .copy('vendor/bower_components/formatter/dist/jquery.formatter.js', 'public/vendor/js/formatter/jquery.formatter.js')
+     .copy('vendor/bower_components/numeraljs/languages.js', 'public/vendor/js/numeraljs/languages.js')
+     .copy('vendor/bower_components/numeraljs/numeral.js', 'public/vendor/js/numeraljs/numeral.js');
 });

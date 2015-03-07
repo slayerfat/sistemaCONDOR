@@ -22,11 +22,11 @@ php -r "readfile('https://getcomposer.org/installer');" | php
 mv composer.phar /usr/local/bin/composer
 ```
 
-Chequear que este instalado `composer -V` el sistema dira 
+Chequear que este instalado `composer -V` el sistema dira
 
 `Composer version 1.0.-* (...) fecha`
 
-si algo falla, chequear la documentacion de 
+si algo falla, chequear la documentacion de
 [composer](https://getcomposer.org/)
 
 ###Bower
@@ -42,7 +42,7 @@ Cuentas claras conservan amistastades.
 revisar la documentacion de github para hacer forks.
 
 ###Obtener las dependecias del sistema
-_Desde la carpeta clonada:_ 
+_Desde la carpeta clonada:_
 
 `npm install`
 
@@ -110,6 +110,25 @@ y listo, la base de datos esta localmente en el sistema.
 
 Si falla pueden hacer un `composer dump-autoload` y reintentarlo, si vuelve a falla puden crear un [problema (issue) en github](https://github.com/slayerfat/sistemaCONDOR/issues) con el error y la descripcion del mismo.
 
+#Gulp
+
+Se puede ejecutar simplemente `gulp` para copiar y compilar `sass` y otros archivos a la carpeta publica del sistema.
+
+se vera:
+
+```
+[21:43:07] Using gulpfile ~/[...]/sistemaCONDOR/gulpfile.js
+[21:43:07] Starting 'default'...
+[21:43:07] Starting 'sass'...
+[21:43:09] Finished 'default' after 2.05 s
+[21:43:11] gulp-notify: [Laravel Elixir]
+[21:43:11] Finished 'sass' after 3.79 s
+[21:43:11] Starting 'copy'...
+[21:43:11] Finished 'copy' after 159 ms
+```
+
+Tambien pueden hacer un `gulp watch` para autocompilar `scss` (sass).
+
 #Artisan
 
 Laravel viene con un CLI llamado artisan, este entre otras utilidades, sirve como interfaz para usar php como servidor local con el comando:
@@ -160,8 +179,8 @@ Este comando botara la lista completa de comandos disponibles, todo documentado 
 ├── resources
 │   ├── assets
 │   ├── lang
-|   |   ├── [Futura capeta de es_ve]
-│   │   └── en
+|   |   ├── es (traduccion completa)
+│   │   └── en (mensajes originales)
 │   └── views
 │       └── [Las Vistas]
 ├── storage

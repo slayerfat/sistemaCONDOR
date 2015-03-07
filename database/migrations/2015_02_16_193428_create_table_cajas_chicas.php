@@ -21,7 +21,7 @@ class CreateTableCajasChicas extends Migration {
       $table->foreign('user_id')->references('id')->on('users');
       $table->integer('building_id')->unsigned();
       $table->foreign('building_id')->references('id')->on('buildings');
-      $table->double('operation', 15, 6);
+      $table->double('operation', 12, 2);
       $table->string('concept', 40);
       $table->string('check_number', 40)->nullable();
       $table->timestamps();

@@ -114,27 +114,21 @@
                         <i>
                           {{ $movimiento->tipo->description }}
                         </i>
-                        <strong>
-                          {{ $movimiento->operation }}
-                        </strong>
+                        <strong class="parse_numero">{{ $movimiento->operation }}</strong>
                       </span>
                     @elseif ($movimiento->tipo->description === 'Salida')
                       <span class="mediano rojo">
                         <i>
                           {{ $movimiento->tipo->description }}
                         </i>
-                        <strong>
-                          {{ $movimiento->operation }}
-                        </strong>
+                        <strong class="parse_numero">{{ $movimiento->operation }}</strong>
                       </span>
                     @else
                       <span class="mediano amarillo">
                         <i>
                           {{ $movimiento->tipo->description }}
                         </i>
-                        <strong>
-                          {{ $movimiento->operation }}
-                        </strong>
+                        <strong class="parse_numero">{{ $movimiento->operation }}</strong>
                       </span>
                     @endif
                   @endunless
@@ -201,6 +195,7 @@
 @stop
 
 @section('js')
-  <script src="{!! asset('vendor/js/formatter/jquery.formatter.js') !!}"></script>
+  <script src="{!! asset('vendor/js/numeraljs/numeral.js') !!}"></script>
+  <script src="{!! asset('vendor/js/numeraljs/languages.js') !!}"></script>
   <script src="{!! asset('js/movimientos/operacion.js') !!}"></script>
 @stop
