@@ -12,6 +12,7 @@
 */
 
 Route::group(['middleware' => ['auth', 'usuario.verificar']], function(){
+  Route::get('/home', 'IndexController@index');
   Route::get('/', 'IndexController@index');
   Route::resource('usuarios', 'UsersController');
   // mensajes de algun usuario

@@ -42,6 +42,7 @@ class IndexController extends Controller {
 
   public function porVerificar()
   {
+    // hacer modelo para generar enlace confirmacion
     return view('auth.verification');
   }
 }
