@@ -14,7 +14,8 @@
       Ud. debe confirmar su cuenta a travez del siguiente enlace:
     </p>
     <p>
-      algo
+      <?php $url = action('ConfirmationsController@confirm', $usuario->confirmacion->confirmation) ?>
+      <a href="{{ $url }}">{{ $url }}</a>
     </p>
   </section>
 @stop

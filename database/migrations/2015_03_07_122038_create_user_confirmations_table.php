@@ -14,6 +14,7 @@ class CreateUserConfirmationsTable extends Migration {
   {
     Schema::create('user_confirmations', function(Blueprint $table)
     {
+      $table->increments('id');
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')
             ->references('id')

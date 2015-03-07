@@ -52,6 +52,9 @@ Route::group(['middleware' => ['auth', 'usuario.verificar']], function(){
 
 // usuario por verificar
 Route::get('/por-verificar', 'IndexController@porVerificar');
+// para generar confirmaciones de usuario
+Route::get('/generar-confirmacion', 'ConfirmationsController@generateConfirm');
+Route::get('/confirmar/{string}', 'ConfirmationsController@confirm');
 
 // para asignar un usuario a un apartamento de un edifico
 Route::group(['middleware' => 'auth', 'prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){

@@ -42,7 +42,7 @@ class IndexController extends Controller {
 
   public function porVerificar()
   {
-    // hacer modelo para generar enlace confirmacion
-    return view('auth.verification');
+    $usuario  = Auth::user();
+    return view('auth.verification', compact('usuario'));
   }
 }

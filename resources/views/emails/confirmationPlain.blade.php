@@ -1,17 +1,16 @@
 *******************************************************************
-El Usuario
-{{ $usuario->first_name }}
-{{ $usuario->first_surname }}
+Bienvenido al sistemaCONDOR!
 *******************************************************************
-Ha creado un nuevo evento en el sistemaCONDOR:
-
-{{ $evento->title }}
+Hola! {{ $usuario->username }}!
 *******************************************************************
 
-{{ $evento->body }}
+Para poder ingresar en el
+{!! link_to_action('IndexController@index', 'sistemaCONDOR') !!}
+
+Ud. debe confirmar su cuenta a travez del siguiente enlace:
 
 *******************************************************************
-{{ $evento->tipo->description }}
-*******************************************************************
-{{ $evento->created_at }}
+
+{!! action('ConfirmationsController@confirm', $usuario->confirmacion->confirmation) !!}
+
 *******************************************************************
