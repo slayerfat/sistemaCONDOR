@@ -122,6 +122,7 @@ class MegaTableSeeder extends Seeder {
         if ($i % $p === 0) $j++;
       endfor;
       $i = 1;
+      $j = 1;
     endforeach;
     $this->command->info('------------------------------------');
     $this->command->info('------------------------------------');
@@ -149,7 +150,7 @@ class MegaTableSeeder extends Seeder {
     $this->command->info('MEGA: Mensajes Matasiete, completo.');
     $this->command->info('------------------------------------');
     $this->command->info('------------------------------------');
-    $this->command->info('MEGA: inicio, Mensajes Matasiete.');
+    $this->command->info('MEGA: inicio, Eventos Matasiete.');
     $this->command->info('------------------------------------');
     $this->command->info('------------------------------------');
     foreach(range(1, 100) as $index):
@@ -166,7 +167,7 @@ class MegaTableSeeder extends Seeder {
     endforeach;
     $this->command->info('------------------------------------');
     $this->command->info('------------------------------------');
-    $this->command->info('MEGA: Mensajes Matasiete, completo.');
+    $this->command->info('MEGA: Eventos Matasiete, completo.');
     $this->command->info('------------------------------------');
     $this->command->info('------------------------------------');
     $this->command->info('------------- MEGA 0.1 -------------');
