@@ -179,11 +179,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return $mensaje;
   }
 
-  public function asignarApartamento($id)
-  {
-    
-  }
-
   public function esAdministrador()
   {
     if ($this->perfil->description === 'Administrador') return true;

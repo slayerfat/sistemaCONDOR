@@ -35,8 +35,6 @@ Route::group(['middleware' => ['auth', 'usuario.verificar']], function(){
   // para crear multiples apartamentos al mismo tiempo.
   Route::get('apartamentos/crear-multiples/{edificios}', 'ApartmentsController@createMultiple');
   Route::post('apartamentos/storeMultiple/{edificios}', 'ApartmentsController@storeMultiple');
-  // asignar propietario de algun apartamento
-  Route::post('apartamentos/asignar-propietario/{apartamentos}/{usuarios}', 'ApartmentsController@storeMultiple');
   Route::resource('mensajes', 'MessagesController');
   Route::resource('eventos', 'EventsController');
   Route::resource('items', 'ItemsController');
