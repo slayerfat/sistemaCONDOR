@@ -42,6 +42,7 @@ class IndexController extends Controller {
 
   public function porVerificar()
   {
-    return view('auth.verification');
+    $usuario  = Auth::user();
+    return view('auth.verification', compact('usuario'));
   }
 }
