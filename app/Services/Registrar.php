@@ -22,7 +22,7 @@ class Registrar implements RegistrarContract {
       'email'         => 'required|email|max:255|unique:users',
       'password'      => 'required|confirmed|min:6',
       'sex_id'        => 'required|integer',
-      'identity_card' => 'required|integer|between:99999,99999999',
+      'identity_card' => 'required|integer|between:99999,99999999|unique:users',
       'first_name'    => 'required|min:3|max:20',
       'middle_name'   => 'min:3|max:20',
       'first_surname' => 'required|min:3|max:20',
