@@ -4,6 +4,7 @@ use App\User;
 use App\Profile;
 use App\UserConfirmation;
 use Validator;
+use App\Http\Controllers\Otros\EnviarEmail as Email;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
 class Registrar implements RegistrarContract {
@@ -55,6 +56,17 @@ class Registrar implements RegistrarContract {
     ]);
 
     $usuario->confirmacion()->save($confirmacion);
+
+    // datos usados para enviar el email
+    $data = [
+      'vista'   => ['emails.confirmation', 'emails.confirmationPlain'],
+      'subject' => 'Confirmacion de cuenta en sistemaCONDOR',
+      'usuario' => $usuario,
+    ];
+    // array de destinatarios
+    $emails = (array)$usuario->email;
+
+    Email::enviarEmail($data, $emails);
 
     return $usuario;
   }
