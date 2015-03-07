@@ -12,8 +12,7 @@
   "author": "slayerfat",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "laravel-elixir": "*"
+    "gulp": "^3.8.11"
   },
   "dependencies": {
     "gulp": "^3.8.11",

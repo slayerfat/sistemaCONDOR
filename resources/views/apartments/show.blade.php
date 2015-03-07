@@ -11,10 +11,18 @@
 @section('contenido')
   <div class="container">
     <h1>
-      Apartamento N° {{ $apartamento->number }}
+      Apartamento N°
+      <span id="numero_apartamento">{{ $apartamento->number }}</span>
       <small>
         Piso {{ $apartamento->floor }}
       </small>
+      @if (Auth::user()->perfil->description === 'Administrador')
+        {!! link_to_action('ApartmentsController@edit',
+              'Editar Apartamento',
+              $apartamento->id,
+              ['class' => 'btn btn-default']
+            ) !!}
+      @endif
     </h1>
 
     <h3>
@@ -44,62 +52,59 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <h3>
-          Habitantes
-        </h3>
-        <table
-          id="tabla"
-          data-toggle="table"
-          data-search="true"
-          data-height="400"
-          data-pagination="true"
-          data-page-list="[10, 25, 50, 100]"
-          data-show-toggle="true"
-          data-show-columns="true"
-          data-click-to-select="true"
-          data-maintain-selected="true"
-          data-sort-name="first_name"
-          >
-          <thead>
-            <th data-field="first_name" data-sortable="true" data-switchable="false">
-              Primer Nombre
-            </th>
-            <th data-field="first_surname" data-sortable="true" data-switchable="false">
-              Primer Apellido
-            </th>
-            <th data-field="email" data-sortable="true" data-switchable="true">
-              Correo Electronico
-            </th>
-            <th data-field="phone" data-sortable="true" data-switchable="true">
-              Telefono
-            </th>
-          </thead>
-          <tbody>
-            @foreach ($apartamento->habitantes as $usuario)
-              <tr>
-                <td>
-                  {{ $usuario->first_name }}
-                </td>
-                <td>
-                  {{ $usuario->first_surname }}
-                </td>
-                <td>
-                  {{ $usuario->email }}
-                </td>
-                <td>
-                  {{ $usuario->phone }}
-                </td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
+        @unless ($apartamento->habitantes()->get()->isEmpty())
+          <div id="habitantes">
+            <h3>
+              Habitantes
+              <button name="mas-usuarios" class="btn btn-primary">
+                Añadir mas Habitantes
+              </button>
+            </h3>
+            @include('apartments._users-list', ['usuarios' => $apartamento->habitantes, 'habitantes' => true])
+          </div>
+          <div id="usuarios" style="display:none;">
+            <h3>
+              Habitantes
+              <button name="mas-usuarios" class="btn btn-primary">Volver</button>
+            </h3>
+            @include('apartments._users-list-full', ['usuarios' => $usuarios, 'habitantes' => false])
+          </div>
+        @else
+          <div id="habitantes">
+            <h3>
+              Este Apartamento no posee habitantes.
+              <button name="mas-usuarios" class="btn btn-primary">
+                Añadir mas Habitantes
+              </button>
+            </h3>
+          </div>
+          <div id="usuarios" style="display:none;">
+            @include('apartments._users-list', ['usuarios' => $usuarios, 'habitantes' => false])
+          </div>
+        @endunless
       </div>
     </div>
-
   </div>
 @stop
 
 @section('js')
   <script src="{!! asset('vendor/js/bootstrap-table/bootstrap-table.js') !!}"></script>
   <script src="{!! asset('vendor/js/bootstrap-table/bootstrap-table-es-CR.js') !!}"></script>
+  <script src="{!! asset('js/tables/asignar-habitante.js') !!}"></script>
+  <script charset="utf-8">
+    $(function(){
+      $('.eliminar').toggle();
+    });
+    $('button[name="mas-usuarios"]').click(function(){
+      $('#habitantes').toggle(300, function(){
+        $('.eliminar').toggle();
+      });
+      $('#usuarios').toggle(300, function(){
+        $('#usuarios-full').bootstrapTable('resetView');
+      });
+    });
+    function goTo(id){
+      window.location.href = "{!! url('usuarios/') !!}/"+id
+    }
+  </script>
 @stop

@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth', 'usuario.verificar']], function(){
   Route::get('edificios/gestiones/{edificios}/create', 'BuildingsController@gestionsCreate');
   Route::resource('apartamentos', 'ApartmentsController');
   // para crear multiples apartamentos al mismo tiempo.
-  Route::get('apartamentos/createMultiple/{edificios}', 'ApartmentsController@createMultiple');
+  Route::get('apartamentos/crear-multiples/{edificios}', 'ApartmentsController@createMultiple');
   Route::post('apartamentos/storeMultiple/{edificios}', 'ApartmentsController@storeMultiple');
   Route::resource('mensajes', 'MessagesController');
   Route::resource('eventos', 'EventsController');
@@ -56,18 +56,28 @@ Route::get('/por-verificar', 'IndexController@porVerificar');
 Route::group(['middleware' => 'auth', 'prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');
   Route::get('/{id}/create', 'AssignApartmentsController@create');
+  // asignar apartamentos a un usuario existente
+  Route::get('/{id}/create-habitante', 'AssignApartmentsController@createFromUserId');
+  Route::post('/{id}/create-habitante', 'AssignApartmentsController@storeFromUserId');
   // esta es la version mamarracha
   Route::post('/{id}', 'AssignApartmentsController@store');
 });
 
 // pisos en algun edificio (para ajax de pisos)
 Route::get('edificios/floors/{edificios}', 'BuildingsController@floors');
+// apartamentos en algun edificio (para ajax)
+Route::get('edificios/apartments/{edificios}', 'BuildingsController@apartments');
 // para ajax de direcciones
 Route::get('/estados', 'DirectionsController@states');
 Route::get('/municipios/{id}', 'DirectionsController@towns');
 Route::get('/municipio/{id}', 'DirectionsController@town');
 Route::get('/parroquias/{id}', 'DirectionsController@parishes');
 Route::get('/parroquia/{id}', 'DirectionsController@parish');
+// para asignar habitante por medio de ajax
+Route::get('/habitantes/{usuarios}/{apartamentos}',
+  'AssignApartmentsController@storeFromIdentity');
+Route::get('/habitantes-remover/{usuarios}/{apartamentos}',
+  'AssignApartmentsController@removeFromIdentity');
 
 Route::controllers([
   'auth' => 'Auth\AuthController',

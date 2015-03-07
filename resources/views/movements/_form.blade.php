@@ -84,7 +84,8 @@
     <div class="col-md-4">
       {!! Form::input('number', 'operation', null, [
           'class' => 'form-control',
-          'max' => '9999999999'
+          'max' => '9999999999',
+          'placeholder' => 'monto, o movimiento en Bolivares.'
         ]) !!}
     </div>
   </fieldset>
@@ -94,7 +95,7 @@
   <fieldset>
     {!! Form::label('concept', 'Concepto:', ['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-10">
-      {!! Form::text('concept', null, ['class' => 'form-control']) !!}
+      {!! Form::text('concept', null, ['class' => 'form-control','placeholder' => 'La descripcion del movimiento.']) !!}
     </div>
   </fieldset>
 </div>

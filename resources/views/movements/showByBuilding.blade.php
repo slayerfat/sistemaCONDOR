@@ -36,11 +36,11 @@
                 Tipo: {{ $movimiento->tipo->description }}
               </small>
               @if ($movimiento->tipo->description === 'Entrada')
-                <span class="verde">
+                <span class="verde parse_numero">
                   {{ $movimiento->operation }}.
                 </span>
               @else
-                <span class="rojo">
+                <span class="rojo parse_numero">
                   {{ $movimiento->operation }}.
                 </span>
               @endif
@@ -48,7 +48,7 @@
             <p>
               Responsable:
               {{ $movimiento->responsable->first_name }}
-              {{ $movimiento->responsable->first_surname }} 
+              {{ $movimiento->responsable->first_surname }}
               @if ($movimiento->cuenta)
                 | Numero de Cuenta:
                 {{ $movimiento->cuenta->bank_number }}
@@ -73,4 +73,10 @@
       @endforeach
     @endforeach
   </div>
+@stop
+
+@section('js')
+  <script src="{!! asset('vendor/js/numeraljs/numeral.js') !!}"></script>
+  <script src="{!! asset('vendor/js/numeraljs/languages.js') !!}"></script>
+  <script src="{!! asset('js/movimientos/operacion.js') !!}"></script>
 @stop

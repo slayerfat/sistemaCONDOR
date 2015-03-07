@@ -74,10 +74,11 @@
                   <strong>
                     Telf: {{ $apartamento->propietario->phone }}
                   </strong> -
-                  Email: {!! Html::mailto($apartamento->propietario->email) !!}
+                  Email: {!! Html::mailto($apartamento->propietario->email) !!}.
                 @else
-                  <i>Sin Propietario</i>
+                  <i>Sin Propietario.</i>
                 @endunless
+                <span>Habitantes: {{ $apartamento->habitantes->count() }}</span>
               </small>
             </p>
           </section>
@@ -113,27 +114,21 @@
                         <i>
                           {{ $movimiento->tipo->description }}
                         </i>
-                        <strong>
-                          {{ $movimiento->operation }}
-                        </strong>
+                        <strong class="parse_numero">{{ $movimiento->operation }}</strong>
                       </span>
                     @elseif ($movimiento->tipo->description === 'Salida')
                       <span class="mediano rojo">
                         <i>
                           {{ $movimiento->tipo->description }}
                         </i>
-                        <strong>
-                          {{ $movimiento->operation }}
-                        </strong>
+                        <strong class="parse_numero">{{ $movimiento->operation }}</strong>
                       </span>
                     @else
                       <span class="mediano amarillo">
                         <i>
                           {{ $movimiento->tipo->description }}
                         </i>
-                        <strong>
-                          {{ $movimiento->operation }}
-                        </strong>
+                        <strong class="parse_numero">{{ $movimiento->operation }}</strong>
                       </span>
                     @endif
                   @endunless
@@ -197,4 +192,10 @@
       </div>
     </div>
   </div>
+@stop
+
+@section('js')
+  <script src="{!! asset('vendor/js/numeraljs/numeral.js') !!}"></script>
+  <script src="{!! asset('vendor/js/numeraljs/languages.js') !!}"></script>
+  <script src="{!! asset('js/movimientos/operacion.js') !!}"></script>
 @stop

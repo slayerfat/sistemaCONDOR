@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Building;
 use App\Apartment;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -52,6 +53,57 @@ class AssignApartmentsController extends Controller {
     Auth::user()->apartamentos()->attach($request->input('apartment_id'));
 
     return redirect()->action('IndexController@index');
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return Response
+   */
+  public function createFromUserId($id)
+  {
+    $edificios = Building::lists('name', 'id');
+    $usuario  = User::findOrFail($id);
+
+    return view('assignApartments.createFromUserId', compact('edificios', 'usuario'));
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @return Response
+   */
+  public function storeFromUserId($id, Request $request)
+  {
+    // validacion de campos
+    $this->validate($request, [
+      'apartment_id' => 'required|integer'
+    ]);
+    $usuario = User::findOrFail($id);
+
+    $usuario->apartamentos()->attach($request->input('apartment_id'));
+    flash('Usuario asignado correctamente al apartamento.');
+    return redirect()->action('UsersController@show', $usuario->id);
+  }
+
+  public function storeFromIdentity($cedula, $apartment_id)
+  {
+    $usuario = User::where('identity_card', $cedula)->first();
+    $apartamento = Apartment::findOrFail($apartment_id);
+
+    $apartamento->habitantes()->attach([$usuario->id]);
+
+    return 'true';
+  }
+
+  public function removeFromIdentity($cedula, $apartment_id)
+  {
+    $usuario = User::where('identity_card', $cedula)->first();
+    $apartamento = Apartment::findOrFail($apartment_id);
+
+    $apartamento->habitantes()->detach([$usuario->id]);
+
+    return 'true';
   }
 
   /**

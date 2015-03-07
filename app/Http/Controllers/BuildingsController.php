@@ -134,18 +134,6 @@ class BuildingsController extends Controller {
     //
   }
 
-   /**
-   * Devuelve los pisos existentes en algun edificio
-   * para poder ser usado por el ajax
-   * dentro del formulario
-   * de apartamentos
-   */
-  public function floors($id)
-  {
-    $edificio = Building::findOrFail($id);
-    return $edificio->total_floors;
-  }
-
   /**
    * Muestra los items relacionados con
    * algun edificio en el sistema
@@ -241,6 +229,44 @@ class BuildingsController extends Controller {
         'items',
         'tipos'
       ));
+  }
+  /**
+  * --------------------------------------------------
+  * --------------------------------------------------
+  * --------------------------------------------------
+  * ----------------------APIs------------------------
+  * --------------------------------------------------
+  * --------------------------------------------------
+  * --------------------------------------------------
+  */
+
+
+  /**
+  * Devuelve los pisos existentes en algun edificio
+  * para poder ser usado por el ajax
+  * dentro del formulario
+  * de apartamentos
+  *
+  * @param $id integer el id del edificio
+  */
+  public function floors($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return $edificio->total_floors;
+  }
+
+  /**
+  * Devuelve los Apartamentos existentes en algun edificio
+  * para poder ser usado por el ajax
+  * dentro del formulario
+  * de asignar apartamentos
+  *
+  * @param $id integer el id del edificio
+  */
+  public function apartments($id)
+  {
+    $edificio = Building::findOrFail($id);
+    return $edificio->apartamentos()->get()->count();
   }
 
 
