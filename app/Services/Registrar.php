@@ -1,6 +1,8 @@
 <?php namespace App\Services;
 
 use App\User;
+use App\Profile;
+use App\UserConfirmation;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
@@ -35,8 +37,11 @@ class Registrar implements RegistrarContract {
    */
   public function create(array $data)
   {
-    $perfil = \App\Profile::where('description', 'Desactivado')->first();
-    return User::create([
+    $perfil = Profile::where('description', 'Desactivado')->first();
+
+    $confirmacion = new UserConfirmation(['confirmation' => true]);
+
+    $usuario = User::create([
       'username'      => $data['username'],
       'email'         => $data['email'],
       'sex_id'        => $data['sex_id'],
@@ -48,6 +53,10 @@ class Registrar implements RegistrarContract {
       'last_surname'  => $data['last_surname'],
       'password'      => bcrypt($data['password']),
     ]);
+
+    $usuario->confirmacion()->save($confirmacion);
+
+    return $usuario;
   }
 
 }

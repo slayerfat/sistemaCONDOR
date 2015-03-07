@@ -167,6 +167,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * Un usuario tiene una sola confirmacion
+   */
+  public function confirmacion(){
+    return $this->hasOne('App\UserConfirmation');
+  }
+
+  /**
    * debido a que no se todava implementar
    * laravel correctamente tengo que
    * hacer esta mamarrachada
