@@ -50,6 +50,10 @@
         <h2>
           Apartamentos existentes
         </h2>
+        @if ($edificio->apartamentos->isEmpty())
+          {!! link_to_action('ApartmentsController@create', 'Crear Nuevo Apartamento', null, ['class' => 'btn btn-primary']) !!}
+          {!! link_to_action('ApartmentsController@createMultiple', 'Crear varios Apartamentos', $edificio->id, ['class' => 'btn btn-info']) !!}
+        @endif
         @foreach ($edificio->apartamentos as $apartamento)
           <section>
             <p>
@@ -70,10 +74,11 @@
                   <strong>
                     Telf: {{ $apartamento->propietario->phone }}
                   </strong> -
-                  Email: {!! Html::mailto($apartamento->propietario->email) !!}
+                  Email: {!! Html::mailto($apartamento->propietario->email) !!}.
                 @else
-                  <i>Sin Propietario</i>
+                  <i>Sin Propietario.</i>
                 @endunless
+                <span>Habitantes: {{ $apartamento->habitantes->count() }}</span>
               </small>
             </p>
           </section>
@@ -82,9 +87,12 @@
       <div class="col-sm-6">
         <div class="row">
           <h2>
-            Ultimos Movimientos
+            {!! link_to_action('BuildingsController@movements',
+              'Ultimos Movimientos',
+              $edificio->id
+            ) !!}
           </h2>
-          @foreach ($edificio->movimientos as $movimiento)
+          @foreach ($edificio->ultimos_movimientos as $movimiento)
             <article>
               <header>
                 <h3>
@@ -106,27 +114,21 @@
                         <i>
                           {{ $movimiento->tipo->description }}
                         </i>
-                        <strong>
-                          {{ $movimiento->operation }}
-                        </strong>
+                        <strong class="parse_numero">{{ $movimiento->operation }}</strong>
                       </span>
                     @elseif ($movimiento->tipo->description === 'Salida')
                       <span class="mediano rojo">
                         <i>
                           {{ $movimiento->tipo->description }}
                         </i>
-                        <strong>
-                          {{ $movimiento->operation }}
-                        </strong>
+                        <strong class="parse_numero">{{ $movimiento->operation }}</strong>
                       </span>
                     @else
                       <span class="mediano amarillo">
                         <i>
                           {{ $movimiento->tipo->description }}
                         </i>
-                        <strong>
-                          {{ $movimiento->operation }}
-                        </strong>
+                        <strong class="parse_numero">{{ $movimiento->operation }}</strong>
                       </span>
                     @endif
                   @endunless
@@ -158,9 +160,12 @@
         <hr/>
         <div class="row">
           <h2>
-            Ultimos Eventos del Edificio
+            {!! link_to_action('BuildingsController@events',
+              'Ultimos Eventos',
+              $edificio->id
+            ) !!}
           </h2>
-          @foreach ($edificio->eventos as $evento)
+          @foreach ($edificio->ultimos_eventos as $evento)
             <article>
               <header>
                 <h3>
@@ -172,6 +177,9 @@
               </p>
               <footer>
                 <p>
+                  <strong>
+                    {!! $evento->tipo->description !!}.
+                  </strong>
                   <i>
                     Ultima actualizacion
                     {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
@@ -184,4 +192,10 @@
       </div>
     </div>
   </div>
+@stop
+
+@section('js')
+  <script src="{!! asset('vendor/js/numeraljs/numeral.js') !!}"></script>
+  <script src="{!! asset('vendor/js/numeraljs/languages.js') !!}"></script>
+  <script src="{!! asset('js/movimientos/operacion.js') !!}"></script>
 @stop

@@ -1,6 +1,6 @@
 {
   "name": "sistemaCONDOR",
-  "version": "0.3.3",
+  "version": "0.3.8",
   "description": "sistemaCONDOR",
   "main": "gulpfile.js",
   "directories": {
@@ -12,8 +12,7 @@
   "author": "slayerfat",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "laravel-elixir": "*"
+    "gulp": "^3.8.11"
   },
   "dependencies": {
     "gulp": "^3.8.11",

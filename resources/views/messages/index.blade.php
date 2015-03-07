@@ -27,17 +27,35 @@
               $usuario->id
             ) !!}
       </h3>
-      <hr/>
-
-      @foreach ($usuario->mensajes as $mensaje)
-        <article>
-          <h2>
-            {!! link_to_action('MessagesController@show',
-                  $mensaje->title, $mensaje->id) !!}
-          </h2>
-          <body>{{ $mensaje->body }}</body>
-        </article>
+    </div>
+    <div id="lista-12">
+      <?php $mensajes = $usuario->mensajes_paginados ?>
+      @foreach ($mensajes as $mensaje)
+        <div class="modelo">
+          <div class="detalles">
+            <article>
+              <header>
+                <h1>
+                  {!! link_to_action('MessagesController@show',
+                        $mensaje->title, $mensaje->id) !!}
+                </h1>
+              </header>
+              <p class="body">
+                {{ $mensaje->body }}
+              </p>
+              <footer>
+                <p>
+                  <i>
+                    Ultima actualizacion
+                    {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
+                  </i>
+                </p>
+              </footer>
+            </article>
+          </div>
+        </div>
       @endforeach
+      {!! $mensajes->render(); !!}
     </div>
   @endforeach
 @stop

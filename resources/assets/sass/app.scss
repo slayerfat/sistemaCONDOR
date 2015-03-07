@@ -1,11 +1,13 @@
 
-@import "bootstrap";
-@import "movements/master";
-@import "events/master";
-@import "items/master";
-@import "messages/master";
-@import "buildings/master";
-@import "showByBuilding/master";
-@import "articles";
+@import 'bootstrap';
+@import 'movements/master';
+@import 'events/master';
+@import 'items/master';
+@import 'messages/master';
+@import 'buildings/master';
+@import 'showByBuilding/master';
+@import 'articles';
+@import '404';
+@import 'tables';
 
-@import "master";
+@import 'master';

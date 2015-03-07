@@ -163,7 +163,7 @@ class MovementsController extends Controller {
     // el mensaje de exito.
     flash('Movimiento ha sido actualizado con exito.');
 
-    return redirect()->action('BuildingsController@show', $movimiento->building_id);
+    return redirect()->action('BuildingsController@movements', $movimiento->building_id);
   }
 
   /**
@@ -179,7 +179,7 @@ class MovementsController extends Controller {
     $movimiento->delete();
 
     flash()->info('El Movimiento fue eliminado con exito');
-    return redirect()->action('BuildingsController@show', $movimiento->building_id);
+    return redirect()->action('BuildingsController@movements', $movimiento->building_id);
   }
 
 }

@@ -8,7 +8,7 @@
   @include('errors.lista')
   <div id="edificio">
     <h1>
-      Del Edificio 
+      Mensajes del Edificio
       {!! link_to_action('BuildingsController@show',
         $edificio->name,
         $edificio->id
@@ -16,24 +16,34 @@
     </h1>
   </div>
   <div id="lista-12">
-    @foreach ($edificio->eventos as $evento)
+    <?php $mensajes = $edificio->mensajes_paginados ?>
+    @foreach ($mensajes as $mensaje)
       <div class="modelo">
         <div class="detalles">
           <article>
             <header>
               <h1>
-                {!! link_to_action('EventsController@show', 
-                      $evento->title, $evento->id) !!}
+                {!! link_to_action('MessagesController@show',
+                      $mensaje->title, $mensaje->id) !!}
               </h1>
             </header>
             <p class="body">
-              {{ $evento->body }}
+              {{ $mensaje->body }}
             </p>
             <footer>
               <p>
+                <strong>
+                  {!! $mensaje->tipo->description !!}.
+                </strong>
                 <i>
                   Ultima actualizacion
-                  {!! Date::parse($evento->updated_at)->diffForHumans(); !!}.
+                  {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.
+                  {{-- hacer enlace a mensaje por autor --}}
+                  {!! link_to_action('MessagesByUserController@show',
+                      $mensaje->autor->first_name.', '.
+                      $mensaje->autor->first_surname,
+                      $mensaje->autor->id)
+                    !!}.
                 </i>
               </p>
             </footer>
@@ -41,5 +51,6 @@
         </div>
       </div>
     @endforeach
+    {!! $mensajes->render(); !!}
   </div>
 @stop

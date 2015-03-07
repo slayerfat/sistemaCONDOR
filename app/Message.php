@@ -20,12 +20,12 @@ class Message extends Model {
    * @var array
    */
   protected $fillable = [
-    'user_id', 
-    'building_id', 
-    'message_type_id', 
-    'title', 
-    'body', 
-    'created_by', 
+    'user_id',
+    'building_id',
+    'message_type_id',
+    'title',
+    'body',
+    'created_by',
     'updated_by'
   ];
 

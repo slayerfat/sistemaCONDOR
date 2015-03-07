@@ -12,12 +12,12 @@
       {{ $usuario->first_surname }}
       {{ $usuario->last_surname }}
       <small>
-        {{$usuario->username}}
+        ({{$usuario->username}})
       </small>
       @if (Auth::user()->id === $usuario->id)
         {!!link_to_action(
-            'UsersController@edit', 
-            'Editar', 
+            'UsersController@edit',
+            'Editar',
             $usuario->id,
             ['class' => 'btn btn-primary']) !!}
       @endif
@@ -28,27 +28,32 @@
 
     <h3>Informacion de contacto</h3>
     <p>
-      {{ $usuario->email }}
+      {!! Html::mailto($usuario->email) !!}
       {{ $usuario->phone }}
       {{ $usuario->aditional_phone }}
     </p>
     <hr/>
     <section>
-      Perteneciente a
-      @foreach ($usuario->apartamentos as $apartamento)
-        <h4>
-          {!!link_to_action(
-              'BuildingsController@show', 
-              $apartamento->edificio->name, 
-              $apartamento->edificio->id) !!}
-          <small>
-            Piso
-            {{ $apartamento->floor }}
-            Apartamento
-            {{ $apartamento->number }}
-          </small>
-        </h4>
-      @endforeach
+      @unless ($usuario->apartamentos()->get()->isEmpty())
+        Perteneciente a
+        @foreach ($usuario->apartamentos as $apartamento)
+          <h4>
+            {!!link_to_action(
+                'BuildingsController@show',
+                $apartamento->edificio->name,
+                $apartamento->edificio->id) !!}
+            <small>
+              Piso
+              {{ $apartamento->floor }}
+              {!! link_to_action('ApartmentsController@show', 'Apartamento '.$apartamento->number, $apartamento->id) !!}
+            </small>
+          </h4>
+        @endforeach
+      @else
+        @if (Auth::user()->perfil->description === 'Administrador' or Auth::user()->id === $usuario->id)
+          {!! link_to_action('AssignApartmentsController@createFromUserId', 'Asignar Apartamento', $usuario->id, ['class' => 'btn btn-primary']) !!}
+        @endif
+      @endunless
     </section>
     <hr/>
     <section>
@@ -57,16 +62,16 @@
           {{ $usuario->perfil->description }}
         </h4>
     </section>
-  </div>  
+  </div>
   <div id="lista-12">
     <h3>
       Ultimos mensajes
       {!!link_to_action(
-        'MessagesController@create', 
+        'MessagesController@create',
         'Crear Nuevo', null,
         ['class' => 'btn btn-primary']) !!}
     </h3>
-    @foreach ($usuario->mensajes as $mensaje)
+    @foreach ($usuario->ultimos_mensajes as $mensaje)
       <div class="modelo">
         <div class="detalles">
           <article>
@@ -79,7 +84,7 @@
                     $mensaje->id) !!}
                 @else
                   {!!link_to_action(
-                    'MessagesController@show', 
+                    'MessagesController@show',
                     $mensaje->title,
                     $mensaje->id) !!}
                 @endif
@@ -90,6 +95,9 @@
             </p>
             <footer>
               <p>
+                <strong>
+                  {!! $mensaje->tipo->description !!}.
+                </strong>
                 <i>
                   Ultima actualizacion
                   {!! Date::parse($mensaje->updated_at)->diffForHumans(); !!}.

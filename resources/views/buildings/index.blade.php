@@ -8,15 +8,15 @@
   <div class="container">
     @unless (!isset($edificios))
       @foreach ($edificios as $edificio)
-        <h1>Edificio 
-          {!! link_to_action('BuildingsController@show', 
+        <h1>Edificio
+          {!! link_to_action('BuildingsController@show',
             $edificio->name, $edificio->id) !!}
         </h1>
         <p>
           {{ $edificio->direccion->exact_direction }}.
         </p>
         <p>
-          Encargado: 
+          Encargado:
           <i>
             {!! link_to_action(
                   'UsersController@show',

@@ -11,6 +11,9 @@
           @endif
               {{ $habitante->first_name }}
               {{ $habitante->first_surname }}
+              |
+              Apartamento N°
+              {{ $apartamento->number }}
             </option>
         @endforeach
       @endforeach
