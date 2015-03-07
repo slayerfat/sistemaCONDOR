@@ -191,9 +191,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return false;
   }
 
-  public function porVerificar()
+  public function desactivado()
   {
-   if ($this->perfil->description === 'Por Verificar') return true;
+   if ($this->perfil->description === 'Desactivado') return true;
     return false;
   }
 
