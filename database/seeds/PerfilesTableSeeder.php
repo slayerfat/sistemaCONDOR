@@ -17,6 +17,7 @@ class PerfilesTableSeeder extends Seeder {
       'Ayudante',
       'Junta de condominio',
       'Consejo Comunal',
+      'Sin Edificio',
       'Desactivado'
     ];
 

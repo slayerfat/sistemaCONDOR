@@ -50,14 +50,17 @@ Route::group(['middleware' => ['auth', 'usuario.verificar']], function(){
   Route::delete('gestiones/{usuarios}/{edificios}', 'GestionsController@destroy');
 });
 
-// usuario por verificar
-Route::get('/por-verificar', 'IndexController@porVerificar');
-// para generar confirmaciones de usuario
-Route::get('/generar-confirmacion', 'ConfirmationsController@generateConfirm');
-Route::get('/confirmar/{string}', 'ConfirmationsController@confirm');
+// para asignar un usuario a un apartamento de un edifico
+Route::group(['middleware' => 'usuario.verificado'], function(){
+  // usuario por verificar
+  Route::get('/por-verificar', 'IndexController@porVerificar');
+  // para generar confirmaciones de usuario
+  Route::get('/generar-confirmacion', 'ConfirmationsController@generateConfirm');
+  Route::get('/confirmar/{string}', 'ConfirmationsController@confirm');
+});
 
 // para asignar un usuario a un apartamento de un edifico
-Route::group(['middleware' => 'auth', 'prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
+Route::group(['middleware' => ['auth', 'usuario.verificar', 'usuario.edificio'], 'prefix' => 'asignar-edificio', 'as' => 'asignarApartamento'], function(){
   Route::get('/', 'AssignApartmentsController@index');
   Route::get('/{id}/create', 'AssignApartmentsController@create');
   // asignar apartamentos a un usuario existente

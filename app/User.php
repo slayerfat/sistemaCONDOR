@@ -204,4 +204,28 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return false;
   }
 
+  public function verificado()
+  {
+   if ($this->perfil->description !== 'Desactivado') return true;
+    return false;
+  }
+
+  public function esUsuario()
+  {
+   if ($this->perfil->description === 'Usuario') return true;
+    return false;
+  }
+
+  public function esAyudante()
+  {
+   if ($this->perfil->description === 'Ayudante') return true;
+    return false;
+  }
+
+  public function sinEdificio()
+  {
+   if ($this->perfil->description === 'Sin Edificio') return true;
+    return false;
+  }
+
 }

@@ -40,11 +40,12 @@ class ConfirmationsController extends Controller {
       return redirect('/');
     endif;
 
-    $perfil = Profile::where('description', 'Usuario')->first();
+    $perfil = Profile::where('description', 'Sin Edificio')->first();
     $usuario->profile_id = $perfil->id;
     $usuario->save();
     $usuario->confirmacion()->delete();
-    flash('Ud. ha sido correctamente verificado, por favor ingrese en el sistema.');
+    Auth::logout();
+    flash()->success('Ud. ha sido correctamente verificado, por favor ingrese en el sistema.');
     return redirect('auth/login');
   }
 
