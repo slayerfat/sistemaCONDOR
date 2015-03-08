@@ -30,6 +30,8 @@ class Kernel extends HttpKernel {
     'administrador.evento' => 'App\Http\Middleware\RedirectIfNotAdminOrJC',
     'usuario.apartamento'  => 'App\Http\Middleware\RedirectIfNoApartmentFound',
     'usuario.verificar'    => 'App\Http\Middleware\RedirectIfPorVerificar',
+    'usuario.verificado'   => 'App\Http\Middleware\RedirectIfVerified',
+    'usuario.edificio'     => 'App\Http\Middleware\RedirectIfHasBuilding',
   ];
 
 }

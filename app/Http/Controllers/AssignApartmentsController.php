@@ -30,7 +30,7 @@ class AssignApartmentsController extends Controller {
   public function create($id)
   {
     $edificio = Building::findOrFail($id);
-    $apartamentos = Apartment::lists('number', 'id');
+    $apartamentos = $edificio->apartamentos;
 
     $apartamentos = Apartment::listaHumana($apartamentos);
 

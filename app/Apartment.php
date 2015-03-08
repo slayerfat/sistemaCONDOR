@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 class Apartment extends Model {
 
@@ -45,9 +46,9 @@ class Apartment extends Model {
     return $this->belongsToMany('App\User');
   }
 
-  static function listaHumana($apartamentos){
-    foreach ($apartamentos as $id => $valor) :
-      $lista[$id] = "Apartamento ".$valor;
+  static function listaHumana(Collection $apartamentos){
+    foreach ($apartamentos as $apartamento) :
+      $lista[] = "Apartamento ".$apartamento->number;
     endforeach;
     return isset($lista) ? $lista : null;
   }

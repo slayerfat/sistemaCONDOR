@@ -2,7 +2,7 @@
 
 use Closure;
 
-class RedirectIfPorVerificar {
+class RedirectIfVerified {
 
   /**
    * Handle an incoming request.
@@ -13,10 +13,9 @@ class RedirectIfPorVerificar {
    */
   public function handle($request, Closure $next)
   {
-    if ( $request->user()->desactivado() )
+    if ( $request->user()->verificado() )
     {
-      flash()->error('Ud. todavia no ha verificado su cuenta en el sistema.');
-      return redirect('/por-verificar');
+      return redirect('/');
     }
     return $next($request);
   }

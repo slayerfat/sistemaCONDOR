@@ -28,34 +28,38 @@
               </ul>
             </li>
           @endif
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              Edificios
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li>{!! link_to_action('BuildingsController@create', 'Crear') !!}</li>
-              <li>{!! link_to_action('BuildingsController@index', 'Consulta General') !!}</li>
-              @foreach (Auth::user()->apartamentos as $apartamento)
-                <li>{!! link_to_action('BuildingsController@show', $apartamento->edificio->name, $apartamento->edificio->id) !!}</li>
-              @endforeach
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              Eventos
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              @if (Auth::user()->perfil->description === 'Administrador')
-                <li>{!! link_to_action('EventsController@create', 'Crear') !!}</li>
-                <li>{!! link_to_action('EventsController@index', 'Consulta General') !!}</li>
-              @endif
-              @foreach (Auth::user()->apartamentos as $apartamento)
-                <li>{!! link_to_action('BuildingsController@events', $apartamento->edificio->name, $apartamento->edificio->id) !!}</li>
-              @endforeach
-            </ul>
-          </li>
+          @unless (Auth::user()->apartamentos()->get()->isEmpty())
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                Edificios
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                @if (Auth::user()->perfil->description === 'Administrador')
+                  <li>{!! link_to_action('BuildingsController@create', 'Crear') !!}</li>
+                  <li>{!! link_to_action('BuildingsController@index', 'Consulta General') !!}</li>
+                @endif
+                @foreach (Auth::user()->apartamentos as $apartamento)
+                  <li>{!! link_to_action('BuildingsController@show', $apartamento->edificio->name, $apartamento->edificio->id) !!}</li>
+                @endforeach
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                Eventos
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                @if (Auth::user()->perfil->description === 'Administrador')
+                  <li>{!! link_to_action('EventsController@create', 'Crear') !!}</li>
+                  <li>{!! link_to_action('EventsController@index', 'Consulta General') !!}</li>
+                @endif
+                @foreach (Auth::user()->apartamentos as $apartamento)
+                  <li>{!! link_to_action('BuildingsController@events', $apartamento->edificio->name, $apartamento->edificio->id) !!}</li>
+                @endforeach
+              </ul>
+            </li>
+          @endunless
         @endunless
       </ul>
 

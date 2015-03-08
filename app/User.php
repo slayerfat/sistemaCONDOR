@@ -167,6 +167,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   }
 
   /**
+   * Un usuario tiene una sola confirmacion
+   */
+  public function confirmacion(){
+    return $this->hasOne('App\UserConfirmation');
+  }
+
+  /**
    * debido a que no se todava implementar
    * laravel correctamente tengo que
    * hacer esta mamarrachada
@@ -191,9 +198,33 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return false;
   }
 
-  public function porVerificar()
+  public function desactivado()
   {
-   if ($this->perfil->description === 'Por Verificar') return true;
+   if ($this->perfil->description === 'Desactivado') return true;
+    return false;
+  }
+
+  public function verificado()
+  {
+   if ($this->perfil->description !== 'Desactivado') return true;
+    return false;
+  }
+
+  public function esUsuario()
+  {
+   if ($this->perfil->description === 'Usuario') return true;
+    return false;
+  }
+
+  public function esAyudante()
+  {
+   if ($this->perfil->description === 'Ayudante') return true;
+    return false;
+  }
+
+  public function sinEdificio()
+  {
+   if ($this->perfil->description === 'Sin Edificio') return true;
     return false;
   }
 
