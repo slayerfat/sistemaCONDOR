@@ -1,5 +1,9 @@
 #sistemaCONDOR
 
+Sistema de información destinado al manejo de entrada - salida de recursos y la facilitación del flujo de comunicación de los habitantes del Edificio “Residencias Matasiete” y futura implementacion para el consejo comunal La Paz I y II.
+
+Misión Alma Mater, Programa Nacional de Formación: Informatica.
+
 ###Node
 
 Para usar este repositorio es necesario tener instalado en el sistema [node.js](http://nodejs.org/).
